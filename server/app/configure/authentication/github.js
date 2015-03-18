@@ -28,7 +28,9 @@ module.exports = function(app) {
         UserModel.create({
           github: {
             id: profile.id
-          }
+          },
+          displayName: profile.displayName ? profile.displayName : profile.username,
+          username: profile.username
         }).then(function(user) {
           done(null, user);
         }, function(err) {
@@ -45,7 +47,6 @@ module.exports = function(app) {
   app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req,res) {
-      console.log('authenticated!');
       res.redirect('/');
     });
 };
