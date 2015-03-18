@@ -11,19 +11,25 @@ var schema = new mongoose.Schema({
     },
     salt: {
         type: String
-    // },
-    // twitter: {
-    //     id: String,
-    //     username: String,
-    //     token: String,
-    //     tokenSecret: String
-    // },
-    // facebook: {
-    //     id: String
     },
     github: {
         id: String
-    }
+    },
+    displayName: {
+        type: String
+    },
+    username: {
+        type: String,
+        unique: true
+    },
+    testIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Test'
+    }],
+    takenTests: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Result'
+    }]
 });
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations
