@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
   name: {type: String},
   instructions: {type: String},
+  status: {type: String},
   deadline: {type: Date},
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
   privateFiles: [{type: Schema.Types.ObjectId, ref: 'File' }],
