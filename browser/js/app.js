@@ -1,5 +1,12 @@
 'use strict';
-var app = angular.module('FullstackGeneratedApp', ['ui.router', 'fsaPreBuilt']);
+var app = angular.module('cupojoe', [
+  'ngAnimate',
+  'ngResource',
+  'ui.router', 
+  'fsaPreBuilt', 
+  'ui.router', 
+  'mgcrea.ngStrap'
+]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
