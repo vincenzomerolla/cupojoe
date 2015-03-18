@@ -10,13 +10,12 @@
         </ul>
 
         <ul ng-show="!user" class="nav navbar-nav navbar-right">
-            <li><a ui-sref="login">Login</a><li>
+            <li><a href="" ng-click="login()">Login with <i class="fa fa-lg fa-github"></i></a><li>
         </ul>
 
         
         <ul ng-show="user" class="nav navbar-nav navbar-right">
-            <li>Welcome, {{ user.email }}!<li>
-            <li><a ng-click="logout()">Logout</a></li>
+            <li><a href="" ng-click="logout()">Logout</a></li>
         </ul>
     </div>
 </nav>
