@@ -8,3 +8,5 @@ var schema = new Schema({
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   user: { type: Schema.Types.ObjectId, ref: 'User' }  
 });
+
+mongoose.model('Result', schema)
