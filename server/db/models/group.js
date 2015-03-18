@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
   name: {type: String},
   creator: {type: Schema.Types.ObjectId, ref: 'User' },
-  members: [{type: Boolean, default: false}],
+  members: [{type: Schema.Types.ObjectId, ref: 'User' }],
   createdAt: {type: Date, default: Date.now}   
 });
 

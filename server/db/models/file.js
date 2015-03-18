@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 
 var schema = new Schema({
   name: {type: String},
-  children: [{type: Schema.Types.ObjectId, ref: 'File' }]
+  children: [{type: Schema.Types.ObjectId, ref: 'File' }],
   isReadOnly: {type: Boolean, default: false},
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
