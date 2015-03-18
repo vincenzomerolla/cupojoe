@@ -19,10 +19,10 @@ schema.pre('save', function (next) {
 
 schema.virtual('isFile').get(function() {
   return !this.children.length;
-})
+});
 
 
-schema.set('toJSON', { virtuals: true })
+schema.set('toJSON', { virtuals: true });
 
 
-mongoose.model('File', schema)
+mongoose.model('File', schema);
