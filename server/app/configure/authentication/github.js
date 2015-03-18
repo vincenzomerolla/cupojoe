@@ -6,7 +6,9 @@ var mongoose = require('mongoose');
 var UserModel = mongoose.model('User');
 
 module.exports = function(app) {
+
   var githubConfig = app.getValue('env').GITHUB;
+
   var githubCredentials = {
     clientID: githubConfig.clientID,
     clientSecret: githubConfig.clientSecret,
@@ -14,9 +16,11 @@ module.exports = function(app) {
   };
 
   var verifyCallback = function(accessToken, refreshToken, profile, done) {
-    UserModel.findOne({'github.id': profile.id}, function(err, user) {
+    UserModel.findOne({ 'github.id': profile.id }, function(err, user) {
 
-      if (err) return done(err);
+      if (err) {
+        return done(err);
+      }
 
       if (user) {
         done(null, user);
@@ -28,7 +32,6 @@ module.exports = function(app) {
         }).then(function(user) {
           done(null, user);
         }, function(err) {
-          console.error(err);
           done(err);
         });
       }
@@ -39,9 +42,10 @@ module.exports = function(app) {
 
   app.get('/auth/github', passport.authenticate('github'));
 
-  app.get('auth/github/callback',
+  app.get('/auth/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
     function(req,res) {
+      console.log('authenticated!');
       res.redirect('/');
     });
 };
