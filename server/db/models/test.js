@@ -9,7 +9,7 @@ var schema = new Schema({
   deadline: {type: Date},
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
   privateFiles: [{type: Schema.Types.ObjectId, ref: 'File' }],
-  publicFiles: [{type: Schema.Types.ObjectId, ref: 'File' }]
+  publicFiles: [{type: Schema.Types.ObjectId, ref: 'File' }],
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 });
