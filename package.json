@@ -1,12 +1,17 @@
 {
-  "name": "FullstackGeneratedApp",
+  "name": "cupojoe",
   "version": "1.0.0",
-  "description": "Scaffolding for projects at Fullstack Academy",
+  "description": "A test environment in the browser.",
   "main": "server/start.js",
   "scripts": {
     "start": "node server/start.js",
     "postinstall": "./node_modules/bower/bin/bower install && gulp build"
   },
+  "repository": "https://github.com/vincenzomerolla/cupojoe.git",
+  "contributors": [
+    "Colin Van Lang",
+    "Vincenzo Merolla"
+  ],
   "dependencies": {
     "body-parser": "^1.12.0",
     "bower": "^1.3.12",
@@ -49,6 +54,5 @@
     "sinon": "^1.13.0",
     "socket.io": "^1.3.4",
     "supertest": "^0.15.0"
-  },
-  "author": "Joe Alves <databentpx@gmail.com> (http://www.github.com/joedotjs)"
+  }
 }
