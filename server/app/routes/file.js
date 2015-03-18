@@ -32,6 +32,7 @@ router.use('/:id', function(req, res, next) {
   File.findById(req.params.id).exec()
   .then(function(file) {
     req.data = file;
+    next();
   }).catch(function(err) {
     next(err);
   });

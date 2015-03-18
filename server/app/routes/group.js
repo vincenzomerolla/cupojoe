@@ -32,6 +32,7 @@ router.use('/:id', function(req, res, next) {
   Group.findById(req.params.id).exec()
   .then(function(group) {
     req.data = group;
+    next();
   }).catch(function(err) {
     next(err);
   });

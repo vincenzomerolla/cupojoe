@@ -32,6 +32,7 @@ router.use('/:id', function(req, res, next) {
   Result.findById(req.params.id).exec()
   .then(function(result) {
     req.data = result;
+    next();
   }).catch(function(err) {
     next(err);
   });
