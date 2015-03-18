@@ -5,11 +5,12 @@
   "main": "server/start.js",
   "scripts": {
     "start": "node server/start.js",
+    "test": "nodemon server/start.js",
     "postinstall": "./node_modules/bower/bin/bower install && gulp build"
   },
   "repository": "https://github.com/vincenzomerolla/cupojoe.git",
   "contributors": [
-    "Colin Van Lang",
+    "Colin VanLang",
     "Vincenzo Merolla"
   ],
   "dependencies": {
@@ -53,6 +54,7 @@
     "serve-favicon": "^2.2.0",
     "sinon": "^1.13.0",
     "socket.io": "^1.3.4",
-    "supertest": "^0.15.0"
+    "supertest": "^0.15.0",
+    "passport-github": "~0.1.5"
   }
 }
