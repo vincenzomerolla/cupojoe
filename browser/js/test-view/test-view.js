@@ -6,14 +6,14 @@ app.config(function($stateProvider) {
     controller: 'TestViewCtrl'
   });
 
-  $stateProvider.state('testView.file', {
-    url: '/file/:fileId',
+  $stateProvider.state('testView.fileView', {
+    url: '/file/:filePath',
     templateUrl: 'js/test-view/file-view.html',
     controller: 'FileViewCtrl'
   });
 });
 
-app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory) {
+app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory, $state) {
   Test.get({id: $stateParams.testId}).$promise.then(function(test) {
     $scope.treedata = TestFactory.getTableObj(test);
   });
@@ -21,8 +21,12 @@ app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory)
   $scope.opts = {
     dirSelectable: false
   };
+
+  $scope.showFile = function(node) {
+    $state.go('testView.fileView', {filePath: node.path + node.name});
+  };
 });
 
-app.controller('FileViewCtrl', function($scope, $stateParams) {
-  
+app.controller('FileViewCtrl', function($scope, $stateParams, FileFactory) {
+  $scope.fileBody = FileFactory.getBodyFromPath($scope.treedata, $stateParams.filePath);
 });
