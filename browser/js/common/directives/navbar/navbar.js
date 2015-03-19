@@ -1,5 +1,5 @@
 'use strict';
-app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, $window) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, $window, Test) {
 
     return {
         restrict: 'E',
@@ -9,7 +9,6 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state, 
 
             scope.items = [
                 { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
                 { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 

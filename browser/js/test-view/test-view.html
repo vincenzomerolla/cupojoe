@@ -1,0 +1,15 @@
+<div class="col-xs-3">
+  <div class="well">
+    <treecontrol class="tree-classic"
+      tree-model="treedata"
+      options="opts"
+      on-selection="showSelected(node)">
+      label: {{node.name}}
+    </treecontrol>
+  </div>
+</div>
+<div class="col-xs-9">
+  <div class="well">
+    <ui-view></ui-view>
+  </div>
+</div>

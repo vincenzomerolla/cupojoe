@@ -11,7 +11,7 @@ module.exports = router;
 router.get('/', function(req, res, next) {
   Test.find().exec().then(function(tests) {
     res.json(tests);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -33,7 +33,7 @@ router.use('/:id', function(req, res, next) {
   .then(function(test) {
     req.data = test;
     next();
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -57,7 +57,7 @@ router.route('/:id')
     Test.findByIdAndRemove(req.data._id).exec()
     .then(function() {
       res.status(200).end();
-    }).catch(function(err) {
+    }, function(err) {
       next(err);
     });
   });

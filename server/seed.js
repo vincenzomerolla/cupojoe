@@ -1,13 +1,20 @@
 var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/cupojoe');
 
-
-require('./db/')
-
+require('./db/models/file.js');
+require('./db/models/test.js');
+require('./db/models/group.js');
+require('./db/models/user.js');
 
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
+var File = mongoose.model('File');
 
+var U = function() {
+  this.username = 'user';
+  this.displayName = 'user';
+}
 
 var G = function (user){ 
   this.name = 'Group 1';
@@ -21,19 +28,42 @@ var T = function(user) {
   this.status = 'Available';
   this.owner = user._id;
   this.deadline = Date.now();
+
+
+  this.privateFiles = makeFileArr(10);
+  this.publicFiles = makeFileArr(10);
 }
 
-var user;
+var F = function() {
+  this.name = Math.floor(Math.random() * 100) + 'test.js';
+  this.path = '/test/';
+  this.body = '' + Math.random();
+  this.ReadOnly = false;
+}
 
-User.find().exec()
-  .then(function(users) {
-    user = users[0];
-    return Group.create(new G(user));
-  })
-  .then(function() {
-    return Test.create(new T(user));
-  })
-  .then(function() {
-    console.log('Seed done');
-    process.exit(0);
-  })
+var makeFileArr = function(len) {
+  var arr = [];
+  for (var i = 0; i < len; i++) {
+    arr.push(new F());
+  }
+  return arr;
+}
+
+
+mongoose.connection.on('open', function() {
+  mongoose.connection.db.dropDatabase(function() {
+    var user
+    User.create(new U())
+      .then(function(createdUser) {
+        user = createdUser;
+        return Group.create(new G(user));
+      })
+      .then(function() {
+        return Test.create(new T(user));
+      })
+      .then(function() {
+        console.log('Seed done');
+        process.exit(0);
+      });
+  });
+});
