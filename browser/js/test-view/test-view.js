@@ -7,19 +7,10 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, $stateParams, Test) {
+app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory) {
   Test.get({id: $stateParams.testId}).$promise.then(function(test) {
-    console.log(test);
+    $scope.treedata = TestFactory.getTableObj(test);
   });
-
-  $scope.treedata = [
-    {label: 'hi', id: 1},
-    {label: 'hi', id: 6, children: [
-      {label: 'hi', id: 2},
-      {label: 'hi', id: 3}
-    ]},
-    {label: 'hi', id: 4}
-  ];
 
   $scope.opts = {
     dirSelectable: false

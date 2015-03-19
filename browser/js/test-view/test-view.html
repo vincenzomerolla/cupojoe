@@ -4,10 +4,12 @@
       tree-model="treedata"
       options="opts"
       on-selection="showSelected(node)">
-      label: {{node.label}} {{node.id}}
+      label: {{node.name}}
     </treecontrol>
   </div>
 </div>
 <div class="col-xs-9">
-  <div class="well"></div>
+  <div class="well">
+    <ui-view></ui-view>
+  </div>
 </div>
