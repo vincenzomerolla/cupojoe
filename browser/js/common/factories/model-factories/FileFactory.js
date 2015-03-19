@@ -1,10 +1,10 @@
 app.factory('FileFactory', function() {
   var factory = {};
 
-  var TreeNode = function(name, body, path) {
+  var TreeNode = function(name, body, fullPath) {
     this.name = name;
     this.body = body;
-    this.path = path;
+    this.fullPath = fullPath;
     this.children = [];
   };
 
@@ -28,7 +28,7 @@ app.factory('FileFactory', function() {
   };
 
   factory.addToTree = function(root, file) {
-    var newFile = new TreeNode(file.name, file.body, file.path);
+    var newFile = new TreeNode(file.name, file.body, file.fullPath);
     var curNodeArr = root;
     if (file.path !== '/') {
       var pathArr = file.path.split('/');

@@ -23,7 +23,7 @@ app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory,
   };
 
   $scope.showFile = function(node) {
-    $state.go('testView.fileView', {filePath: node.path + node.name});
+    $state.go('testView.fileView', {filePath: node.fullPath});
   };
 });
 

@@ -22,6 +22,9 @@ schema.pre('save', function (next) {
 //   return !this.children.length;
 // });
 
+schema.virtual('fullPath').get(function() {
+  return this.path + this.name;
+})
 
 schema.set('toJSON', { virtuals: true });
 
