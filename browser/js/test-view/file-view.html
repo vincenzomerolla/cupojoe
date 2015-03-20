@@ -1,6 +1,11 @@
 <div class="row section">
-  <button class="btn btn-primary">Save Changes</button>
+  <button class="btn btn-primary"
+    ng-class="{disabled: !isFileChanged}"
+    ng-click="saveFileChanges(fileBody)">Save Changes</button>
 </div>
 <div class="row">
-  <div ui-ace ng-model="fileBody"></div>
+  <div class="col-xs-6">
+    <div ui-ace ng-model="fileBody"></div>
+  </div>
+  {{ fileBody }}
 </div>

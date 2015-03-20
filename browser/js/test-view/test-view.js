@@ -27,6 +27,21 @@ app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory,
   };
 });
 
-app.controller('FileViewCtrl', function($scope, $stateParams, FileFactory) {
-  $scope.fileBody = FileFactory.getBodyFromPath($scope.treedata, $stateParams.filePath);
+app.controller('FileViewCtrl', function($scope, $stateParams, FileFactory, TestFactory, Test) {
+  var pageLoad = false;
+  $scope.isFileChanged = false;
+  var filePath = $stateParams.filePath;
+
+  $scope.fileBody = FileFactory.getBodyFromPath($scope.treedata, filePath);
+
+  $scope.$watch('fileBody', function() {
+    if (pageLoad) $scope.isFileChanged = true;
+    else pageLoad = true;
+  });
+
+  $scope.saveFileChanges = function(fileBody) {
+    FileFactory.saveBodyWithPath($scope.treedata, filePath, fileBody);
+    var test = TestFactory.getUpdatedTestObj($scope.treedata);
+    Test.update({id: $stateParams.testId}, test);
+  };
 });

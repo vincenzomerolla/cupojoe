@@ -30,21 +30,21 @@ var T = function(user) {
   this.deadline = Date.now();
 
 
-  this.privateFiles = makeFileArr(10);
-  this.publicFiles = makeFileArr(10);
+  this.privateFiles = makeFileArr(10, true);
+  this.publicFiles = makeFileArr(10, false);
 }
 
-var F = function() {
+var F = function(isReadOnly) {
   this.name = Math.floor(Math.random() * 100) + 'test.js';
   this.path = '/test/';
   this.body = '' + Math.random();
-  this.ReadOnly = false;
+  this.isReadOnly = isReadOnly;
 }
 
-var makeFileArr = function(len) {
+var makeFileArr = function(len, bool) {
   var arr = [];
   for (var i = 0; i < len; i++) {
-    arr.push(new F());
+    arr.push(new F(bool));
   }
   return arr;
 }
