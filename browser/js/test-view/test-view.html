@@ -1,13 +1,10 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-8">
       <h2 class="test-title">{{ test.name }}</h2>
     </div>
-    <div class="col-xs-6">
-      <div class="well">
-        Test Status: {{ test.status }}<br>
-        Test Deadline: {{ test.deadline | date: "MM/dd/yyyy 'at' h:mma" }}
-      </div>
+    <div class="col-xs-4">
+      <test-info></test-info>
     </div>
   </div>
   <div class="row">
