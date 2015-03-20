@@ -27,7 +27,7 @@ app.run(function ($rootScope, AuthService, $state) {
 
     // $stateChangeStart is an event fired
     // whenever the process of changing a state begins.
-    $rootScope.$on('$stateChangeStart', function (event, toState) {
+    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
 
         if (!destinationStateRequiresAuth(toState)) {
             // The destination state does not require authentication
@@ -48,8 +48,8 @@ app.run(function ($rootScope, AuthService, $state) {
             // If a user is retrieved, then renavigate to the destination
             // (the second time, AuthService.isAuthenticated() will work)
             // otherwise, if no user is logged in, go to "login" state.
-            var destination = user ? toState.name : 'login';
-            $state.go(destination);
+            var destination = user ? toState.name : 'home';
+            $state.go(destination, toParams);
         });
 
     });

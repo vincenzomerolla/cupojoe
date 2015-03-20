@@ -3,7 +3,21 @@ app.config(function($stateProvider) {
   $stateProvider.state('testView', {
     url: '/test/:testId',
     templateUrl: 'js/test-view/test-view.html',
-    controller: 'TestViewCtrl'
+    controller: 'TestViewCtrl',
+    resolve: {
+      test: function(Test, $stateParams) {
+        return Test.get({id: $stateParams.testId}).$promise;
+      },
+      user: function(AuthService) {
+        return AuthService.getLoggedInUser();
+      },
+      isInstructor: function(user, test) {
+        return user._id === test.owner;
+      },
+    },
+    data: {
+      authenticate: true
+    }
   });
 
   $stateProvider.state('testView.fileView', {
@@ -13,10 +27,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory, $state) {
-  Test.get({id: $stateParams.testId}).$promise.then(function(test) {
-    $scope.treedata = TestFactory.getTableObj(test);
-  });
+app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory, $state, user) {
+  $scope.treedata = TestFactory.getTableObj(test);
 
   $scope.opts = {
     dirSelectable: false
@@ -24,27 +36,5 @@ app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory,
 
   $scope.showFile = function(node) {
     $state.go('testView.fileView', {filePath: node.fullPath});
-  };
-});
-
-app.controller('FileViewCtrl', function($scope, $stateParams, $timeout, $alert, FileFactory, TestFactory, Test) {
-  var pageLoad = false;
-  $scope.isFileChanged = false;
-  var filePath = $stateParams.filePath;
-
-  $scope.fileBody = FileFactory.getBodyFromPath($scope.treedata, filePath);
-
-  $scope.$watch('fileBody', function() {
-    if (pageLoad) $scope.isFileChanged = true;
-    else pageLoad = true;
-  });
-
-  $scope.saveFileChanges = function(fileBody) {
-    FileFactory.saveBodyWithPath($scope.treedata, filePath, fileBody);
-    var test = TestFactory.getUpdatedTestObj($scope.treedata);
-    Test.update({id: $stateParams.testId}, test).$promise.then(function() {
-      $scope.isFileChanged = false;
-      $alert({title: 'Changes saved', placement: 'top-right', type: 'success', duration: 2})
-    });
   };
 });
