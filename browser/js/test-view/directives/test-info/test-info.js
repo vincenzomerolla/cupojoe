@@ -7,7 +7,7 @@ app.directive('testInfo', function(Test, $alert) {
 
       $scope.$watch('test.deadline', function() {
         if (pageLoad) {
-          Test.update({id: $scope.test._id}, $scope.test).$promise
+          Test.update({id: $scope.test._id}, {deadline: $scope.test.deadline}).$promise
           .then(function() {
             $alert({
               title: 'Deadline updated',

@@ -1,0 +1,15 @@
+<div class="well">
+  <form name="descriptionForm">
+    <div class="form-group">
+      <label>Test Description</label>
+      <textarea name="description"
+        class="form-control small-font"
+        ng-model="test.instructions">
+      </textarea>
+    </div>
+  </form>
+  <button class="btn btn-primary btn-sm"
+    ng-class="{disabled: !isFileChanged}"
+    ng-click="saveInstructionChanges(test.instructions)">Save Changes
+  </button>
+</div>

@@ -9,4 +9,4 @@ var schema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' }  
 });
 
-mongoose.model('Result', schema)
+mongoose.model('Result', schema);

@@ -12,7 +12,7 @@ app.factory('TestFactory', function(FileFactory) {
         var key = node.isReadOnly ? isReadOnlyName : isEditableName;
         obj[key].push(node);
       }
-    };
+    }
 
     tableObj.forEach(function(node) {
       rec_objToJSON(node);

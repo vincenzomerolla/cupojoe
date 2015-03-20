@@ -19,21 +19,21 @@
       </div>
     </div>
     <div class="col-xs-6">
-      <div class="col-xs-12">
-        <div class="well">
-          {{ test.instructions }}
+      <div class="row">
+        <div class="col-xs-12">
+          <test-description></test-description>
         </div>
       </div>
-      <div class="col-xs-12">
-        <div class="well">
-          <ui-view></ui-view>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="well">
+            <ui-view></ui-view>
+          </div>
         </div>
       </div>
     </div>
     <div class="col-xs-3">
-      <div class="well">
-        user output or test commands here
-      </div>
+      <test-commands></test-commands>
     </div>
   </div>
 </div>
