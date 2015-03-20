@@ -3,6 +3,7 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var Group = mongoose.model('Group');
 
 module.exports = router;
 
@@ -11,7 +12,7 @@ module.exports = router;
 router.get('/', function(req, res, next) {
   User.find().exec().then(function(users) {
     res.json(users);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -19,24 +20,22 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   User.create(req.body).then(function(user) {
     res.json(user);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
 
 
-
-
-
-router.use('/:id', function(req, res, next) {
-  User.findById(req.params.id).exec()
+router.param('id', function(req, res, next, id) {
+  User.findById(id).exec()
   .then(function(user) {
     req.data = user;
     next();
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
+
 
 router.route('/:id')
   .get(function(req, res, next) {
@@ -57,7 +56,15 @@ router.route('/:id')
     User.findByIdAndRemove(req.data._id).exec()
     .then(function() {
       res.status(200).end();
-    }).catch(function(err) {
+    }, function(err) {
       next(err);
     });
   });
+
+
+router.get('/:id/group', function(req, res, next) {
+  User.populate(req.data, 'groups').then(function(user) {
+    console.log(user);
+    res.json(user.groups);
+  });
+});
