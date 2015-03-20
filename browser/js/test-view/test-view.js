@@ -27,7 +27,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory, $state, user) {
+app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory, $state, user, isInstructor) {
+  $scope.isInstructor = isInstructor;
   $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
 

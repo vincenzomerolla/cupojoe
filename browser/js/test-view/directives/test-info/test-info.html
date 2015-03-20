@@ -20,6 +20,7 @@
             ng-model="test.deadline"
             name="deadlineDate"
             data-autoclose="1"
+            ng-disabled="!isInstructor"
             bs-datepicker>
       </div>
       <div class='col-xs-4'>
@@ -28,6 +29,7 @@
             ng-model="test.deadline"
             data-autoclose="1"
             name="deadlineTime"
+            ng-disabled="!isInstructor"
             bs-timepicker>
       </div>
     </div>

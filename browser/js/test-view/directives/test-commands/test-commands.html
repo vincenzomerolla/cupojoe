@@ -1,5 +1,5 @@
 <div class="well">
-  <div class="container-fluid">
+  <div class="container-fluid" ng-show="isInstructor">
     <div class="row section">
       <p class="small-margin-bottom">
         Provide commands here for the server to run tests<br>
@@ -13,5 +13,12 @@
         ng-click="saveCommandChanges(test.shellCommands)">Save Changes
       </button>
     </div>
+  </div>
+
+  <div ng-hide="isInstructor">
+    <p class="small-margin-bottom">
+      Test Console Output
+    </p>
+    <pre></pre>
   </div>
 </div>

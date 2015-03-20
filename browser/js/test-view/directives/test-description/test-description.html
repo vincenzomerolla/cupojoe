@@ -1,15 +1,25 @@
 <div class="well">
-  <form name="descriptionForm">
-    <div class="form-group">
-      <label>Test Description</label>
-      <textarea name="description"
-        class="form-control small-font"
-        ng-model="test.instructions">
-      </textarea>
-    </div>
-  </form>
-  <button class="btn btn-primary btn-sm"
-    ng-class="{disabled: !isFileChanged}"
-    ng-click="saveInstructionChanges(test.instructions)">Save Changes
-  </button>
+  <div ng-show="isInstructor">
+    <form name="descriptionForm">
+      <div class="form-group">
+        <label>Test Description</label>
+        <textarea name="description"
+          class="form-control small-font"
+          ng-model="test.instructions">
+        </textarea>
+      </div>
+    </form>
+    <button class="btn btn-primary btn-sm"
+      ng-class="{disabled: !isFileChanged}"
+      ng-click="saveInstructionChanges(test.instructions)">Save Changes
+    </button>
+  </div>
+  <div ng-hide="isInstructor">
+    <p class="small-margin-bottom">
+      Test Description:
+    </p>
+    <p class="small-font">
+      {{ test.instructions }}
+    </p>
+  </div>
 </div>
