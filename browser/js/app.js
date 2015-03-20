@@ -5,7 +5,9 @@ var app = angular.module('cupojoe', [
   'ui.router', 
   'fsaPreBuilt', 
   'ui.router', 
-  'mgcrea.ngStrap'
+  'mgcrea.ngStrap',
+  'treeControl',
+  'ui.ace'
 ]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {

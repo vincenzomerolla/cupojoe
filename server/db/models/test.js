@@ -1,5 +1,6 @@
 'use strict';
 var mongoose = require('mongoose');
+var File = mongoose.model('File');
 var Schema = mongoose.Schema;
 
 var schema = new Schema({
@@ -8,10 +9,10 @@ var schema = new Schema({
   status: {type: String},
   deadline: {type: Date},
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
-  privateFiles: [{type: Schema.Types.ObjectId, ref: 'File' }],
-  publicFiles: [{type: Schema.Types.ObjectId, ref: 'File' }],
+  privateFiles: [File.schema],
+  publicFiles: [File.schema],
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 });
 
-mongoose.model('Test', schema)
+mongoose.model('Test', schema);
