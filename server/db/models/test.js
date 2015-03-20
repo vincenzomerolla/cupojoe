@@ -8,6 +8,7 @@ var schema = new Schema({
   instructions: {type: String},
   status: {type: String},
   deadline: {type: Date},
+  shellCommands: {type: String},
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
   privateFiles: [File.schema],
   publicFiles: [File.schema],

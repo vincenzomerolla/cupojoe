@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div class="row section">
+    <div ui-ace ng-model="fileBody"></div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary btn-sm"
+      ng-class="{disabled: !isFileChanged}"
+      ng-click="saveFileChanges(fileBody)">Save Changes
+    </button>
+  </div>
+</div>

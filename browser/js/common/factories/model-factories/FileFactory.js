@@ -53,7 +53,7 @@ app.factory('FileFactory', function() {
     }
     var ind = curNodeArr.indexOfTreeArray(pathArr[0]);
     return curNodeArr[ind];
-  }
+  };
 
   factory.getBodyFromPath = function(root, fullPath) {
     var node = this.returnFileFromPath(root, fullPath);
