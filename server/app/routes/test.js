@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   Test.create(req.body).then(function(test) {
     res.json(test);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -47,9 +47,9 @@ router.route('/:id')
     for (var key in req.body) {
       req.data[key] = req.body[key];
     }
-    req.item.save(function(err, item) {
+    req.data.save(function(err, data) {
       if (err) return next(err);
-      res.json(item);
+      res.json(data);
     });
   })
 
