@@ -22,7 +22,7 @@ app.config(function($stateProvider) {
 
   $stateProvider.state('testView.fileView', {
     url: '/file/:filePath',
-    templateUrl: 'js/test-view/file-view.html',
+    templateUrl: 'js/test-view/directives/file-view/file-view.html',
     controller: 'FileViewCtrl'
   });
 });
