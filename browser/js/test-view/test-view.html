@@ -1,20 +1,42 @@
-<div class="col-xs-3">
-  <div class="well">
-    <treecontrol class="tree-classic"
-      tree-model="treedata"
-      options="opts"
-      on-selection="showFile(node)">
-      {{node.name}}
-    </treecontrol>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2 class="test-title">{{ test.name }}</h2>
+    </div>
+    <div class="col-xs-6">
+      <div class="well">
+        Test Status: {{ test.status }}<br>
+        Test Deadline: {{ test.deadline | date: "MM/dd/yyyy 'at' h:mma" }}
+      </div>
+    </div>
   </div>
-</div>
-<div class="col-xs-6">
-  <div class="well">
-    <ui-view></ui-view>
-  </div>
-</div>
-<div class="col-xs-3">
-  <div class="well">
-    
+  <div class="row">
+    <div class="col-xs-3">
+      <div class="well">
+        <treecontrol class="tree-classic"
+          tree-model="treedata"
+          options="opts"
+          on-selection="showFile(node)">
+          {{node.name}}
+        </treecontrol>
+      </div>
+    </div>
+    <div class="col-xs-6">
+      <div class="col-xs-12">
+        <div class="well">
+          {{ test.instructions }}
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="well">
+          <ui-view></ui-view>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-3">
+      <div class="well">
+        user output or test commands here
+      </div>
+    </div>
   </div>
 </div>

@@ -28,6 +28,7 @@ app.config(function($stateProvider) {
 });
 
 app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory, $state, user) {
+  $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
 
   $scope.opts = {
