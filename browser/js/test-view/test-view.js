@@ -27,8 +27,9 @@ app.controller('TestViewCtrl', function($scope, $stateParams, Test, TestFactory,
   };
 });
 
-app.controller('FileViewCtrl', function($scope, $stateParams, FileFactory, TestFactory, Test) {
+app.controller('FileViewCtrl', function($scope, $stateParams, $timeout, FileFactory, TestFactory, Test) {
   var pageLoad = false;
+  $scope.showStatus = false;
   $scope.isFileChanged = false;
   var filePath = $stateParams.filePath;
 
@@ -42,6 +43,11 @@ app.controller('FileViewCtrl', function($scope, $stateParams, FileFactory, TestF
   $scope.saveFileChanges = function(fileBody) {
     FileFactory.saveBodyWithPath($scope.treedata, filePath, fileBody);
     var test = TestFactory.getUpdatedTestObj($scope.treedata);
-    Test.update({id: $stateParams.testId}, test);
+    Test.update({id: $stateParams.testId}, test).$promise.then(function() {
+      $scope.showStatus = true;
+      $timeout(function() {
+        $scope.showStatus = false;
+      }, 2000);
+    });
   };
 });
