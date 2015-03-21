@@ -1,0 +1,40 @@
+<table class="table">
+  <tr>
+    <th>Group Name</th>
+    <th>Group Members</th>
+    <th>Edit</th>
+  </tr>
+  <tr ng-show="showAddButton">
+    <td colspan="3"><a href='' ng-click="addGroup()"><i class="fa fa-plus"></i> Add New Group</a></td>
+  </tr>
+  <tr ng-hide="showAddButton">
+    <form>
+      <td>
+        <div class="form-group">
+          <input type="text"
+            class="form-control"
+            placeholder="Group Name"
+            ng-model="newGroup.name"
+            name="newGroupName">
+        </div>
+      </td>
+      <td>
+        <div class="form-group">
+          <tags-input ng-model="newGroup.members"
+            name="newGroupMembers"
+            enableEditingLastTag="true"
+            placeholder="Add Github Members"
+            addFromAutocompleteOnly="true">
+            <auto-complete source="getGithubMembers($query)"></auto-complete>
+          </tags-input>
+        </div>
+      </td>
+  </tr>
+  <tr ng-repeat="group in groups">
+    <td>{{ group.name }}</td>
+    <td>{{ group.members }}</td>
+    <td><button class="btn btn-primary">Edit</button></td>
+  </tr>
+</table>
+
+{{ newGroup }}

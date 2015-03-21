@@ -8,6 +8,7 @@ var app = angular.module('cupojoe', [
   'mgcrea.ngStrap',
   'treeControl',
   'ui.ace',
+  'ngTagsInput',
   'flow'
 ]);
 

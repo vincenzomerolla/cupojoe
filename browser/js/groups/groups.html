@@ -1,19 +1,5 @@
 <div class="container">
   <div class="col-xs-12">
-    <table class="table">
-      <tr>
-        <th>Group Name</th>
-        <th>Group Members</th>
-        <th>Edit</th>
-      </tr>
-      <tr>
-        <td colspan="3"><a href='' ng-click=""><i class="fa fa-plus"></i> Add New Group</a></td>
-      </tr>
-      <tr ng-repeat="group in groups">
-        <td>{{ group.name }}</td>
-        <td>{{ group.members }}</td>
-        <td><button class="btn btn-primary">Edit</button></td>
-      </tr>
-    </table>
+    <group-table groups="groups"></group-table>
   </div>
-</div> 
+</div>
