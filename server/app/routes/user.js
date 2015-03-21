@@ -46,9 +46,9 @@ router.route('/:id')
     for (var key in req.body) {
       req.data[key] = req.body[key];
     }
-    req.item.save(function(err, item) {
+    req.data.save(function(err, data) {
       if (err) return next(err);
-      res.json(item);
+      res.json(data);
     });
   })
 
@@ -64,7 +64,6 @@ router.route('/:id')
 
 router.get('/:id/group', function(req, res, next) {
   User.populate(req.data, 'groups').then(function(user) {
-    console.log(user);
     res.json(user.groups);
   });
 });
