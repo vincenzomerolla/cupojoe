@@ -3,7 +3,6 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Test = mongoose.model('Test');
-var multer = require('multer');
 
 
 module.exports = router;
@@ -18,9 +17,9 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', multer(), function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-  res.json(req.files)
+  res.json(req.session.passport.user);
 
 
   // Test.create(req.body).then(function(test) {
