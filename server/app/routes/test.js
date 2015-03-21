@@ -3,6 +3,8 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Test = mongoose.model('Test');
+var multer = require('multer');
+
 
 module.exports = router;
 
@@ -16,12 +18,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
-router.post('/', function(req, res, next) {
-  Test.create(req.body).then(function(test) {
-    res.json(test);
-  }, function(err) {
-    next(err);
-  });
+router.post('/', multer(), function(req, res, next) {
+
+  res.json(req.files)
+
+
+  // Test.create(req.body).then(function(test) {
+  //   res.json(test);
+  // }, function(err) {
+  //   next(err);
+  // });
 });
 
 

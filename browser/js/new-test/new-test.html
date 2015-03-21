@@ -5,7 +5,11 @@
   <div class="col-sm-6 well">
     <fieldset>
       <legend>Create a new test</legend>
-      <form class="form-horizontal" ng-submit="saveTest()" novalidate>
+
+
+      <div flow-init="{target: '/api/test', testChunks: false}" flow-file-success="$file.msg = $message">
+
+      <form class="form-horizontal" ng-submit="$flow.upload()" novalidate>
         <div class="form-group">
           <label for="testName" class="col-sm-2 control-label">Name</label>
           <div class="col-sm-10">
@@ -30,31 +34,43 @@
         </div>
 
         <div class="form-group">
-          <div flow-init="{target: '/upload'}"
-               
-               flow-file-success="$file.msg = $message">
+          
 
             
-            <div class="drop" flow-drop="" ng-class="dropClass">
-              <span class="btn btn-default" flow-btn>Upload File</span>
-              <span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Upload Folder</span>
-              <b>OR</b>
-              Drag And Drop your file here
-            </div>
+          <div class="drop" flow-drop="" ng-class="dropClass">
+            <span class="btn btn-default" flow-btn flow-directory ng-show="$flow.supportDirectory">Upload Folder</span>
+            <b>OR</b>
+            Drag And Drop your file here
+          </div>
 
-            <div class="well">
-              <button class="btn btn-small btn-success" ng-click="$flow.resume()">Resume all</button>
-              <button class="btn btn-small btn-danger" ng-click="$flow.pause()">Pause all</button>
-              <button class="btn btn-small btn-info" ng-click="$flow.cancel()">Cancel all</button>
-              <span class="label label-info ng-binding">Total Size: 0bytes</span>
+          <div class="well">
+            <button class="btn btn-small btn-success" ng-click="$flow.resume()">Resume all</button>
+            <button class="btn btn-small btn-danger" ng-click="$flow.pause()">Pause all</button>
+            <button class="btn btn-small btn-info" ng-click="$flow.cancel()">Cancel all</button>
+            <span class="label label-info">Total Size: {{$flow.getSize()}} bytes</span>
+          </div>
+          
+
+          <div ng-repeat="file in $flow.files" class="transfer-box">
+            
+
+            <div class="col-xs-8">
+              {{file.relativePath}} ({{file.size}} bytes)
+              <div class="progress progress-striped" ng-class="{active: file.isUploading()}">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" ng-style="{width: (file.progress() * 100) + '%'}" style="width: 100%;">
+                  <span class="sr-only">{{file.progress()}}% Complete</span>
+                </div>
+              </div>
             </div>
-            <table>
-              <tr ng-repeat="file in $flow.files">
-                  <td>{{$index+1}}</td>
-                  <td>{{file.name}}</td>
-                  <td>{{file.msg}}</td>
-              </tr>
-            </table>
+            <div class="col-xs-4">
+              <div class="btn-group">
+                <a class="btn btn-xs btn-warning ng-hide" ng-click="file.pause()" ng-show="!file.paused &amp;&amp; file.isUploading()">Pause</a>
+                <a class="btn btn-xs btn-warning ng-hide" ng-click="file.resume()" ng-show="file.paused">Resume</a>
+                <a class="btn btn-xs btn-danger" ng-click="file.cancel()">Cancel</a>
+                <a class="btn btn-xs btn-info ng-hide" ng-click="file.retry()" ng-show="file.error">Retry</a>
+              </div>
+            </div>
+            
           </div>
         </div>
         
@@ -64,6 +80,7 @@
           </div>
         </div>
       </form>
+      </div>
     </fieldset>
   </div>
   <div class="col-sm-3"></div>
