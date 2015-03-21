@@ -22,6 +22,10 @@ var schema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    groups: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group'
+    }],
     testIds: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Test'

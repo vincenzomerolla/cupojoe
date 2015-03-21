@@ -11,7 +11,7 @@ module.exports = router;
 router.get('/', function(req, res, next) {
   Group.find().exec().then(function(groups) {
     res.json(groups);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   Group.create(req.body).then(function(group) {
     res.json(group);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -33,7 +33,7 @@ router.use('/:id', function(req, res, next) {
   .then(function(group) {
     req.data = group;
     next();
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -47,9 +47,9 @@ router.route('/:id')
     for (var key in req.body) {
       req.data[key] = req.body[key];
     }
-    req.item.save(function(err, item) {
+    req.data.save(function(err, data) {
       if (err) return next(err);
-      res.json(item);
+      res.json(data);
     });
   })
 
@@ -57,7 +57,7 @@ router.route('/:id')
     Group.findByIdAndRemove(req.data._id).exec()
     .then(function() {
       res.status(200).end();
-    }).catch(function(err) {
+    }, function(err) {
       next(err);
     });
   });

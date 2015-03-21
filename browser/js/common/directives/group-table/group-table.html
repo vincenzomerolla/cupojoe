@@ -1,0 +1,71 @@
+<table class="table table-hover">
+  <tr>
+    <th>Group Name</th>
+    <th>Group Members</th>
+    <th>Edit</th>
+  </tr>
+  <tr ng-repeat="group in groups" ng-init="editFlag = {flag: true}">
+    <td ng-show="editFlag.flag">{{ group.name }}</td>
+    <td ng-show="editFlag.flag">{{ group.members }}</td>
+
+    <td ng-hide="editFlag.flag">
+      <div class="form-group">
+        <input type="text"
+          class="form-control input-sm"
+          placeholder="Group Name"
+          ng-model="group.name"
+          name="groupName">
+      </div>
+    </td>
+    <td ng-hide="editFlag.flag">
+      <div class="form-group">
+        <tags-input
+          ng-model="group.members"
+          name="newGroupMembers"
+          class="ti-input-sm"
+          enableEditingLastTag="true"
+          placeholder="Add Github Members"
+          addFromAutocompleteOnly="true">
+          <auto-complete source="getGithubMembers($query)"></auto-complete>
+        </tags-input>
+      </div>
+    </td>
+
+    <td>
+      <button ng-show="editFlag.flag" class="btn btn-warning btn-sm" ng-click="toggleEditGroup(editFlag)">Edit</button>
+      <button ng-hide="editFlag.flag" class="btn btn-primary btn-sm" ng-click="saveGroup(group, editFlag)">Save Changes</button>
+      <button class="btn btn-danger btn-sm" ng-click="deleteGroup(group._id)">Delete</button>
+    </td>
+  </tr>
+  <tr ng-show="showAddButton">
+    <td colspan="3"><a href='' ng-click="toggleAddGroup()"><i class="fa fa-plus"></i> Add New Group</a></td>
+  </tr>
+  <tr ng-hide="showAddButton">
+    <td>
+      <div class="form-group">
+        <input type="text"
+          class="form-control input-sm"
+          placeholder="Group Name"
+          ng-model="newGroup.name"
+          name="newGroupName">
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <tags-input
+          ng-model="newGroup.members"
+          name="newGroupMembers"
+          class="ti-input-sm"
+          enableEditingLastTag="true"
+          placeholder="Add Github Members"
+          addFromAutocompleteOnly="true">
+          <auto-complete source="getGithubMembers($query)"></auto-complete>
+        </tags-input>
+      </div>
+    </td>
+    <td>
+      <button ng-click="newGroup.name.length && submitGroup(newGroup)" class="btn btn-primary btn-sm">Submit</button>
+      <button ng-click="toggleAddGroup()" class="btn btn-default btn-sm">Cancel</button>
+    </td>
+  </tr>
+</table>
