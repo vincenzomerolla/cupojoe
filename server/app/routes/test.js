@@ -4,6 +4,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
+var Group = mongoose.model('Group');
 
 var GithubApi = require('github');
 var config = require('../../env/').GITHUB;
@@ -26,7 +27,21 @@ github.authenticate({
 
 
 router.get('/', function(req, res, next) {
-  Test.find().exec().then(function(tests) {
+  var promise;
+  if (req.query.username) {
+    promise = Group.find({members: {$in: [req.query.username]}}).exec()
+      .then(function(foundGroups) {
+        return foundGroups.map(function(group) {
+          return group._id;
+        });
+      }).then(function(groups) {
+        return Test.find({groups: {$in: groups}}).exec();
+      });
+  } else {
+    promise = Test.find().exec();
+  }
+
+  promise.then(function(tests) {
     res.json(tests);
   }, function(err) {
     next(err);

@@ -1,4 +1,4 @@
-app.factory('TestFactory', function(FileFactory) {
+app.factory('TestFactory', function(FileFactory, Test, User, Session) {
   var factory = {};
 
   var objToJSON = function(tableObj, isReadOnlyName, isEditableName) {
@@ -30,6 +30,15 @@ app.factory('TestFactory', function(FileFactory) {
     return objToJSON(tableObj, 'privateFiles', 'publicFiles');
   };
 
+  factory.deleteTest = function(testId) {
+    return Test.delete({id: testId}).$promise.then(function() {
+      var ind = Session.user.testIds.indexOf(testId);
+      if (ind !== -1) {
+        Session.user.testIds.slice(ind, 1);
+        return User.update({id: Session.user._id}, Session.user).$promise;
+      } else return;
+    });
+  };
 
 
   return factory;

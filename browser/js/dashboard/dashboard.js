@@ -9,9 +9,11 @@ app.config(function($stateProvider) {
         return AuthService.getLoggedInUser();
       },
       myTests: function(UserTest, user) {
-        return UserTest.query({userId: user._id}).$promise.then(function(user) {
-          return user.testIds;
-        });
+        return UserTest.query({userId: user._id}).$promise;
+      },
+      possibleTests: function(Test, user) {
+        return Test.query({username: user.username}).$promise;
+        // return Test.query().$promise;
       }
     },
     data: {
@@ -20,7 +22,19 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('DashboardCtrl', function($scope, myTests) {
+app.controller('DashboardCtrl', function($scope, myTests, possibleTests, TestFactory, $alert, UserTest, user) {
   $scope.myTests = myTests;
-  console.log(myTests);
+  $scope.possibleTests = possibleTests.filter(function(test) {
+    return test.status !== 'Pending';
+  });
+
+  $scope.deleteTest = function(testId) {
+    TestFactory.deleteTest(testId).then(function() {
+      $scope.myTests = UserTest.query({userId: user._id});
+      $alert({
+        title: 'Test deleted',
+        type: 'danger'
+      });
+    });
+  }
 });
