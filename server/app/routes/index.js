@@ -2,13 +2,14 @@
 var router = require('express').Router();
 module.exports = router;
 
-// router.use('/tutorial', require('./tutorial'));
-// router.use('/members', require('./members'));
-router.use('/file', require('./file.js'));
-router.use('/group', require('./group.js'));
-router.use('/result', require('./result.js'));
-router.use('/test', require('./test.js'));
-router.use('/user', require('./user.js'));
+
+router.use('/file', require('./file'));
+router.use('/group', require('./group'));
+router.use('/result', require('./result'));
+router.use('/test', require('./test'));
+router.use('/user', require('./user'));
+router.use('/github', require('./github'));
+
 
 // Make sure this is after all of
 // the registered routes!
