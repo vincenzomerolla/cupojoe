@@ -67,3 +67,9 @@ router.get('/:id/group', function(req, res, next) {
     res.json(user.groups);
   });
 });
+
+router.get('/:id/test', function(req, res, next) {
+  User.populate(req.data, 'testIds').then(function(user) {
+    res.json(user.groups);
+  });
+});
