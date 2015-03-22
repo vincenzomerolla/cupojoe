@@ -31,6 +31,9 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
   test.status = 'Pending';
 
   function saveTest() {
+    test.groups = test.groups.map(function(group) {
+      return group._id;
+    });
     test.$save()
       .then(function() {
         $state.go('home');
