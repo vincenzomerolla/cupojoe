@@ -5,11 +5,15 @@
         <div class="panel-heading">
           Created Tests
         </div>
+        <div class="panel-body">
+          <button class="btn btn-success" ui-sref="newTest">Make New Test</button>
+        </div>
         <table class="table table-hover">
           <tr>
             <th>Test Name</th>
             <th>Status</th>
             <th>Deadline</th>
+            <th></th>
           </tr>
             <tr ng-repeat="test in myTests">
             <td>{{ test.name }}</td>
