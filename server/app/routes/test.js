@@ -2,8 +2,8 @@
 
 var router = require('express').Router();
 var mongoose = require('mongoose');
+var User = mongoose.model('User');
 var Test = mongoose.model('Test');
-var _
 
 var GithubApi = require('github');
 var config = require('../../env/').GITHUB;
@@ -35,9 +35,16 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
 
+  var t;
+
   Test.create(req.body).then(function(test) {
-    res.json(test);
-  }, function(err) {
+    t = test;
+    return User.findByIdAndAddTest(req.session.passport.user, test).exec();
+  })
+  .then(function(user) {
+    res.json(t);
+  })
+  .then(null, function(err) {
     next(err);
   });
 });
