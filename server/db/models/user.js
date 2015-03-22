@@ -49,6 +49,11 @@ var encryptPassword = function (plainText, salt) {
     return hash.digest('hex');
 };
 
+
+var findByIdAndAddTest = function(id, test) {
+  return this.findByIdAndUpdate(id, {$push: {testIds: test._id}});
+};
+
 schema.pre('save', function (next) {
 
     if (this.isModified('password')) {
@@ -62,9 +67,12 @@ schema.pre('save', function (next) {
 
 schema.statics.generateSalt = generateSalt;
 schema.statics.encryptPassword = encryptPassword;
+schema.statics.findByIdAndAddTest = findByIdAndAddTest; 
 
 schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
+
+
 
 mongoose.model('User', schema);
