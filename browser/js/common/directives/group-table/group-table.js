@@ -23,7 +23,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
 
       $scope.toggleEditGroup = function(editFlag) {
         editFlag.flag = !editFlag.flag;
-      }
+      };
 
       $scope.getGithubMembers = function(searchStr) {
         var data = GithubFactory.getUsers(searchStr);
@@ -39,7 +39,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
             type: 'success'
           });
         });
-      }
+      };
 
       $scope.saveGroup = function(group, editFlag) {
         GroupFactory.saveGroup(group).then(function() {
@@ -49,7 +49,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
             type: 'success'
           });
         });
-      }
+      };
 
       $scope.deleteGroup = function(groupId) {
         GroupFactory.deleteGroup(groupId).then(function() {
