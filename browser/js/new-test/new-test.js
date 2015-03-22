@@ -18,7 +18,7 @@ app.config(function($stateProvider) {
 
 app.controller('NewTestCtrl', function($scope, $state, user, repos, Test) {
   
-  console.log(repos)
+  $scope.repos = repos;
 
 
   var test;

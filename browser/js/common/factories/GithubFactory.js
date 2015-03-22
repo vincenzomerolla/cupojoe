@@ -15,7 +15,7 @@ app.factory('GithubFactory', function ($http, Session) {
   };
 
   factory.getUserRepos = function(user) {
-    return $http.get([BASE_URL, 'users', user.username,'repos'].join('/')).then(function(res) {
+    return $http.get(BASE_URL+'/repos').then(function(res) {
       return res.data;
     });
   };

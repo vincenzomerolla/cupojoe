@@ -21,11 +21,11 @@ github.authenticate({
 
 
 
-router.route('/:username/repos')
+router.route('/')
 .get(function(req, res, next) {
   
   github.repos.getFromUser({
-    user: req.params.username
+    user: req.user.username
   }, function (err, response) {
     if (err) next(err);
     res.json(response);

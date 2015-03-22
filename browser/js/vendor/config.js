@@ -4,7 +4,7 @@ app.config(function ($alertProvider, $datepickerProvider, $timepickerProvider, u
     iconUp: 'fa fa-angle-up',
     iconDown: 'fa fa-angle-down'
   });
-  
+
   angular.extend($datepickerProvider.defaults, {
     iconLeft: 'fa fa-angle-left',
     iconRight: 'fa fa-angle-right',
@@ -17,5 +17,6 @@ app.config(function ($alertProvider, $datepickerProvider, $timepickerProvider, u
   });
 
   uiSelectConfig.theme = 'bootstrap';
+  uiSelectConfig.resetSearchInput = true;
 
 });
