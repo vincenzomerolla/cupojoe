@@ -36,9 +36,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
           $scope.showAddButton = true;
           $alert({
             title: 'Group saved',
-            placement: 'top-right',
-            type: 'success',
-            duration: 2
+            type: 'success'
           });
         });
       }
@@ -48,9 +46,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
           $scope.toggleEditGroup(editFlag);
           $alert({
             title: 'Group updated',
-            placement: 'top-right',
-            type: 'success',
-            duration: 2
+            type: 'success'
           });
         });
       }
@@ -60,9 +56,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
           updateGroups();
           $alert({
             title: 'Group deleted',
-            placement: 'top-right',
-            type: 'danger',
-            duration: 2
+            type: 'danger'
           });
         });
       };

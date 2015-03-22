@@ -12,6 +12,7 @@ var schema = new Schema({
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
   privateFiles: [File.schema],
   publicFiles: [File.schema],
+  repo: {type: String},
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 });

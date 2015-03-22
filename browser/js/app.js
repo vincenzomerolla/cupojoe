@@ -9,7 +9,8 @@ var app = angular.module('cupojoe', [
   'treeControl',
   'ui.ace',
   'ngTagsInput',
-  'flow'
+  'ui.select', 
+  'ngSanitize'
 ]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {

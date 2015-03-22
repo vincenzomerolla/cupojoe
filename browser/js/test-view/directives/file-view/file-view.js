@@ -15,7 +15,7 @@ app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactor
     var testObj = TestFactory.getUpdatedTestObj($scope.treedata);
     Test.update({id: $stateParams.testId}, testObj).$promise.then(function() {
       $scope.isFileChanged = false;
-      $alert({title: 'Changes saved', placement: 'top-right', type: 'success', duration: 2});
+      $alert({title: 'Changes saved', type: 'success'});
     });
   };
 });
