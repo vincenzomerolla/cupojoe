@@ -1,5 +1,5 @@
 'use strict';
-app.config(function($stateProvider) {
+app.config(function ($stateProvider) {
   $stateProvider.state('newTest', {
     url: '/test/new/',
     templateUrl: 'js/new-test/new-test.html',
@@ -10,15 +10,19 @@ app.config(function($stateProvider) {
       },
       repos: function(user, GithubFactory) {
         return GithubFactory.getUserRepos(user);
+      },
+      groups: function(UserGroup, user) {
+        return UserGroup.query({userId: user._id}).$promise;
       }
     }
   });
 
 });
 
-app.controller('NewTestCtrl', function($scope, $state, user, repos, Test) {
+app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups, UserGroup, Test) {
   
   $scope.repos = repos;
+  //$scope.groups = groups;
 
 
   var test;
@@ -33,8 +37,14 @@ app.controller('NewTestCtrl', function($scope, $state, user, repos, Test) {
       })
   }
 
-  $scope.saveTest = saveTest;
+  function loadGroups(q) {
+    return $q.when(groups);
+  }
 
+  
+
+  $scope.saveTest = saveTest;
+  $scope.loadGroups = loadGroups;
  
 });
 

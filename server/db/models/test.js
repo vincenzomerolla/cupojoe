@@ -13,6 +13,7 @@ var schema = new Schema({
   privateFiles: [File.schema],
   publicFiles: [File.schema],
   repo: {type: String},
+  groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 });
