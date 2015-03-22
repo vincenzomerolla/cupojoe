@@ -7,15 +7,18 @@ app.config(function($stateProvider) {
     resolve: {
       user: function(AuthService) {
         return AuthService.getLoggedInUser();
+      },
+      repos: function(user, GithubFactory) {
+        return GithubFactory.getUserRepos(user);
       }
     }
   });
 
 });
 
-app.controller('NewTestCtrl', function($scope, $state, user, Test, Session) {
+app.controller('NewTestCtrl', function($scope, $state, user, repos, Test) {
   
-  console.log(user)
+  console.log(repos)
 
 
   var test;

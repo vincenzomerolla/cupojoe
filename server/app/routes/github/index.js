@@ -8,5 +8,5 @@ var Test = mongoose.model('Test');
 module.exports = router;
 
 
-router.use('/search', require('./search'));
+//router.use('/search', require('./search'));
 router.use('/users', require('./users'));

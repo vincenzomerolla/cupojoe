@@ -8,7 +8,9 @@ var app = angular.module('cupojoe', [
   'mgcrea.ngStrap',
   'treeControl',
   'ui.ace',
-  'ngTagsInput'
+  'ngTagsInput',
+  'ui.select', 
+  'ngSanitize'
 ]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
