@@ -3,7 +3,7 @@ app.factory('GithubFactory', function ($http, Session) {
   var BASE_URL = '/api/github';
 
   factory.getUsers = function(searchStr) {
-    return $http.get('https://api.github.com/search/users', {
+    return $http.get(BASE_URL + '/search/users', {
       params: {
         q: searchStr
       }
