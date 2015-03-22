@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
 
   Test.create(req.body).then(function(test) {
     t = test;
-    return User.findByIdAndAddTest(req.session.passport.user, test).exec();
+    return User.findByIdAndAddTest(test.owner, test).exec();
   })
   .then(function(user) {
     res.json(t);

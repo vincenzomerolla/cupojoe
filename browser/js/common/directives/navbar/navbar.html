@@ -15,10 +15,20 @@
 
 
     <ul ng-show="user" class="nav navbar-nav navbar-right">
-      <li><p class="navbar-text"><i class="fa fa-lg fa-github"></i>  {{user.username}}</p></li>
-      
+      <li><a href="" ui-sref="dashboard">
+        <i class="fa fa-tachometer"></i> DashBoard
+      </a></li>
+
       <li><a href="" ui-sref="newTest"><i class="fa fa-plus-circle"></i> New Test</a></li>
       <li><a href="" ng-click="logout()">Logout</a></li>
+<!--       <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" role="button"><i class="fa fa-lg fa-github"></i>  {{user.username}} <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="" ui-sref="newTest"><i class="fa fa-plus-circle"></i> New Test</a></li>
+          <li><a href="" ng-click="logout()">Logout</a></li>
+        </ul>
+      </li>
+ -->    
     </ul>
   </div>
 </nav>
