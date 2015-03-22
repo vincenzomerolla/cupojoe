@@ -9,9 +9,7 @@ app.config(function($stateProvider) {
         return AuthService.getLoggedInUser();
       },
       myTests: function(UserTest, user) {
-        return UserTest.query({userId: user._id}).$promise.then(function(user) {
-          return user.testIds;
-        });
+        return UserTest.query({userId: user._id}).$promise;
       }
     },
     data: {
