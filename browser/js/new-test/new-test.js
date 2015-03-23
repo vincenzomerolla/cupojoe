@@ -37,7 +37,7 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
     test.$save()
       .then(function() {
         $state.go('home');
-      })
+      });
   }
 
   function loadGroups(q) {
