@@ -40,13 +40,13 @@ router.post('/', function(req, res, next) {
 
   Test.create(req.body).then(function(test) {
     t = test;
-    // test.populateFiles();
     return User.findByIdAndAddTest(test.owner, test).exec();
-  })
-  .then(function(user) {
-    res.json(t);
-  })
-  .then(null, function(err) {
+  }).then(function(user) {
+    return t.populateFiles();
+  }).then(function(test) {
+    console.log(test);
+    res.json(test);
+  }).then(null, function(err) {
     next(err);
   });
 });
@@ -67,7 +67,7 @@ router.use('/:id', function(req, res, next) {
 
 router.route('/:id')
   .get(function(req, res, next) {
-    req.data.populateFiles();
+    // req.data.populateFiles();
     res.json(req.data);
   })
 

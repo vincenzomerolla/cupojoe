@@ -20,7 +20,7 @@
             <td>{{ test.status }}</td>
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
             <td>
-              <button class="btn btn-info btn-sm" ng-click="testsss(test._id)">Overview</button>
+              <button class="btn btn-info btn-sm" ng-click="">Overview</button>
               <button ui-sref="testView({testId: test._id})" class="btn btn-warning btn-sm">Edit</button>
               <button class="btn btn-danger btn-sm" ng-click="deleteTest(test._id)">Delete</button>
             </td>

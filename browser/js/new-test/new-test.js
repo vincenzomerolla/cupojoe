@@ -35,8 +35,9 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
       return group._id;
     });
     test.$save()
-      .then(function() {
-        $state.go('home');
+      .then(function(newTest) {
+        console.log(newTest);
+        $state.go('testView({testId: newTest._id})');
       });
   }
 
