@@ -12,11 +12,8 @@ module.exports = function(github) {
     }, function (err, response) {
       if (err) next(err);
       res.json(response);
-    })
-  })
+    });
+  });
 
   return router;
-}
-
-
-
+};
