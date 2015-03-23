@@ -10,11 +10,15 @@ app.factory('FileFactory', function() {
     this.children = [];
   };
 
+  TreeNode.prototype.isTree = function () {
+    return !!this.children.length;
+  };
+
   var bubbleDown = function(curNodeArr, pathArr) {
     var folderName = pathArr.shift();
     var ind = curNodeArr.indexOfTreeArray(folderName);
     if (ind === -1) {
-      var newFolder = new TreeNode(folderName);
+      var newFolder = new TreeNode(folderName, null, null, true);
       curNodeArr.push(newFolder);
       curNodeArr = newFolder.children;
     } else {
