@@ -12,19 +12,6 @@ var schema = new Schema({
   // updatedAt: {type: Date, default: Date.now}
 });
 
-
-schema.pre('save', function (next) {
-  var pathArr = this.fullPath.split('/');
-  this.name = pathArr.pop();
-  pathArr.push('');
-  this.path = pathArr.join('/');
-  next();
-});
-
-// schema.virtual('isFile').get(function() {
-//   return !this.children.length;
-// });
-
 schema.virtual('fullPath').get(function() {
   return this.path + this.name;
 });

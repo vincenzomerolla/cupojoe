@@ -16,7 +16,7 @@ app.factory('FileFactory', function() {
 
   var bubbleDown = function(curNodeArr, pathArr) {
     var folderName = pathArr.shift();
-    var ind = curNodeArr.indexOfTreeArray(folderName);
+    var ind = indexOfTreeArray(curNodeArr, folderName);
     if (ind === -1) {
       var newFolder = new TreeNode(folderName, null, null, true);
       curNodeArr.push(newFolder);
@@ -27,8 +27,8 @@ app.factory('FileFactory', function() {
     return curNodeArr;
   };
 
-  Array.prototype.indexOfTreeArray = function(name) {
-    return this.reduce(function(prev, cur, ind) {
+  var indexOfTreeArray = function(arr, name) {
+    return arr.reduce(function(prev, cur, ind) {
       return (cur.name === name) ? ind : prev;
     }, -1);
   };
@@ -55,7 +55,7 @@ app.factory('FileFactory', function() {
     while(pathArr.length > 1) {
       curNodeArr = bubbleDown(curNodeArr, pathArr);
     }
-    var ind = curNodeArr.indexOfTreeArray(pathArr[0]);
+    var ind = indexOfTreeArray(curNodeArr, pathArr[0]);
     return curNodeArr[ind];
   };
 

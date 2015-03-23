@@ -15,12 +15,8 @@ module.exports = router;
 router.get('/', function(req, res, next) {
   var promise;
   if (req.query.username) {
-    promise = Group.find({members: {$in: [req.query.username]}}).exec()
-      .then(function(foundGroups) {
-        return foundGroups.map(function(group) {
-          return group._id;
-        });
-      }).then(function(groups) {
+    promise = Group.findGroupsWithUser(req.query.username)
+      .then(function(groups) {
         return Test.find({groups: {$in: groups}}).exec();
       });
   } else {

@@ -22,23 +22,36 @@ var schema = new Schema({
   updatedAt: {type: Date, default: Date.now}
 });
 
+var splitRepoURL = function(repo) {
+  var hi = repo.split('/');
+  return repo.split('/');
+};
+
+var getRepoName = function(repo) {
+  var repoName = splitRepoURL(repo)[4];
+  return repoName.substr(0, repoName.length - 4);
+};
+
+var getRepoUser = function(repo) {
+  return splitRepoURL(repo)[3];
+};
+
 schema.methods.populateFiles = function() {
-  var repoArr = this.repo.split('/');
-  var repo = repoArr[4].substr(0, repoArr[4].length - 4);
-  var username = repoArr[3];
+  var repo = getRepoName(this.repo);
+  var username = getRepoUser(this.repo);
   var count = 0;
   var self = this;
 
   var rec_populateTree = function(sha, path) {
     count++;
+    var promises = [];
     return new Promise(function(resolve, reject) {
-      var promises = [];
       github.gitdata.getTree({
         user: username,
         repo: repo,
         sha: sha
       }, function(err, res) {
-        if (err) return reject(err);
+        if (err) reject(err);
         res.tree.forEach(function(obj) {
           if (obj.type === 'blob') {
             promises.push(rec_populateBlobs(obj.sha, path, obj.path));
@@ -49,7 +62,7 @@ schema.methods.populateFiles = function() {
         Promise.all(promises).then(resolve);
       });
     });
-  };
+  }
 
   var rec_populateBlobs = function(sha, path, fileName) {
     count++;
