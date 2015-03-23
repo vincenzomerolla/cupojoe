@@ -1,11 +1,10 @@
 <div class="container-fluid">
   <div class="row section">
-    <div ui-ace="aceOptions" ng-model="fileBody"></div>
+    <div ui-ace="aceOptions" ng-readonly="isReadOnly" ng-model="fileBody"></div>
   </div>
-  <div class="row">
+  <div class="row" ng-hide="isInstructor">
     <button class="btn btn-primary btn-sm"
       ng-class="{disabled: !isFileChanged}"
-      ng-readonly="true"
       ng-click="saveFileChanges(fileBody)">Save Changes
     </button>
   </div>
