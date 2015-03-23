@@ -4,22 +4,36 @@ app.directive('testCommands', function(Test, $alert) {
     templateUrl: 'js/test-view/directives/test-commands/test-commands.html',
     link: function($scope, elem, attr) {
       var pageLoad = false;
-      $scope.isFileChanged = false;
+      $scope.shellIsFileChanged = false;
+      $scope.testIsFileChanged = false;
 
       $scope.$watch('test.shellCommands', function() {
-        if (pageLoad) $scope.isFileChanged = true;
+        if (pageLoad) $scope.shellIsFileChanged = true;
         else pageLoad = true;
       });
 
-      $scope.saveCommandChanges = function(commands) {
+      $scope.$watch('test.testCommands', function() {
+        if (pageLoad) $scope.testIsFileChanged = true;
+        else pageLoad = true;
+      });
+
+      $scope.saveShellCommandChanges = function(commands) {
         Test.update({id: $scope.test._id}, {shellCommands: commands})
         .$promise.then(function() {
-          $scope.isFileChanged = false;
+          $scope.shellIsFileChanged = false;
           $alert ({
             title: 'Shell commands updated',
-            placement: 'top-right',
             type: 'success',
-            duration: 2
+          });
+        });
+      };
+      $scope.saveTestCommandChanges = function(commands) {
+        Test.update({id: $scope.test._id}, {testCommands: commands})
+        .$promise.then(function() {
+          $scope.testIsFileChanged = false;
+          $alert ({
+            title: 'Test commands updated',
+            type: 'success',
           });
         });
       };
