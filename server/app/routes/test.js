@@ -44,7 +44,6 @@ router.post('/', function(req, res, next) {
   }).then(function(user) {
     return t.populateFiles();
   }).then(function(test) {
-    console.log(test);
     res.json(test);
   }).then(null, function(err) {
     next(err);
