@@ -40,6 +40,10 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
     });
   };
 
+  factory.updateTestStatus = function(testId, status) {
+    return Test.update({id: testId}, {status: status}).$promise;
+  };
+
 
   return factory;
 });
