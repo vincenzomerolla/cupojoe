@@ -1,5 +1,5 @@
 <div class="well">
-  <div ng-show="isInstructor">
+  <div ng-show="isEdit">
     <form name="descriptionForm">
       <div class="form-group">
         <label>Test Description</label>
@@ -14,7 +14,7 @@
       ng-click="saveInstructionChanges(test.instructions)">Save Changes
     </button>
   </div>
-  <div ng-hide="isInstructor">
+  <div ng-hide="isEdit">
     <p class="small-margin-bottom">
       Test Description:
     </p>

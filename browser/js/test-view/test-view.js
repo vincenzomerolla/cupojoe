@@ -1,6 +1,7 @@
 'use strict';
 app.config(function($stateProvider) {
   $stateProvider.state('testView', {
+    abstract: true,
     url: '/test/:testId',
     templateUrl: 'js/test-view/test-view.html',
     controller: 'TestViewCtrl',
@@ -25,10 +26,24 @@ app.config(function($stateProvider) {
     templateUrl: 'js/test-view/directives/file-view/file-view.html',
     controller: 'FileViewCtrl'
   });
+
+  $stateProvider.state('testView.fileView.edit', {
+    url:'/edit',
+    resolve: {
+      blah: function($state, isInstructor) {
+        if (!isInstructor) return $state.go('home');
+        return;
+      }
+    }
+  });
+
+  $stateProvider.state('testView.fileView.take', {
+    url:'/take'
+  });
 });
 
-app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory, $state, user, isInstructor) {
-  $scope.isInstructor = isInstructor;
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user) {
+  $scope.isEdit = ($state.current.url === '/edit');
   $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
 
@@ -37,6 +52,7 @@ app.controller('TestViewCtrl', function($scope, $stateParams, test, TestFactory,
   };
 
   $scope.showFile = function(node) {
-    $state.go('testView.fileView', {filePath: node.fullPath});
+    if ($scope.isEdit) $state.go('testView.fileView.edit', {filePath: node.fullPath});
+    else $state.go('testView.fileView.take', {filePath: node.fullPath});
   };
 });
