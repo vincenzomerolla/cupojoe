@@ -31,10 +31,12 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
   test.status = 'Pending';
 
   function saveTest() {
-    test.groups = test.groups.map(function(group) {
+
+    var testCopy = angular.copy(test);
+    testCopy.groups = testCopy.groups.map(function(group) {
       return group._id;
     });
-    test.$save()
+    testCopy.$save()
       .then(function(newTest) {
         $state.go('testView', {testId: newTest._id});
       });
