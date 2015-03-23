@@ -66,7 +66,6 @@ router.use('/:id', function(req, res, next) {
 
 router.route('/:id')
   .get(function(req, res, next) {
-    // req.data.populateFiles();
     res.json(req.data);
   })
 
