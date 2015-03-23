@@ -1,4 +1,4 @@
-app.directive('testInfo', function(Test, $alert) {
+app.directive('testInfo', function(Test, $alert, TestFactory) {
   return {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-info/test-info.html',
@@ -11,13 +11,21 @@ app.directive('testInfo', function(Test, $alert) {
           .then(function() {
             $alert({
               title: 'Deadline updated',
-              placement: 'top-right',
               type: 'success',
-              duration: 2
             });
           });
         } else pageLoad = true;
       });
+
+      $scope.changeTestStatus = function(testId, status) {
+        TestFactory.updateTestStatus(testId, status).then(function(test) {
+          $scope.test = test;
+          $alert({
+            title: 'Test Status Changed',
+            type: 'success'
+          });
+        });
+      };
     }
   };
 });

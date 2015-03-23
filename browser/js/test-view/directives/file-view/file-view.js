@@ -2,8 +2,20 @@ app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactor
   var pageLoad = false;
   $scope.isFileChanged = false;
   var filePath = $stateParams.filePath;
+  $scope.isReadOnly = true;
 
-  $scope.fileBody = FileFactory.getBodyFromPath($scope.treedata, filePath);
+  $scope.file = FileFactory.returnFileFromPath($scope.treedata, filePath);
+  $scope.fileBody = $scope.file.body;
+
+  var fileType = $scope.file.name.substring($scope.file.name.lastIndexOf('.'), $scope.file.name.length);
+  var mode;
+  if (fileType === '.html') mode = 'HTML';
+  else if (fileType === '.css') mode = 'CSS';
+  else mode = 'Javascript';
+
+  $scope.aceOptions = {
+    mode: mode
+  };
 
   $scope.$watch('fileBody', function() {
     if (pageLoad) $scope.isFileChanged = true;

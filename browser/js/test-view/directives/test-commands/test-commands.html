@@ -2,15 +2,28 @@
   <div class="container-fluid" ng-show="isInstructor">
     <div class="row section">
       <p class="small-margin-bottom">
-        Provide commands here for the server to run tests<br>
-        e.g. <code>npm test</code>
+        Provide commands here to set up the server image<br>
+        e.g. <code>npm install; bower install;</code>
       </p>
       <div ui-ace ng-model="test.shellCommands"></div>
     </div>
+    <div class="row section">
+      <button class="btn btn-primary btn-sm"
+        ng-class="{disabled: !shellIsFileChanged}"
+        ng-click="saveShellCommandChanges(test.shellCommands)">Save Changes
+      </button>
+    </div>
+    <div class="row section">
+      <p class="small-margin-bottom">
+        Provide commands here for the server to run tests<br>
+        e.g. <code>npm test;</code>
+      </p>
+      <div ui-ace ng-model="test.testCommands"></div>
+    </div>
     <div class="row">
       <button class="btn btn-primary btn-sm"
-        ng-class="{disabled: !isFileChanged}"
-        ng-click="saveCommandChanges(test.shellCommands)">Save Changes
+        ng-class="{disabled: !testIsFileChanged}"
+        ng-click="saveTestCommandChanges(test.testCommands)">Save Changes
       </button>
     </div>
   </div>
