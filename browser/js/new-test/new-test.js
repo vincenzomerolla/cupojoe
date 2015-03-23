@@ -38,7 +38,7 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
     });
     testCopy.$save()
       .then(function(newTest) {
-        $state.go('testView', {testId: newTest._id});
+        $state.go('testView.fileView.edit', {testId: newTest._id});
       });
   }
 
