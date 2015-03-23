@@ -23,42 +23,46 @@ var schema = new Schema({
 });
 
 var splitRepoURL = function(repo) {
+  var hi = repo.split('/');
   return repo.split('/');
 };
 
 var getRepoName = function(repo) {
-  repoName = splitRepoURL(repo)[4];
+  var repoName = splitRepoURL(repo)[4];
   return repoName.substr(0, repoName.length - 4);
 };
 
-var get RepoUser = function(repo) {
+var getRepoUser = function(repo) {
   return splitRepoURL(repo)[3];
-}
+};
 
 schema.methods.populateFiles = function() {
   var repo = getRepoName(this.repo);
-  var username = getRepoUser(this.repo)
+  var username = getRepoUser(this.repo);
   var count = 0;
   var self = this;
 
   var rec_populateTree = function(sha, path) {
     count++;
     var promises = [];
-    github.gitdata.getTree({
-      user: username,
-      repo: repo,
-      sha: sha
-    }, function(err, res) {
-      res.tree.forEach(function(obj) {
-        if (obj.type === 'blob') {
-          promises.push(rec_populateBlobs(obj.sha, path, obj.path));
-        } else if (obj.type === 'tree') {
-          promises.push(rec_populateTree(obj.sha, path + obj.path + '/'));
-        }
+    return new Promise(function(resolve, reject) {
+      github.gitdata.getTree({
+        user: username,
+        repo: repo,
+        sha: sha
+      }, function(err, res) {
+        if (err) reject(err);
+        res.tree.forEach(function(obj) {
+          if (obj.type === 'blob') {
+            promises.push(rec_populateBlobs(obj.sha, path, obj.path));
+          } else if (obj.type === 'tree') {
+            promises.push(rec_populateTree(obj.sha, path + obj.path + '/'));
+          }
+        });
+        Promise.all(promises).then(resolve);
       });
-      return Promise.all(promises);
     });
-  };
+  }
 
   var rec_populateBlobs = function(sha, path, fileName) {
     count++;

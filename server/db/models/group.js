@@ -10,7 +10,7 @@ var schema = new Schema({
 });
 
 schema.statics.findGroupsWithUser = function(username) {
-  return Group.find({members: {$in: [username]}}).exec().then(function(groups) {
+  return this.find({members: {$in: [username]}}).exec().then(function(groups) {
     return groups.map(function(group) {
       return group._id;
     });
