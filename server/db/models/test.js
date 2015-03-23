@@ -12,6 +12,7 @@ var schema = new Schema({
   status: {type: String},
   deadline: {type: Date},
   shellCommands: {type: String},
+  testCommands: {type: String},
   owner: {type: Schema.Types.ObjectId, ref: 'User' },
   privateFiles: [File.schema],
   publicFiles: [File.schema],
