@@ -21,7 +21,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('DashboardCtrl', function($scope, myTests, possibleTests, TestFactory, $alert, UserTest, user) {
+app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user) {
   $scope.myTests = myTests;
   $scope.possibleTests = possibleTests.filter(function(test) {
     return test.status !== 'Pending';
@@ -35,5 +35,9 @@ app.controller('DashboardCtrl', function($scope, myTests, possibleTests, TestFac
         type: 'danger'
       });
     });
-  }
+  };
+
+  $scope.testsss = function(testId) {
+    Test.get({id: testId});
+  };
 });

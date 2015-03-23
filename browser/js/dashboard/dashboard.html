@@ -5,18 +5,22 @@
         <div class="panel-heading">
           Created Tests
         </div>
+        <div class="panel-body">
+          <button class="btn btn-success" ui-sref="newTest">Make New Test</button>
+        </div>
         <table class="table table-hover">
           <tr>
             <th>Test Name</th>
             <th>Status</th>
             <th>Deadline</th>
+            <th></th>
           </tr>
             <tr ng-repeat="test in myTests">
             <td>{{ test.name }}</td>
             <td>{{ test.status }}</td>
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
             <td>
-              <button class="btn btn-info btn-sm">Overview</button>
+              <button class="btn btn-info btn-sm" ng-click="">Overview</button>
               <button ui-sref="testView({testId: test._id})" class="btn btn-warning btn-sm">Edit</button>
               <button class="btn btn-danger btn-sm" ng-click="deleteTest(test._id)">Delete</button>
             </td>

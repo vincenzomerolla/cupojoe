@@ -22,7 +22,7 @@ app.factory('GroupFactory', function(Group, Session, User) {
   };
 
   factory.deleteGroup = function(groupId) {
-    Group.delete({id: groupId}).$promise.then(function() {
+    return Group.delete({id: groupId}).$promise.then(function() {
       var ind = Session.user.groups.indexOf(groupId);
       if (ind !== -1) {
         Session.user.groups.splice(ind, 1);

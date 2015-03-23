@@ -6,23 +6,9 @@ var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
 
-var GithubApi = require('github');
-var config = require('../../env/').GITHUB;
+var github = require('./github/githubObj.js');
 
 module.exports = router;
-
-
-
-var github = new GithubApi({  
-  version: '3.0.0',  
-});
-
-github.authenticate({
-  type: 'oauth',
-  key: config.clientID,
-  secret: config.clientSecret
-})
-
 
 
 
@@ -55,11 +41,11 @@ router.post('/', function(req, res, next) {
   Test.create(req.body).then(function(test) {
     t = test;
     return User.findByIdAndAddTest(test.owner, test).exec();
-  })
-  .then(function(user) {
-    res.json(t);
-  })
-  .then(null, function(err) {
+  }).then(function(user) {
+    return t.populateFiles();
+  }).then(function(test) {
+    res.json(test);
+  }).then(null, function(err) {
     next(err);
   });
 });

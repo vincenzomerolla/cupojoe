@@ -7,7 +7,7 @@ var schema = new Schema({
   name: {type: String, required: true},
   path: {type: String, required: true},
   body: {type: String},
-  isReadOnly: {type: Boolean, default: false},
+  isReadOnly: {type: Boolean, default: true},
   // createdAt: {type: Date, default: Date.now},
   // updatedAt: {type: Date, default: Date.now}
 });
