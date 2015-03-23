@@ -22,32 +22,41 @@ var schema = new Schema({
   updatedAt: {type: Date, default: Date.now}
 });
 
+var splitRepoURL = function(repo) {
+  return repo.split('/');
+};
+
+var getRepoName = function(repo) {
+  repoName = splitRepoURL(repo)[4];
+  return repoName.substr(0, repoName.length - 4);
+};
+
+var get RepoUser = function(repo) {
+  return splitRepoURL(repo)[3];
+}
+
 schema.methods.populateFiles = function() {
-  var repoArr = this.repo.split('/');
-  var repo = repoArr[4].substr(0, repoArr[4].length - 4);
-  var username = repoArr[3];
+  var repo = getRepoName(this.repo);
+  var username = getRepoUser(this.repo)
   var count = 0;
   var self = this;
 
   var rec_populateTree = function(sha, path) {
     count++;
-    return new Promise(function(resolve, reject) {
-      var promises = [];
-      github.gitdata.getTree({
-        user: username,
-        repo: repo,
-        sha: sha
-      }, function(err, res) {
-        if (err) return reject(err);
-        res.tree.forEach(function(obj) {
-          if (obj.type === 'blob') {
-            promises.push(rec_populateBlobs(obj.sha, path, obj.path));
-          } else if (obj.type === 'tree') {
-            promises.push(rec_populateTree(obj.sha, path + obj.path + '/'));
-          }
-        });
-        Promise.all(promises).then(resolve);
+    var promises = [];
+    github.gitdata.getTree({
+      user: username,
+      repo: repo,
+      sha: sha
+    }, function(err, res) {
+      res.tree.forEach(function(obj) {
+        if (obj.type === 'blob') {
+          promises.push(rec_populateBlobs(obj.sha, path, obj.path));
+        } else if (obj.type === 'tree') {
+          promises.push(rec_populateTree(obj.sha, path + obj.path + '/'));
+        }
       });
+      return Promise.all(promises);
     });
   };
 
