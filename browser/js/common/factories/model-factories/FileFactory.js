@@ -14,11 +14,11 @@ app.factory('FileFactory', function() {
     return !!this.children.length;
   };
 
-  var bubbleDown = function(curNodeArr, pathArr, isReadOnly) {
+  var bubbleDown = function(curNodeArr, pathArr, path, isReadOnly) {
     var folderName = pathArr.shift();
     var ind = indexOfTreeArray(curNodeArr, folderName);
     if (ind === -1) {
-      var newFolder = new TreeNode(folderName, null, null, isReadOnly);
+      var newFolder = new TreeNode(folderName, null, path, isReadOnly);
       curNodeArr.push(newFolder);
       curNodeArr = newFolder.children;
     } else {
@@ -40,9 +40,12 @@ app.factory('FileFactory', function() {
     if (file.path !== '/') {
       var pathArr = file.path.split('/');
       pathArr.shift(); pathArr.pop();
+      var rootPath = '/'
 
       while (pathArr.length) {
-        curNodeArr = bubbleDown(curNodeArr, pathArr, file.isReadOnly);
+        var folderName = pathArr[0];
+        curNodeArr = bubbleDown(curNodeArr, pathArr, rootPath, file.isReadOnly);
+        rootPath += folderName + '/';
       }
     }
     curNodeArr.push(newFile);
@@ -81,6 +84,25 @@ app.factory('FileFactory', function() {
     fileArr.forEach(function(file) {
       factory.addToTree(tableObj, file);
     });
+  };
+
+  factory.setAllChildren = function(node, bool) {
+    var rec_setChildren = function(child) {
+      child.isReadOnly = bool;
+      child.children.forEach(rec_setChildren);
+    };
+
+    rec_setChildren(node);
+  };
+
+  factory.setOnPath = function(root, path, bool) {
+    var pathArr = path.split('/');
+    pathArr.shift(); pathArr.pop();
+    var curNodeArr = root;
+
+    while(pathArr.length) {
+      curNodeArr = bubbleDown(curNodeArr, pathArr, null, bool);
+    };
   };
 
   return factory;

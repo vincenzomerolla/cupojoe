@@ -56,7 +56,8 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user)
     else $state.go('testView.fileView.take', {filePath: node.fullPath});
   };
 
-  $scope.hi = function() {
-    console.log('hi')
-  }
+  $scope.clickCheckbox = function(node) {
+    console.log(node.path);
+    TestFactory.updateReadOnlyStatus($scope.treedata, node);
+  };
 });
