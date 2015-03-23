@@ -55,4 +55,8 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user)
     if ($scope.isEdit) $state.go('testView.fileView.edit', {filePath: node.fullPath});
     else $state.go('testView.fileView.take', {filePath: node.fullPath});
   };
+
+  $scope.hi = function() {
+    console.log('hi')
+  }
 });

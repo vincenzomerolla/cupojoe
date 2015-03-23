@@ -14,14 +14,15 @@ app.factory('FileFactory', function() {
     return !!this.children.length;
   };
 
-  var bubbleDown = function(curNodeArr, pathArr) {
+  var bubbleDown = function(curNodeArr, pathArr, isReadOnly) {
     var folderName = pathArr.shift();
     var ind = indexOfTreeArray(curNodeArr, folderName);
     if (ind === -1) {
-      var newFolder = new TreeNode(folderName, null, null, true);
+      var newFolder = new TreeNode(folderName, null, null, isReadOnly);
       curNodeArr.push(newFolder);
       curNodeArr = newFolder.children;
     } else {
+      curNodeArr[ind].isReadOnly = isReadOnly;
       curNodeArr = curNodeArr[ind].children;
     }
     return curNodeArr;
@@ -41,7 +42,7 @@ app.factory('FileFactory', function() {
       pathArr.shift(); pathArr.pop();
 
       while (pathArr.length) {
-        curNodeArr = bubbleDown(curNodeArr, pathArr);
+        curNodeArr = bubbleDown(curNodeArr, pathArr, file.isReadOnly);
       }
     }
     curNodeArr.push(newFile);
