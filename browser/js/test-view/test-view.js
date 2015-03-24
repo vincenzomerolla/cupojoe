@@ -42,10 +42,11 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user) {
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert) {
   $scope.isEdit = ($state.current.url === '/edit');
   $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
+  $scope.readOnlyChange = false;
 
   $scope.opts = {
     dirSelectable: false
@@ -54,5 +55,21 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user)
   $scope.showFile = function(node) {
     if ($scope.isEdit) $state.go('testView.fileView.edit', {filePath: node.fullPath});
     else $state.go('testView.fileView.take', {filePath: node.fullPath});
+  };
+
+  $scope.clickCheckbox = function(node) {
+    $scope.readOnlyChange = true;
+    TestFactory.updateReadOnlyStatus($scope.treedata, node);
+  };
+
+  $scope.saveReadOnlyChanges = function() {
+    var testObj = TestFactory.getUpdatedTestObj($scope.treedata);
+    Test.update({id: test._id}, testObj).$promise.then(function() {
+      $scope.readOnlyChange = false;
+      $alert({
+        title: 'Read-only states saved',
+        type: 'success'
+      });
+    });
   };
 });

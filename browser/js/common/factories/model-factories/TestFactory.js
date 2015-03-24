@@ -44,6 +44,12 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
     return Test.update({id: testId}, {status: status}).$promise;
   };
 
+  factory.updateReadOnlyStatus = function(tableObj, node) {
+    FileFactory.setAllChildren(node, node.isReadOnly);
+    if (!node.isReadOnly) FileFactory.setOnPath(tableObj, node.path, node.isReadOnly);
+    else FileFactory.checkOnPath(tableObj, node.path, node.isReadOnly);
+  };
+
 
   return factory;
 });

@@ -7,6 +7,7 @@ app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactor
   if (filePath) {
     $scope.file = FileFactory.returnFileFromPath($scope.treedata, filePath);
     $scope.fileBody = $scope.file.body;
+    $scope.isReadOnly = $scope.file.isReadOnly;
 
     var fileType = $scope.file.name.substring($scope.file.name.lastIndexOf('.'), $scope.file.name.length);
     var mode;
