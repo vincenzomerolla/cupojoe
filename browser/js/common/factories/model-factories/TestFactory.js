@@ -20,9 +20,10 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
     return obj;
   };
 
-  factory.getTableObj = function(test) {
+  factory.getTableObj = function(test, result) {
     var rtn = FileFactory.getTableObj(test.privateFiles);
-    FileFactory.addToTableObj(rtn, test.publicFiles);
+    if (result) FileFactory.addToTableObj(rtn, result.publicFiles);
+    else FileFactory.addToTableObj(rtn, test.publicFiles);
     return rtn;
   };
 
@@ -49,7 +50,6 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
     if (!node.isReadOnly) FileFactory.setOnPath(tableObj, node.path, node.isReadOnly);
     else FileFactory.checkOnPath(tableObj, node.path, node.isReadOnly);
   };
-
 
   return factory;
 });

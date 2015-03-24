@@ -15,6 +15,13 @@ app.config(function($stateProvider) {
       isInstructor: function(user, test) {
         return user._id === test.owner;
       },
+      isEdit: function($rootScope) {
+        return $rootScope.toState.url === '/edit';
+      },
+      result: function(isEdit, UserFactory, user, test) {
+        if (isEdit) return;
+        else return UserFactory.getTestResult(user, test);
+      }
     },
     data: {
       authenticate: true
@@ -42,12 +49,13 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert) {
-  $scope.isEdit = ($state.current.url === '/edit');
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, result) {
+  $scope.isEdit = isEdit;
   $scope.test = test;
-  $scope.treedata = TestFactory.getTableObj(test);
+  $scope.result = result;
+  $scope.treedata = TestFactory.getTableObj(test, result);
   $scope.readOnlyChange = false;
-  $scope.isPending = test.status === "Pending";
+  $scope.isPending = (test.status === "Pending");
 
   $scope.opts = {
     dirSelectable: false

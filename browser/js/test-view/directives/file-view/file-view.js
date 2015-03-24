@@ -1,4 +1,4 @@
-app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactory, TestFactory, Test) {
+app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactory, TestFactory, result, Result) {
   var pageLoad = false;
   $scope.isFileChanged = false;
   var filePath = $stateParams.filePath;
@@ -11,9 +11,9 @@ app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactor
 
     var fileType = $scope.file.name.substring($scope.file.name.lastIndexOf('.'), $scope.file.name.length);
     var mode;
-    if (fileType === '.html') mode = 'HTML';
-    else if (fileType === '.css') mode = 'CSS';
-    else mode = 'Javascript';
+    if (fileType === '.html') mode = 'html';
+    else if (fileType === '.css') mode = 'css';
+    else if (fileType === '.js') mode = 'javascript';
 
     $scope.aceOptions = {
       mode: mode
@@ -30,9 +30,10 @@ app.controller('FileViewCtrl', function($scope, $stateParams, $alert, FileFactor
   $scope.saveFileChanges = function(fileBody) {
     FileFactory.saveBodyWithPath($scope.treedata, filePath, fileBody);
     var testObj = TestFactory.getUpdatedTestObj($scope.treedata);
-    Test.update({id: $stateParams.testId}, testObj).$promise.then(function() {
+    Result.update({id: result._id}, {publicFiles: testObj.publicFiles})
+    .$promise.then(function() {
       $scope.isFileChanged = false;
-      $alert({title: 'Changes saved', type: 'success'});
+      $alert({title: 'File changes saved', type: 'success'});
     });
   };
 });

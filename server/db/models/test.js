@@ -9,7 +9,7 @@ var github = require('../../app/routes/github/githubObj');
 var schema = new Schema({
   name: {type: String},
   instructions: {type: String},
-  status: {type: String},
+  status: {type: String, enum: ['Pending', 'Available', 'Closed'] },
   deadline: {type: Date},
   shellCommands: {type: String},
   testCommands: {type: String},
@@ -18,6 +18,7 @@ var schema = new Schema({
   publicFiles: [File.schema],
   repo: {type: String},
   groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
+  results: [{ type: Schema.Types.ObjectId, ref: 'Result' }],
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 });
@@ -62,7 +63,7 @@ schema.methods.populateFiles = function() {
         Promise.all(promises).then(resolve);
       });
     });
-  }
+  };
 
   var rec_populateBlobs = function(sha, path, fileName) {
     count++;

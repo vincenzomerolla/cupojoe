@@ -3,6 +3,8 @@
 var router = require('express').Router();
 var mongoose = require('mongoose');
 var Result = mongoose.model('Result');
+var User = mongoose.model('User');
+var Test = mongoose.model('Test');
 
 module.exports = router;
 
@@ -11,15 +13,21 @@ module.exports = router;
 router.get('/', function(req, res, next) {
   Result.find().exec().then(function(results) {
     res.json(results);
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
 
 router.post('/', function(req, res, next) {
+  var r;
   Result.create(req.body).then(function(result) {
-    res.json(result);
-  }).catch(function(err) {
+    r = result;
+    return User.findByIdAndUpdate(r.user, {$push: {takenTests: r._id}}).exec();
+  }).then(function() {
+    return Test.findByIdAndUpdate(r.test, {$push: {results: r._id}}).exec();
+  }).then(function() {
+    res.json(r);
+  }, function(err) {
     next(err);
   });
 });
@@ -33,7 +41,7 @@ router.use('/:id', function(req, res, next) {
   .then(function(result) {
     req.data = result;
     next();
-  }).catch(function(err) {
+  }, function(err) {
     next(err);
   });
 });
@@ -47,9 +55,9 @@ router.route('/:id')
     for (var key in req.body) {
       req.data[key] = req.body[key];
     }
-    req.item.save(function(err, item) {
+    req.data.save(function(err, data) {
       if (err) return next(err);
-      res.json(item);
+      res.json(data);
     });
   })
 
@@ -57,7 +65,7 @@ router.route('/:id')
     Result.findByIdAndRemove(req.data._id).exec()
     .then(function() {
       res.status(200).end();
-    }).catch(function(err) {
+    }, function(err) {
       next(err);
     });
   });
