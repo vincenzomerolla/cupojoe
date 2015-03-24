@@ -7,7 +7,7 @@ var schema = new Schema({
   score: { type: Number },
   output: { type: String },
   publicFiles: [File.schema],
-  status: { type: String, enum: ['Started', 'Submitted'] },
+  status: { type: String, enum: ['Available', 'Submitted', 'Overdue'] },
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   user: { type: Schema.Types.ObjectId, ref: 'User' }  
 });

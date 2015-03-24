@@ -52,6 +52,7 @@ app.config(function($stateProvider) {
 app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, result) {
   $scope.isEdit = isEdit;
   $scope.test = test;
+  $scope.result = result;
   $scope.treedata = TestFactory.getTableObj(test, result);
   $scope.readOnlyChange = false;
   $scope.isPending = (test.status === "Pending");

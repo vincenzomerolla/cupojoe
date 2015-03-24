@@ -5,8 +5,14 @@
         Test Status:
       </div>
       <div class="col-xs-8 fake-form"
+        ng-show="isEdit"
         ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">
        {{ test.status }} 
+      </div>
+      <div class="col-xs-8 fake-form"
+        ng-hide="isEdit"
+        ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Submitted', 'text-danger': test.status === 'Overdue'}">
+       {{ result.status }} 
       </div>
     </div>
   </div>
