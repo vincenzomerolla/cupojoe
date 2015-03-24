@@ -13,7 +13,6 @@ app.config(function($stateProvider) {
       },
       possibleTests: function(Test, user) {
         return Test.query({username: user.username}).$promise;
-        // return Test.query().$promise;
       }
     },
     data: {
