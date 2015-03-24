@@ -10,10 +10,6 @@ app.factory('FileFactory', function() {
     this.children = [];
   };
 
-  TreeNode.prototype.isTree = function () {
-    return !!this.children.length;
-  };
-
   var bubbleDown = function(curNodeArr, pathArr, path, isReadOnly) {
     var folderName = pathArr.shift();
     var ind = indexOfTreeArray(curNodeArr, folderName);
