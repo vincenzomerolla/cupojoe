@@ -1,4 +1,4 @@
-app.directive('testInfo', function(Test, $alert, TestFactory, UserGroup) {
+app.directive('testInfo', function(Test, $alert, TestFactory) {
   return {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-info/test-info.html',
