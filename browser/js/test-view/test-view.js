@@ -57,7 +57,6 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user)
   };
 
   $scope.clickCheckbox = function(node) {
-    console.log(node.path);
     TestFactory.updateReadOnlyStatus($scope.treedata, node);
   };
 });

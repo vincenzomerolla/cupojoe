@@ -10,6 +10,15 @@
   <div class="row">
     <div class="col-xs-3">
       <div class="well">
+        <p ng-show="isEdit">
+          Check files that are read-only on the test below.
+        </p>
+        <div class="section">
+          <button class="btn btn-primary btn-sm"
+            ng-show="isEdit">
+            Save Changes
+          </button>
+        </div>
         <treecontrol class="tree-classic"
           tree-model="treedata"
           options="opts"

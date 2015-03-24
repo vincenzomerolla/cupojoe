@@ -102,7 +102,35 @@ app.factory('FileFactory', function() {
 
     while(pathArr.length) {
       curNodeArr = bubbleDown(curNodeArr, pathArr, null, bool);
+    }
+  };
+
+  factory.checkOnPath = function(root, path, bool) {
+    var rec_checkChildren = function(node, pathArr) {
+      if (!pathArr.length && node.children.every(function(child) {
+        return (child.isReadOnly === bool);
+      })) {
+        node.isReadOnly = bool;
+        return true;
+      }
+
+      var next = indexOfTreeArray(node.children, pathArr.shift());
+      if (rec_checkChildren(node.children[next], pathArr)
+        && node.children.every(function(child) {
+          return (child.isReadOnly === bool);
+        })) {
+        node.isReadOnly = bool;
+        return true;
+      } else return false;
     };
+
+    var pathArr = path.split('/');
+    pathArr.shift(); pathArr.pop();
+    if (!pathArr.length) return;
+    else {
+      var startNode = root[indexOfTreeArray(root, pathArr.shift())];
+      rec_checkChildren(startNode, pathArr);
+    }
   };
 
   return factory;
