@@ -10,10 +10,10 @@
   <div class="row">
     <div class="col-xs-3">
       <div class="well">
-        <p ng-show="isEdit">
+        <p ng-show="isEdit && isPending">
           Check files that are read-only on the test below.
         </p>
-        <div class="section" ng-show="isEdit">
+        <div class="section" ng-show="isEdit && isPending">
           <button class="btn btn-primary btn-sm"
             ng-click="saveReadOnlyChanges()"
             ng-class="{disabled: !readOnlyChange}">
@@ -25,7 +25,7 @@
           options="opts"
           order-by="name"
           on-check-click="clickCheckbox"
-          show-check="isEdit"
+          show-check="isEdit && isPending"
           on-selection="showFile(node)">
           {{node.name}}
         </treecontrol>
