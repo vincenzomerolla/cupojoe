@@ -47,6 +47,7 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user,
   $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
   $scope.readOnlyChange = false;
+  $scope.isPending = test.status === "Pending";
 
   $scope.opts = {
     dirSelectable: false

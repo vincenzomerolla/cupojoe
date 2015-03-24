@@ -2,12 +2,13 @@
   <div class="container-fluid" ng-show="isEdit">
     <div class="row section">
       <p class="small-margin-bottom">
-        Provide commands here to set up the server image<br>
-        e.g. <code>npm install; bower install;</code>
+        <span ng-show="isPending">Provide commands here to set up the server image<br>
+        e.g. <code>npm install; bower install;</code></span>
+        <span ng-hide="isPending">Shell commands:</span>
       </p>
-      <div ui-ace ng-model="test.shellCommands"></div>
+      <div ui-ace ng-model="test.shellCommands" ng-readonly="!isPending"></div>
     </div>
-    <div class="row section">
+    <div class="row section" ng-show="isPending">
       <button class="btn btn-primary btn-sm"
         ng-class="{disabled: !shellIsFileChanged}"
         ng-click="saveShellCommandChanges(test.shellCommands)">Save Shell Command Changes
@@ -15,12 +16,13 @@
     </div>
     <div class="row section">
       <p class="small-margin-bottom">
-        Provide commands here for the server to run tests<br>
-        e.g. <code>npm test;</code>
+        <span ng-show="isPending">Provide commands here for the server to run tests<br>
+        e.g. <code>npm test;</code></span>
+        <span ng-hide="isPending">Test commands:</span>
       </p>
-      <div ui-ace ng-model="test.testCommands"></div>
+      <div ui-ace ng-model="test.testCommands" ng-readonly="!isPending"></div>
     </div>
-    <div class="row">
+    <div class="row" ng-show="isPending">
       <button class="btn btn-primary btn-sm"
         ng-class="{disabled: !testIsFileChanged}"
         ng-click="saveTestCommandChanges(test.testCommands)">Save Test Command Changes
