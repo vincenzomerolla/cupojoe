@@ -1,0 +1,15 @@
+<h2 class="test-title">{{ test.name }}</h2>
+<form ng-show="isEdit">
+  <div class="form-group">
+    <tags-input
+      on-tag-added="saveGroups(test.groups)"
+      on-tag-removed="saveGroups(test.groups)"
+      ng-model="test.groups"
+      display-property="name"
+      replace-spaces-with-dashes="false"
+      placeholder="Add group access"
+      add-from-autocomplate-only="true">
+      <auto-complete source="loadGroups($query)"></auto-complete>
+    </tags-input>
+  </div>
+</form>

@@ -103,3 +103,9 @@ router.route('/:id')
       next(err);
     });
   });
+
+router.get('/:id/group', function(req, res, next) {
+  Test.populate(req.data, 'groups').then(function(test) {
+    res.json(test.groups);
+  });
+});
