@@ -62,7 +62,7 @@ schema.methods.populateFiles = function() {
         Promise.all(promises).then(resolve);
       });
     });
-  }
+  };
 
   var rec_populateBlobs = function(sha, path, fileName) {
     count++;

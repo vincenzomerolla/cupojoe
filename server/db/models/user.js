@@ -26,11 +26,11 @@ var schema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Group'
     }],
-    testIds: [{
+    testIds: [{ // These are tests the user created
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Test'
     }],
-    takenTests: [{
+    takenTests: [{  // these are tests the user took
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Result'
     }]

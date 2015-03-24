@@ -15,6 +15,6 @@ schema.statics.findGroupsWithUser = function(username) {
       return group._id;
     });
   });
-}
+};
 
 mongoose.model('Group', schema);

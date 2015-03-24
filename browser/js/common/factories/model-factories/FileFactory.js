@@ -36,7 +36,7 @@ app.factory('FileFactory', function() {
     if (file.path !== '/') {
       var pathArr = file.path.split('/');
       pathArr.shift(); pathArr.pop();
-      var rootPath = '/'
+      var rootPath = '/';
 
       while (pathArr.length) {
         var folderName = pathArr[0];

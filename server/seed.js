@@ -11,10 +11,27 @@ var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
 var File = mongoose.model('File');
 
+var F = function(isReadOnly) {
+  this.name = Math.floor(Math.random() * 100) + 'test.js';
+  this.path = '/test/';
+  this.body = '' + Math.random();
+  this.isReadOnly = isReadOnly;
+};
+
+
+var makeFileArr = function(len, bool) {
+  var arr = [];
+  for (var i = 0; i < len; i++) {
+    arr.push(new F(bool));
+  }
+  return arr;
+};
+
+
 var U = function() {
   this.username = 'user';
   this.displayName = 'user';
-}
+};
 
 var G = function (user){ 
   this.name = 'Group 1';
@@ -32,27 +49,14 @@ var T = function(user) {
 
   this.privateFiles = makeFileArr(10, true);
   this.publicFiles = makeFileArr(10, false);
-}
+};
 
-var F = function(isReadOnly) {
-  this.name = Math.floor(Math.random() * 100) + 'test.js';
-  this.path = '/test/';
-  this.body = '' + Math.random();
-  this.isReadOnly = isReadOnly;
-}
 
-var makeFileArr = function(len, bool) {
-  var arr = [];
-  for (var i = 0; i < len; i++) {
-    arr.push(new F(bool));
-  }
-  return arr;
-}
 
 
 mongoose.connection.on('open', function() {
   mongoose.connection.db.dropDatabase(function() {
-    var user
+    var user;
     User.create(new U())
       .then(function(createdUser) {
         user = createdUser;
