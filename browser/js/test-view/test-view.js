@@ -14,7 +14,7 @@ app.config(function($stateProvider) {
       },
       isInstructor: function(user, test) {
         return user._id === test.owner;
-      },
+      }
     },
     data: {
       authenticate: true
