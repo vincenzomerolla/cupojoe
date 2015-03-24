@@ -118,14 +118,15 @@
                     $scope.headClass = function(node) {
                         var liSelectionClass = classIfDefined($scope.options.injectClasses.liSelected, false);
                         var injectSelectionClass = "";
+                        var readOnlyClasses = node.isReadOnly ? ' isReadOnly' : ' isNotReadOnly';
                         if (liSelectionClass && isSelectedNode(node))
                             injectSelectionClass = " " + liSelectionClass;
                         if ($scope.options.isLeaf(node))
-                            return "tree-leaf" + injectSelectionClass;
+                            return "tree-leaf" + injectSelectionClass + readOnlyClasses;
                         if ($scope.expandedNodesMap[this.$id])
-                            return "tree-expanded" + injectSelectionClass;
+                            return "tree-expanded" + injectSelectionClass + readOnlyClasses;
                         else
-                            return "tree-collapsed" + injectSelectionClass;
+                            return "tree-collapsed" + injectSelectionClass + readOnlyClasses;
                     };
 
                     $scope.iBranchClass = function() {
