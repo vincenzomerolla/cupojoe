@@ -106,21 +106,26 @@ app.factory('FileFactory', function() {
   };
 
   factory.checkOnPath = function(root, path, bool) {
-    var rec_checkChildren = function(node, pathArr) {
-      if (!pathArr.length && node.children.every(function(child) {
+    var setAndReturn = function(node) {
+      node.isReadOnly = bool;
+      return true;
+    };
+
+    var checkChildren = function(node) {
+      return node.children.every(function(child) {
         return (child.isReadOnly === bool);
-      })) {
-        node.isReadOnly = bool;
-        return true;
+      });
+    };
+
+    var rec_checkChildren = function(node, pathArr) {
+      if (!pathArr.length && checkChildren(node)) {
+        return setAndReturn(node);
       }
 
       var next = indexOfTreeArray(node.children, pathArr.shift());
       if (rec_checkChildren(node.children[next], pathArr)
-        && node.children.every(function(child) {
-          return (child.isReadOnly === bool);
-        })) {
-        node.isReadOnly = bool;
-        return true;
+        && checkChildren(node)) {
+        return setAndReturn(node);
       } else return false;
     };
 

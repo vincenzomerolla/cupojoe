@@ -13,10 +13,11 @@
         <p ng-show="isEdit">
           Check files that are read-only on the test below.
         </p>
-        <div class="section">
+        <div class="section" ng-show="isEdit">
           <button class="btn btn-primary btn-sm"
-            ng-show="isEdit">
-            Save Changes
+            ng-click="saveReadOnlyChanges()"
+            ng-class="{disabled: !readOnlyChange}">
+            Save Read-Only State Changes
           </button>
         </div>
         <treecontrol class="tree-classic"
