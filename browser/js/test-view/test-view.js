@@ -14,6 +14,9 @@ app.config(function($stateProvider) {
       },
       isInstructor: function(user, test) {
         return user._id === test.owner;
+      },
+      isEdit: function($state) {
+        return $state.current.url === '/edit';
       }
     },
     data: {
@@ -33,6 +36,9 @@ app.config(function($stateProvider) {
       blah: function($state, isInstructor) {
         if (!isInstructor) return $state.go('home');
         return;
+      },
+      result: function(isEdit, Populate) {
+        
       }
     }
   });
@@ -42,8 +48,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert) {
-  $scope.isEdit = ($state.current.url === '/edit');
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit) {
+  $scope.isEdit = isEdit;
   $scope.test = test;
   $scope.treedata = TestFactory.getTableObj(test);
   $scope.readOnlyChange = false;
