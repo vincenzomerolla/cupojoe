@@ -9,6 +9,9 @@ app.config(function($stateProvider) {
       test: function(Test, $stateParams) {
         return Test.get({id: $stateParams.testId}).$promise;
       },
+      groups: function(Populate, test) {
+        return Populate.query({model: 'Test', id: test._id, field: 'group'}).$promise;
+      },
       user: function(AuthService) {
         return AuthService.getLoggedInUser();
       },
@@ -49,9 +52,11 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, result) {
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, result, groups) {
+  $scope.user = user;
   $scope.isEdit = isEdit;
   $scope.test = test;
+  $scope.test.groups = groups;
   $scope.result = result;
   $scope.treedata = TestFactory.getTableObj(test, result);
   $scope.readOnlyChange = false;
