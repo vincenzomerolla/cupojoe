@@ -10,7 +10,8 @@ var app = angular.module('cupojoe', [
   'ui.ace',
   'ngTagsInput',
   'ui.select', 
-  'ngSanitize'
+  'ngSanitize',
+  'ansiToHtml'
 ]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
