@@ -1,4 +1,4 @@
-app.factory('FileFactory', function() {
+app.factory('FileFactory', function(indexOf) {
   var factory = {};
 
   var TreeNode = function(name, body, path, isReadOnly) {
@@ -25,9 +25,11 @@ app.factory('FileFactory', function() {
   };
 
   var indexOfTreeArray = function(arr, name) {
-    return arr.reduce(function(prev, cur, ind) {
-      return (cur.name === name) ? ind : prev;
-    }, -1);
+    return indexOf(arr, name, 'name');
+
+    // return arr.reduce(function(prev, cur, ind) {
+    //   return (cur.name === name) ? ind : prev;
+    // }, -1);
   };
 
   factory.addToTree = function(root, file) {
