@@ -12,7 +12,7 @@ app.directive('testTitle', function($alert, UserGroup, Test) {
       };
 
       $scope.saveGroups = function(groups) {
-        var groupCopy = angular.copy(groups)
+        var groupCopy = angular.copy(groups);
         groupCopy = groupCopy.map(function(group) {
           return group._id;
         });

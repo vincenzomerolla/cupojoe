@@ -1,4 +1,4 @@
-app.directive('testInfo', function(Test, $alert, TestFactory) {
+app.directive('testInfo', function(Test, $alert, TestFactory, $state) {
   return {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-info/test-info.html',
@@ -18,12 +18,16 @@ app.directive('testInfo', function(Test, $alert, TestFactory) {
       });
 
       $scope.changeTestStatus = function(testId, status) {
-        TestFactory.updateTestStatus(testId, status).then(function(test) {
+        var updateParams = {status: status};
+        if (!$scope.test.testType) updateParams.testType = 'mocha';
+
+        Test.update({id: testId}, updateParams).$promise.then(function(test) {
           $scope.test = test;
           $alert({
             title: 'Test Status Changed',
             type: 'success'
           });
+          $state.go('dashboard');
         });
       };
     }

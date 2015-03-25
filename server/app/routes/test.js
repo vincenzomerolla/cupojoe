@@ -84,7 +84,7 @@ router.route('/:id')
         json: data
       };
 
-      if (data.status === 'Available' && process.env === 'production') {
+      if (data.status === 'Available' && process.env.NODE_ENV === 'production') {
         request.post(options, function(error, response, body) {
           if (error) next(error);
           res.json(data);

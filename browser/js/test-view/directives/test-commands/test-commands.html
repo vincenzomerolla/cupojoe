@@ -14,6 +14,13 @@
         ng-click="saveShellCommandChanges(test.shellCommands)">Save Shell Command Changes
       </button>
     </div>
+    <div class="row section" ng-show="isEdit">
+      <select class="form-control small-font" ng-disabled="!isPending" ng-options="option for option in testOptions" ng-model="test.testType">
+        <option value="">
+          Choose Test Environment (default Mocha)
+        </option>
+      </select>
+    </div>
     <div class="row section">
       <p class="small-margin-bottom">
         <span ng-show="isPending">Provide commands here for the server to run tests<br>

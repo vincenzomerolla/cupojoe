@@ -17,6 +17,8 @@ var schema = new Schema({
   privateFiles: [File.schema],
   publicFiles: [File.schema],
   repo: {type: String},
+  dockerId: {type: String},
+  testType: {type: String, enum: ['jasmine', 'mocha', 'testem']},
   groups: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
   results: [{ type: Schema.Types.ObjectId, ref: 'Result' }],
   createdAt: {type: Date, default: Date.now},

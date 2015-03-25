@@ -3,18 +3,21 @@ app.directive('testCommands', function(Test, $alert) {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-commands/test-commands.html',
     link: function($scope, elem, attr) {
-      var pageLoad = false;
+      var shellPageLoad = false;
+      var testPageLoad = false;
       $scope.shellIsFileChanged = false;
       $scope.testIsFileChanged = false;
 
+      $scope.testOptions = ['jasmine', 'mocha', 'testem'];
+
       $scope.$watch('test.shellCommands', function() {
-        if (pageLoad) $scope.shellIsFileChanged = true;
-        else pageLoad = true;
+        if (shellPageLoad) $scope.shellIsFileChanged = true;
+        else shellPageLoad = true;
       });
 
       $scope.$watch('test.testCommands', function() {
-        if (pageLoad) $scope.testIsFileChanged = true;
-        else pageLoad = true;
+        if (testPageLoad) $scope.testIsFileChanged = true;
+        else testPageLoad = true;
       });
 
       $scope.saveShellCommandChanges = function(commands) {
