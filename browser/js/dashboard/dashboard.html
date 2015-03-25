@@ -40,7 +40,7 @@
           </tr>
           <tr ng-repeat="test in possibleTests">
             <td>{{ test.name }}</td>
-            <td ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">{{ test.status }}</td>
+            <td ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue'}">{{ test.status }}</td>
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
             <td>????</td>
             <td>
