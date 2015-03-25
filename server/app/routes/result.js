@@ -21,7 +21,6 @@ router.get('/', function(req, res, next) {
 router.post('/', function(req, res, next) {
   var r;
   Result.create(req.body).then(function(result) {
-  console.log('hi');
     r = result;
     return User.findByIdAndUpdate(r.user, {$push: {takenTests: r._id}}).exec();
   }).then(function() {
