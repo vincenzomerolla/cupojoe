@@ -22,6 +22,8 @@ app.config(function($stateProvider) {
 });
 
 app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user) {
+  
+
   $scope.myTests = myTests;
   $scope.possibleTests = possibleTests.filter(function(test) {
     return test.status !== 'Pending';
@@ -30,6 +32,9 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
   $scope.deleteTest = function(testId) {
     TestFactory.deleteTest(testId).then(function() {
       $scope.myTests = UserTest.query({userId: user._id});
+      $scope.possibleTests = Test.query({username: user.username}).filter(function(test) {
+        return test.status !== 'Pending';
+      });
       $alert({
         title: 'Test deleted',
         type: 'danger'
