@@ -16,6 +16,8 @@ app.factory('UserFactory', function(Populate, Result) {
           status: 'Started',
           test: test._id,
           user: user._id,
+          dockerId: test.dockerId,
+          testType: test.testType,
           publicFiles: test.publicFiles
         });
       });

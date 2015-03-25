@@ -11,7 +11,7 @@
       </div>
       <div class="col-xs-8 fake-form"
         ng-hide="isEdit"
-        ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Submitted', 'text-danger': test.status === 'Overdue'}">
+        ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue'}">
        {{ result.status }} 
       </div>
     </div>
@@ -48,6 +48,6 @@
     ng-show="test.status !== 'Available' && isEdit">Publish Test</button>
 
   <button class="btn btn-success btn-block" ng-hide="isEdit">Submit Test</button>
-  <button class="btn btn-info btn-block" ng-hide="isEdit">Run Test</button>
+  <button class="btn btn-info btn-block" ng-click="runTest()" ng-hide="isEdit">Run Test</button>
   <button class="btn btn-default btn-block" ui-sref="dashboard">Dashboard</button>
 </div>

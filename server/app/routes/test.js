@@ -6,7 +6,6 @@ var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
 
-var Promise = require('bluebird');
 var request = require('request');
 var DOCKER_URI = require('../../env/').DOCKER_URI;
 
@@ -77,7 +76,7 @@ router.route('/:id')
       if (err) return next(err);
       var options = {
         method: 'POST',
-        url: DOCKER_URI,
+        url: DOCKER_URI + '/build',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -87,7 +86,14 @@ router.route('/:id')
       if (data.status === 'Available' && process.env.NODE_ENV === 'production') {
         request.post(options, function(error, response, body) {
           if (error) next(error);
-          res.json(data);
+
+          // should send back dockerId as string in body
+          data.dockerId = body;
+          data.save(function(err, savedData) {
+            if (err) next(err);
+            res.json(data);
+          });
+
         });   
       } else {
         res.json(data);

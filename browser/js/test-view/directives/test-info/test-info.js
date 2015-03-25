@@ -1,4 +1,4 @@
-app.directive('testInfo', function(Test, $alert, TestFactory, $state) {
+app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result) {
   return {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-info/test-info.html',
@@ -28,6 +28,12 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state) {
             type: 'success'
           });
           $state.go('dashboard');
+        });
+      };
+
+      $scope.runTest = function() {
+        Result.run({id: $scope.result._id}).$promise.then(function(result) {
+          $scope.result.output = result.output;
         });
       };
     }
