@@ -51,7 +51,6 @@ var encryptPassword = function (plainText, salt) {
 
 
 var findByIdAndAddTest = function(id, test) {
-    console.log('adding')
   return this.findByIdAndUpdate(id, {$push: {testIds: test._id}});
 };
 
