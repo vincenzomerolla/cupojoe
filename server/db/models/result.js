@@ -14,4 +14,8 @@ var schema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' }  
 });
 
+schema.statics.populateUser = function(results) {
+  return this.populate(results, {path: 'user', select: 'username'});
+};
+
 mongoose.model('Result', schema);

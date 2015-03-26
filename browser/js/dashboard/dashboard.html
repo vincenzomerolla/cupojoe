@@ -20,7 +20,7 @@
             <td ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">{{ test.status }}</td>
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
             <td>
-              <button class="btn btn-info btn-xs" ng-click="">Overview</button>
+              <button class="btn btn-info btn-xs" ui-sref="testOverview({testId: test._id})">Overview</button>
               <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs">Edit</button>
               <button class="btn btn-danger btn-xs" ng-click="deleteTest(test._id)">Delete</button>
             </td>
@@ -37,6 +37,7 @@
             <th>Status</th>
             <th>Deadline</th>
             <th>Results</th>
+            <th></th>
           </tr>
           <tr ng-repeat="test in possibleTests">
             <td>{{ test.name }}</td>
@@ -44,7 +45,12 @@
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
             <td>????</td>
             <td>
-              <button class="btn btn-primary btn-xs" ui-sref="testView.fileView.take({testId: test._id})">Take Test</button>
+              <button class="btn btn-xs"
+                ng-class="{'btn-primary': test.status !=='Submitted', 'btn-info': test.status ==='Submitted'}"
+                ui-sref="testView.fileView.take({testId: test._id})">
+                <span ng-show="test.status !=='Submitted'">Take Test</span>
+                <span ng-hide="test.status !=='Submitted'">Review Test</span>
+              </button>
             </td>
           </tr>
         </table>

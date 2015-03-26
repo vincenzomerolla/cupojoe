@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
+var Result = mongoose.model('Result');
 
 var request = require('request');
 var DOCKER_URI = require('../../env/').DOCKER_URI;
@@ -113,5 +114,13 @@ router.route('/:id')
 router.get('/:id/group', function(req, res, next) {
   Test.populate(req.data, 'groups').then(function(test) {
     res.json(test.groups);
+  });
+});
+
+router.get('/:id/result', function(req, res, next) {
+  Test.populate(req.data, 'results').then(function(test) {
+    return Result.populateUser(test.results);
+  }).then(function(results) {
+    res.json(results);
   });
 });
