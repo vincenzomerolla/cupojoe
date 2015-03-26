@@ -42,7 +42,6 @@ router.post('/', function(req, res, next) {
     t = test;
     return User.findByIdAndAddTest(test.owner, test).exec();
   }).then(function(user) {
-    console.log(user)
     return t.populateFiles();
   }).then(function(test) {
     res.json(test);
