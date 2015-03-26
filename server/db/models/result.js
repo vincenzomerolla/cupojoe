@@ -8,6 +8,7 @@ var schema = new Schema({
   output: { type: String },
   publicFiles: [File.schema],
   dockerId: {type: String},
+  testCommands: {type: String},
   testType: {type: String, enum: ['jasmine', 'mocha', 'testem']},
   status: { type: String, enum: ['Started', 'Submitted', 'Overdue'] },
   test: { type: Schema.Types.ObjectId, ref: 'Test' },

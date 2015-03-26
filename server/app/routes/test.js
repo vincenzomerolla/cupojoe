@@ -74,6 +74,7 @@ router.route('/:id')
     }
     req.data.save(function(err, data) {
       if (err) return next(err);
+
       var options = {
         method: 'POST',
         url: DOCKER_URI + '/build',
