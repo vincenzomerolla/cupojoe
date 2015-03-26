@@ -60,7 +60,6 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
         if (users.indexOf(username) === -1) {
           var result = resultHash[username] ? resultHash[username] : {status: 'Not Started'};
           var _id = result.user ? result.user._id : null;
-          console.log(_id)
           users.push({username: username, result: result, _id: _id});
         }
       });

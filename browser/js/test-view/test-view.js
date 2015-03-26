@@ -21,6 +21,9 @@ app.config(function($stateProvider) {
       isEdit: function($rootScope) {
         return $rootScope.toState.url === '/edit';
       },
+      isReview: function($state) {
+        return $state.current.name.split('.')[0] === 'resultView';
+      },
       result: function(isEdit, UserFactory, user, test) {
         if (isEdit) return;
         else return UserFactory.getTestResult(user, test);
@@ -52,7 +55,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, result, groups) {
+app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user, Test, $alert, isEdit, isReview, result, groups) {
   $scope.user = user;
   $scope.isEdit = isEdit;
   $scope.test = test;
@@ -68,6 +71,7 @@ app.controller('TestViewCtrl', function($scope, test, TestFactory, $state, user,
 
   $scope.showFile = function(node) {
     if ($scope.isEdit) $state.go('testView.fileView.edit', {filePath: node.fullPath});
+    else if (isReview) $state.go('reviewView.fileView.take', {filePath: node.fullPath});
     else $state.go('testView.fileView.take', {filePath: node.fullPath});
   };
 

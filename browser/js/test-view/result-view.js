@@ -13,7 +13,6 @@ app.config(function($stateProvider) {
         return Populate.query({model: 'Test', id: test._id, field: 'group'}).$promise;
       },
       user: function(User, $stateParams) {
-        console.log($stateParams)
         return User.get({id: $stateParams.userId}).$promise;
       },
       isInstructor: function(user, test) {
@@ -21,6 +20,9 @@ app.config(function($stateProvider) {
       },
       isEdit: function($rootScope) {
         return $rootScope.toState.url === '/edit';
+      },
+      isReview: function($state) {
+        return $state.current.name.split('.')[0] === 'resultView';
       },
       result: function(isEdit, UserFactory, user, test) {
         if (isEdit) return;
@@ -41,4 +43,4 @@ app.config(function($stateProvider) {
   $stateProvider.state('resultView.fileView.take', {
     url:'/take'
   });
-})
+});
