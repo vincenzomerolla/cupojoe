@@ -21,8 +21,8 @@ app.config(function($stateProvider) {
       isEdit: function($rootScope) {
         return $rootScope.toState.url === '/edit';
       },
-      isReview: function($state) {
-        return $state.current.name.split('.')[0] === 'resultView';
+      isReview: function() {
+        return true;
       },
       result: function(isEdit, UserFactory, user, test) {
         if (isEdit) return;
