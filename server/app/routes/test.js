@@ -83,9 +83,11 @@ router.route('/:id')
         json: data
       };
 
-      if (data.status === 'Available' && process.env.NODE_ENV === 'production') {
+      // if (data.status === 'Available' && process.env.NODE_ENV === 'production') {
+      if (data.status === 'Available') {
         request.post(options, function(error, response, body) {
-          if (error) next(error);
+          console.log(body)
+          if (error) return next(error);
 
           // should send back dockerId as string in body
           data.dockerId = body;

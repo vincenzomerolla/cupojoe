@@ -85,7 +85,8 @@ router.route('/:id')
 
 var runOnDocker = function(result) {
   return new Promise(function(resolve, reject) {
-    if (process.env.NODE_ENV === 'production') {
+    // if (process.env.NODE_ENV === 'production') {
+    if (true) {
       dockerOptions.json = result;
       dockerOptions.url = dockerOptions.url + result._id;
       request.post(dockerOptions, function(error, response, body) {
