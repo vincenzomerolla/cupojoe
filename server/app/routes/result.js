@@ -12,7 +12,7 @@ var DOCKER_URI = require('../../env/').DOCKER_URI;
 
 var dockerOptions = {
   method: 'POST',
-  url: DOCKER_URI + '/run/',
+  url: DOCKER_URI + '/run',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -85,20 +85,13 @@ router.route('/:id')
 
 var runOnDocker = function(result) {
   return new Promise(function(resolve, reject) {
-    // if (process.env.NODE_ENV === 'production') {
-    if (true) {
-      dockerOptions.json = result;
-      dockerOptions.url = dockerOptions.url + result._id;
-      request.post(dockerOptions, function(error, response, body) {
-        if (error) reject(error);
-        // expect std:out to return in body as string
-        result.output = body;
-        resolve(result);
-      });
-    } else {
-      result.output = 'This is a test environment';
+    dockerOptions.json = result;
+    request.post(dockerOptions, function(error, response, body) {
+      if (error) reject(error);
+      // expect std:out to return in body as string
+      result.output = body;
       resolve(result);
-    }
+    });
   });
 };
 

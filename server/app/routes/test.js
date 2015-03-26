@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
+var Result = mongoose.model('Result');
 
 var request = require('request');
 var DOCKER_URI = require('../../env/').DOCKER_URI;
@@ -84,10 +85,8 @@ router.route('/:id')
         json: data
       };
 
-      // if (data.status === 'Available' && process.env.NODE_ENV === 'production') {
       if (data.status === 'Available') {
         request.post(options, function(error, response, body) {
-          console.log(body)
           if (error) return next(error);
 
           // should send back dockerId as string in body
@@ -96,8 +95,7 @@ router.route('/:id')
             if (err) next(err);
             res.json(data);
           });
-
-        });   
+        });
       } else {
         res.json(data);
       }
@@ -116,5 +114,13 @@ router.route('/:id')
 router.get('/:id/group', function(req, res, next) {
   Test.populate(req.data, 'groups').then(function(test) {
     res.json(test.groups);
+  });
+});
+
+router.get('/:id/result', function(req, res, next) {
+  Test.populate(req.data, 'results').then(function(test) {
+    return Result.populateUser(test.results);
+  }).then(function(results) {
+    res.json(results);
   });
 });

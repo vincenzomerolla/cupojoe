@@ -1,4 +1,6 @@
-<h2 class="test-title">{{ test.name }}</h2>
+<h2 class="test-title">{{ test.name }}<br>
+  <small ng-hide="isEdit">{{ user.username }}</small>
+</h2>
 <form ng-show="isEdit">
   <div class="form-group">
     <tags-input

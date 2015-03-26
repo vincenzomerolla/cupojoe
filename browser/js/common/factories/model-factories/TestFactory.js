@@ -47,5 +47,27 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
     else FileFactory.checkOnPath(tableObj, node.path, node.isReadOnly);
   };
 
+  factory.populateUsersWithResults = function(groups, results) {
+    var users = [];
+    var resultHash = {};
+
+    results.forEach(function(result) {
+      resultHash[result.user.username] = result;
+    });
+
+    groups.forEach(function(group) {
+      group.members.forEach(function(username) {
+        if (users.indexOf(username) === -1) {
+          var result = resultHash[username] ? resultHash[username] : {status: 'Not Started'};
+          var _id = result.user ? result.user._id : null;
+          users.push({username: username, result: result, _id: _id});
+        }
+      });
+    });
+
+    return users;
+  };
+
+
   return factory;
 });
