@@ -1,9 +1,11 @@
-app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result) {
+app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, ResultFactory) {
   return {
     restrict: 'E',
     templateUrl: 'js/test-view/directives/test-info/test-info.html',
     link: function($scope, elem, attr) {
       var pageLoad = false;
+      $scope.isSubmitted = ($scope.result) ? $scope.result.status === 'Submitted' : true;
+
 
       $scope.$watch('test.deadline', function() {
         if (pageLoad) {
@@ -32,8 +34,30 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result) {
       };
 
       $scope.runTest = function() {
+        $alert({
+          title: 'Test sent to server...',
+          type: 'info'
+        });
         Result.run({id: $scope.result._id}).$promise.then(function(result) {
           $scope.result.output = result.output;
+          $alert({
+            title: 'Test ouput returned from server, run complete',
+            type: 'info'
+          });
+        });
+      };
+
+      $scope.submitTest = function() {
+        $alert({
+          title: 'Test sent to server...',
+          type: 'info'
+        });
+        ResultFactory.submitTest($scope.result._id).then(function(result) {
+          $alert({
+            title: 'Test successfully submitted!',
+            type: 'success'
+          });
+          $state.go('dashboard');
         });
       };
     }

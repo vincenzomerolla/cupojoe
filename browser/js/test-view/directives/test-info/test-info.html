@@ -47,7 +47,13 @@
     ng-click="changeTestStatus(test._id, 'Available')"
     ng-show="test.status !== 'Available' && isEdit">Publish Test</button>
 
-  <button class="btn btn-success btn-block" ng-hide="isEdit">Submit Test</button>
-  <button class="btn btn-info btn-block" ng-click="runTest()" ng-hide="isEdit">Run Test</button>
+  <button class="btn btn-success btn-block"
+    ng-click="submitTest()"
+    ng-class="{disabled: isSubmitted}"
+    ng-hide="isEdit">Submit Test</button>
+  <button class="btn btn-info btn-block"
+    ng-class="{disabled: isSubmitted}"
+    ng-click="runTest()"
+    ng-hide="isEdit">Run Test</button>
   <button class="btn btn-default btn-block" ui-sref="dashboard">Dashboard</button>
 </div>
