@@ -17,6 +17,7 @@ app.factory('UserFactory', function(Populate, Result) {
           test: test._id,
           user: user._id,
           dockerId: test.dockerId,
+          testCommands: test.testCommands,
           testType: test.testType,
           publicFiles: test.publicFiles
         });
