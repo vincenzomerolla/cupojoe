@@ -10,7 +10,7 @@
       <tr ng-repeat="user in users">
         <td>{{user.username}}</td>
         <td>{{user.result.status}}</td>
-        <td>{{user.result.score}}50%</td>
+        <td>{{user.result.score * 100 | number: 0}} %</td>
         <td>
           <button class="btn btn-info btn-xs"
             ng-show="user.result.status === 'Submitted'"

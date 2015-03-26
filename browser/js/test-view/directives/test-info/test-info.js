@@ -22,6 +22,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
       $scope.changeTestStatus = function(testId, status) {
         var updateParams = {status: status};
         if (!$scope.test.testType) updateParams.testType = 'mocha';
+        else updateParams.testType = $scope.test.testType;
 
         Test.update({id: testId}, updateParams).$promise.then(function(test) {
           $scope.test = test;
@@ -41,7 +42,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
         Result.run({id: $scope.result._id}).$promise.then(function(result) {
           $scope.result.output = result.output;
           $alert({
-            title: 'Test ouput returned from server, run complete',
+            title: 'Test ouput returned from server, score is ' + Math.round(result.score * 100) + '%',
             type: 'info'
           });
         });
