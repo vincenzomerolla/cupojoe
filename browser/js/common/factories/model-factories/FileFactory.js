@@ -1,4 +1,4 @@
-app.factory('FileFactory', function(indexOf) {
+app.factory('FileFactory', function(objIndexOf) {
   var factory = {};
 
   var TreeNode = function(name, body, path, isReadOnly) {
@@ -25,7 +25,7 @@ app.factory('FileFactory', function(indexOf) {
   };
 
   var indexOfTreeArray = function(arr, name) {
-    return indexOf(arr, name, 'name');
+    return objIndexOf(arr, name, 'name');
 
     // return arr.reduce(function(prev, cur, ind) {
     //   return (cur.name === name) ? ind : prev;

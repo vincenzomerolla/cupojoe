@@ -42,12 +42,6 @@ app.config(function($stateProvider) {
 
   $stateProvider.state('testView.fileView.edit', {
     url:'/edit',
-    resolve: {
-      blah: function($state, isInstructor) {
-        if (!isInstructor) return $state.go('home');
-        return;
-      }
-    }
   });
 
   $stateProvider.state('testView.fileView.take', {

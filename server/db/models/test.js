@@ -26,7 +26,6 @@ var schema = new Schema({
 });
 
 var splitRepoURL = function(repo) {
-  var hi = repo.split('/');
   return repo.split('/');
 };
 
@@ -54,7 +53,7 @@ schema.methods.populateFiles = function() {
         repo: repo,
         sha: sha
       }, function(err, res) {
-        if (err) reject(err);
+        if (err) return reject(err);
         res.tree.forEach(function(obj) {
           if (obj.type === 'blob') {
             promises.push(rec_populateBlobs(obj.sha, path, obj.path));
