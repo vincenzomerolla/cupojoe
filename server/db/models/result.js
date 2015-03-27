@@ -31,19 +31,22 @@ var getStrTimes = function(str, searchStr, startInd) {
   else return 1 + getStrTimes(str, searchStr, ind + 1);
 };
 
-schema.pre('save', function(next) {
-  if (!this.output) return next();
+var getScore = function(output, testType) {
   var pass, fail;
-  if (this.testType === 'mocha') {
-    pass = captureScore(/\[32m\s+(\d+)\s+passing/, this.output, 1) * 1;
-    fail = captureScore(/\[31m\s+(\d+)\s+failing/, this.output, 1) * 1;
-  } else if (this.testType === 'jasmine') {
-    var str = captureScore(/Started[\n\r]*.*/, this.output, 0);
+  if (testType === 'mocha') {
+    pass = captureScore(/\[32m\s+(\d+)\s+passing/, output, 1) * 1;
+    fail = captureScore(/\[31m\s+(\d+)\s+failing/, output, 1) * 1;
+  } else if (testType === 'jasmine') {
+    var str = captureScore(/Started[\n\r]*.*/, output, 0);
     pass = getStrTimes(str, '.');
     fail = getStrTimes(str, 'F');
   }
-  this.score = pass / (pass + fail);
-  console.log(this.score);
+  return pass / (pass + fail) || 0;
+};
+
+schema.pre('save', function(next) {
+  if (!this.output) return next();
+  this.score = getScore(this.output, this.testType);
   next();
 });
 

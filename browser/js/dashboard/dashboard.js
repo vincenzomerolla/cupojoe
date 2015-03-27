@@ -24,13 +24,13 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, indexOf) {
+app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, objIndexOf) {
   $scope.myTests = myTests;
   $scope.possibleTests = possibleTests.filter(function(test) {
     return test.status !== 'Pending';
   });
   $scope.possibleTests.forEach(function(test) {
-    var ind = indexOf(results, test._id, 'test');
+    var ind = objIndexOf(results, test._id, 'test');
     test.status = (ind === -1) ? 'Not Started' : results[ind].status;
   });
 
