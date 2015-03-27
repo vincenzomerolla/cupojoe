@@ -6,7 +6,7 @@
   </tr>
   <tr ng-repeat="group in groups" ng-init="editFlag = {flag: true}">
     <td ng-show="editFlag.flag">{{ group.name }}</td>
-    <td ng-show="editFlag.flag">{{ group.members }}</td>
+    <td ng-show="editFlag.flag">{{ group.members | groupDisplay }}</td>
 
     <td ng-hide="editFlag.flag">
       <div class="form-group">
@@ -32,8 +32,8 @@
     </td>
 
     <td>
-      <button ng-show="editFlag.flag" class="btn btn-warning btn-sm" ng-click="toggleEditGroup(editFlag)">Edit</button>
-      <button ng-hide="editFlag.flag" class="btn btn-primary btn-sm" ng-click="saveGroup(group, editFlag)">Save Changes</button>
+      <button ng-if="editFlag.flag" class="btn btn-warning btn-sm" ng-click="toggleEditGroup(editFlag)">Edit</button>
+      <button ng-if="!editFlag.flag" class="btn btn-primary btn-sm" ng-click="saveGroup(group, editFlag)">Save Changes</button>
       <button class="btn btn-danger btn-sm" ng-click="deleteGroup(group._id)">Delete</button>
     </td>
   </tr>
@@ -56,7 +56,6 @@
           ng-model="newGroup.members"
           name="newGroupMembers"
           class="ti-input-sm"
-          enableEditingLastTag="true"
           placeholder="Add Github Members"
           addFromAutocompleteOnly="true">
           <auto-complete source="getGithubMembers($query)"></auto-complete>
