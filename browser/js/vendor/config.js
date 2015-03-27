@@ -12,7 +12,7 @@ app.config(function ($alertProvider, $datepickerProvider, $timepickerProvider, u
   });
 
   angular.extend($alertProvider.defaults, {
-    placement: 'top-right',
+    placement: 'bottom-right',
     duration: 2
   });
 
