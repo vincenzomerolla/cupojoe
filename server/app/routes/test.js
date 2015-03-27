@@ -7,10 +7,8 @@ var Test = mongoose.model('Test');
 var Group = mongoose.model('Group');
 var Result = mongoose.model('Result');
 
-var request = require('request');
-var DOCKER_URI = require('../../env/').DOCKER_URI;
-
 var github = require('./github/githubObj.js');
+var docker = require('./docker.js');
 
 module.exports = router;
 
@@ -76,17 +74,8 @@ router.route('/:id')
     req.data.save(function(err, data) {
       if (err) return next(err);
 
-      var options = {
-        method: 'POST',
-        url: DOCKER_URI + '/build',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        json: data
-      };
-
       if (data.status === 'Available') {
-        request.post(options, function(error, response, body) {
+        docker.build(data, function(error, response, body) {
           if (error) return next(error);
 
           // should send back dockerId as string in body

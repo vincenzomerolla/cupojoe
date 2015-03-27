@@ -6,18 +6,7 @@ var Result = mongoose.model('Result');
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
 
-var Promise = require('bluebird');
-var request = require('request');
-var DOCKER_URI = require('../../env/').DOCKER_URI;
-
-var dockerOptions = {
-  method: 'POST',
-  url: DOCKER_URI + '/run',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-};
-
+var docker = require('./docker.js');
 
 module.exports = router;
 
@@ -83,21 +72,9 @@ router.route('/:id')
     });
   });
 
-var runOnDocker = function(result) {
-  return new Promise(function(resolve, reject) {
-    dockerOptions.json = result;
-    request.post(dockerOptions, function(error, response, body) {
-      if (error) reject(error);
-      // expect std:out to return in body as string
-      result.output = body;
-      resolve(result);
-    });
-  });
-};
-
 router.route('/:id/run')
   .get(function(req, res, next) {
-    runOnDocker(req.data).then(function(result) {
+    docker.run(req.data).then(function(result) {
       result.save(function(err, savedResult) {
         if (err) return next(err);
         res.json(savedResult);

@@ -25,6 +25,7 @@ var captureScore = function(regexp, output, ind) {
 };
 
 var getStrTimes = function(str, searchStr, startInd) {
+  if (typeof str !== 'string') return 0;
   if (!startInd) startInd = 0;
   var ind = str.indexOf(searchStr, startInd);
   if (ind === -1) return 0;
