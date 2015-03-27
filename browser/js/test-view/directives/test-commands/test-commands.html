@@ -1,4 +1,4 @@
-<div class="well">
+<div class="">
   <div class="container-fluid" ng-show="isEdit">
     <div class="row section">
       <p class="small-margin-bottom">
@@ -37,12 +37,7 @@
     </div>
   </div>
 
-  <div ng-hide="isEdit">
-    <p class="small-margin-bottom">
-      Test Console Output
-    </p>
-    <pre>
-      <ansi text="result.output"></ansi>
-    </pre>
+  <div ng-hide="isEdit">    
+    <ansi text="result.output"></ansi>
   </div>
 </div>

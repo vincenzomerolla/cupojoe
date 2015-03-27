@@ -1,4 +1,7 @@
-<h2 class="test-title">{{ test.name }}<br>
+<h2 class="test-title">
+  {{ test.name }} 
+  <a class="fa fa-info-circle" href="" title="{{test.name}} Description" data-animation="am-fade-and-slide-top" data-template="js/test-view/directives/test-description/test-description-modal.html" bs-modal></a>
+  <br>
   <small ng-hide="isEdit">{{ user.username }}</small>
 </h2>
 <form ng-show="isEdit">

@@ -11,7 +11,8 @@ var app = angular.module('cupojoe', [
   'ngTagsInput',
   'ui.select', 
   'ngSanitize',
-  'ansiToHtml'
+  'ansiToHtml',
+  'btford.markdown'
 ]);
 
 app.config(function ($urlRouterProvider, $locationProvider) {
