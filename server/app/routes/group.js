@@ -48,7 +48,6 @@ router.route('/:id')
       req.data[key] = req.body[key];
     }
     req.data.save(function(err, data) {
-      console.log(err);
       if (err) return next(err);
       res.json(data);
     });
