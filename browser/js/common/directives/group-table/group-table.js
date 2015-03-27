@@ -1,4 +1,4 @@
-app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, GroupFactory) {
+app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, GroupFactory, objIndexOf, $timeout) {
   return {
     restrict: 'E',
     templateUrl: 'js/common/directives/group-table/group-table.html',
@@ -32,6 +32,7 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
 
       $scope.submitGroup = function(group) {
         GroupFactory.submitGroup(group).then(function() {
+          $scope.newGroup = {};
           updateGroups();
           $scope.showAddButton = true;
           $alert({
@@ -53,7 +54,8 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
 
       $scope.deleteGroup = function(groupId) {
         GroupFactory.deleteGroup(groupId).then(function() {
-          updateGroups();
+          var ind = objIndexOf($scope.groups, groupId, '_id');
+          $scope.groups.splice(ind, 1);
           $alert({
             title: 'Group deleted',
             type: 'danger'
