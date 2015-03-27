@@ -1,25 +1,21 @@
-<div class="well">
+<div class="">
   <div ng-show="isEdit">
     <form name="descriptionForm">
       <div class="form-group">
-        <label>Test Description</label>
         <textarea name="description"
-          class="form-control small-font"
+          class="form-control small-font"     
           ng-model="test.instructions">
         </textarea>
+        <div btf-markdown="test.instructions"></div>
       </div>
     </form>
-    <button class="btn btn-primary btn-sm"
+    <button class="btn btn-primary btn-sm pull-right"
       ng-class="{disabled: !descIsFileChanged}"
       ng-click="saveInstructionChanges(test.instructions)">Save Description Changes
     </button>
+    <div class="clearfix"></div>
   </div>
   <div ng-hide="isEdit">
-    <p class="small-margin-bottom">
-      Test Description:
-    </p>
-    <p class="small-font">
-      {{ test.instructions }}
-    </p>
+    <div btf-markdown="test.instructions"></div>
   </div>
 </div>

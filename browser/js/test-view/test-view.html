@@ -31,12 +31,7 @@
         </treecontrol>
       </div>
     </div>
-    <div class="col-xs-6">
-      <div class="row">
-        <div class="col-xs-12">
-          <test-description></test-description>
-        </div>
-      </div>
+    <div ng-class="{'col-xs-6': isEdit, 'col-xs-9': !isEdit}">
       <div class="row">
         <div class="col-xs-12">
           <div class="well">
@@ -45,7 +40,7 @@
         </div>
       </div>
     </div>
-    <div class="col-xs-3">
+    <div ng-class="{'col-xs-3': isEdit, 'col-xs-9 col-xs-offset-3': !isEdit}">
       <test-commands></test-commands>
     </div>
   </div>
