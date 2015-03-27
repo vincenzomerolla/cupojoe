@@ -1,4 +1,4 @@
-app.factory('TestFactory', function(FileFactory, Test, User, Session) {
+app.factory('TestFactory', function(FileFactory, Test, User, Session, objIndexOf) {
   var factory = {};
 
   var objToJSON = function(tableObj, isReadOnlyName, isEditableName) {
@@ -57,8 +57,8 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session) {
 
     groups.forEach(function(group) {
       group.members.forEach(function(username) {
-        if (users.indexOf(username) === -1) {
-          var result = resultHash[username] ? resultHash[username] : {status: 'Not Started'};
+        if (objIndexOf(users, username, 'username') === -1) {
+          var result = resultHash[username] ? resultHash[username] : {status: 'Not Started', score: 0};
           var _id = result.user ? result.user._id : null;
           users.push({username: username, result: result, _id: _id});
         }
