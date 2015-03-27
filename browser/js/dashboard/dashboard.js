@@ -12,7 +12,11 @@ app.config(function($stateProvider) {
         return UserTest.query({userId: user._id}).$promise;
       },
       possibleTests: function(Test, user) {
-        return Test.query({username: user.username}).$promise;
+        return Test.query({username: user.username}).$promise.then(function(tests) {
+          return tests.filter(function(test) {
+            return test.status !== 'Pending';
+          });
+        });
       },
       results: function(Populate, user) {
         return Populate.query({model: 'user', id: user._id, field: 'takenTests'}).$promise;
@@ -26,9 +30,8 @@ app.config(function($stateProvider) {
 
 app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, objIndexOf) {
   $scope.myTests = myTests;
-  $scope.possibleTests = possibleTests.filter(function(test) {
-    return test.status !== 'Pending';
-  });
+  $scope.possibleTests = possibleTests;
+
   $scope.possibleTests.forEach(function(test) {
     var ind = objIndexOf(results, test._id, 'test');
     test.status = (ind === -1) ? 'Not Started' : results[ind].status;
@@ -36,10 +39,13 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
 
   $scope.deleteTest = function(testId) {
     TestFactory.deleteTest(testId).then(function() {
-      $scope.myTests = UserTest.query({userId: user._id});
-      $scope.possibleTests = Test.query({username: user.username}).filter(function(test) {
-        return test.status !== 'Pending';
-      });
+      var myTestInd = objIndexOf($scope.myTests, testId, '_id');
+      console.log(myTestInd);
+      $scope.myTests.splice(myTestInd, 1);
+
+      var posTestInd = objIndexOf($scope.possibleTests, testId, '_id');
+      console.log(myTestInd);
+      if (posTestInd !== -1) $scope.possibleTests.splice(posTestInd, 1);
       $alert({
         title: 'Test deleted',
         type: 'danger'
