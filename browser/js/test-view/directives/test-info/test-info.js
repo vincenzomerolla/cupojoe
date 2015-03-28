@@ -63,6 +63,12 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
           $state.go('dashboard');
         });
       };
+
+      $scope.repullTest = function() {
+        TestFactory.repullTest($scope.test).then(function(test) {
+          $state.go('testView.fileView.edit', {testId: test._id});
+        });
+      };
     }
   };
 });

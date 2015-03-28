@@ -1,4 +1,4 @@
-app.factory('TestFactory', function(FileFactory, Test, User, Session, objIndexOf) {
+app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, objIndexOf) {
   var factory = {};
 
   var objToJSON = function(tableObj, isReadOnlyName, isEditableName) {
@@ -68,6 +68,25 @@ app.factory('TestFactory', function(FileFactory, Test, User, Session, objIndexOf
     return users;
   };
 
+  factory.repullTest = function(test) {
+    test.results.forEach(function(resultId) {
+      Result.delete({id: resultId});
+    });
+
+    return this.deleteTest(test._id).then(function() {
+      delete test._id;
+      delete test.__v;
+      delete test.privateFiles;
+      delete test.publicFiles;
+      delete test.results;
+      delete test.updatedAt;
+      test.status = 'Pending';
+      test.groups = test.groups.map(function(group) {
+        return group._id;
+      });
+      return Test.save(test).$promise;
+    });
+  };
 
   return factory;
 });

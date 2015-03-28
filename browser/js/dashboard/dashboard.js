@@ -40,11 +40,9 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
   $scope.deleteTest = function(testId) {
     TestFactory.deleteTest(testId).then(function() {
       var myTestInd = objIndexOf($scope.myTests, testId, '_id');
-      console.log(myTestInd);
       $scope.myTests.splice(myTestInd, 1);
 
       var posTestInd = objIndexOf($scope.possibleTests, testId, '_id');
-      console.log(myTestInd);
       if (posTestInd !== -1) $scope.possibleTests.splice(posTestInd, 1);
       $alert({
         title: 'Test deleted',
