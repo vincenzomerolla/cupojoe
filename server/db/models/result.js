@@ -38,9 +38,12 @@ var getScore = function(output, testType) {
     pass = captureScore(/\[32m\s+(\d+)\s+passing/, output, 1) * 1;
     fail = captureScore(/\[31m\s+(\d+)\s+failing/, output, 1) * 1;
   } else if (testType === 'jasmine') {
-    var str = captureScore(/Started[\n\r]*.*/, output, 0);
-    pass = getStrTimes(str, '.');
-    fail = getStrTimes(str, 'F');
+    var str;
+    if (output.match(/Test failed/)) {
+      str = captureScore(/Started[\s\S]*Failures/, output, 0);
+    } else str = captureScore(/Started[\s\S]*Finished/, output, 0);
+    pass = getStrTimes(str, '[32m.');
+    fail = getStrTimes(str, '[31mF');
   }
   return pass / (pass + fail) || 0;
 };
