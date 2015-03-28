@@ -8,5 +8,13 @@ app.factory('ResultFactory', function(Result) {
     });
   };
 
+  factory.updateTestParams = function(params, testId) {
+    // params is an object with the keys being the things to change
+    return Result.updateQuery({
+      query: {test: testId},
+      updates: params
+    }).$promise;
+  };
+
   return factory;
 });
