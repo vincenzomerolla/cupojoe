@@ -15,7 +15,7 @@
       </button>
     </div>
     <div class="row section" ng-show="isEdit">
-      <select class="form-control small-font" ng-disabled="!isPending" ng-options="option for option in testOptions" ng-model="test.testType">
+      <select class="form-control small-font" ng-options="option for option in testOptions" ng-model="test.testType">
         <option value="">
           Choose Test Environment (default Mocha)
         </option>
@@ -27,9 +27,9 @@
         e.g. <code>npm test;</code></span>
         <span ng-hide="isPending">Test commands:</span>
       </p>
-      <div ui-ace ng-model="test.testCommands" ng-readonly="!isPending"></div>
+      <div ui-ace ng-model="test.testCommands"></div>
     </div>
-    <div class="row" ng-show="isPending">
+    <div class="row">
       <button class="btn btn-primary btn-sm"
         ng-class="{disabled: !testIsFileChanged}"
         ng-click="saveTestCommandChanges(test.testCommands)">Save Test Command Changes
