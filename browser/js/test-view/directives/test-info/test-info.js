@@ -39,6 +39,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
           title: 'Test sent to server...',
           type: 'info'
         });
+        $scope.result.output = 'Test starting';
         Result.run({id: $scope.result._id}).$promise.then(function(result) {
           $scope.result.output = result.output;
           $alert({
@@ -53,6 +54,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
           title: 'Test sent to server...',
           type: 'info'
         });
+        $scope.result.output = 'Test starting';
         ResultFactory.submitTest($scope.result._id).then(function(result) {
           $alert({
             title: 'Test successfully submitted!',
