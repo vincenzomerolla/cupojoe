@@ -94,6 +94,8 @@ router.route('/:id')
   .delete(function(req, res, next) {
     Test.findByIdAndRemove(req.data._id).exec()
     .then(function() {
+      // if (req.data.dockerId) return docker.delete(req.data.dockerId);
+    }).then(function() {
       res.status(200).end();
     }, function(err) {
       next(err);

@@ -46,6 +46,10 @@
   <button class="btn btn-success btn-block"
     ng-click="changeTestStatus(test._id, 'Available')"
     ng-show="test.status !== 'Available' && isEdit">Publish Test</button>
+  <button class="btn btn-danger btn-block"
+    ng-click="repullTest()"
+    ng-show="test.status !== 'Pending' && isEdit">
+    Pull from <i class="fa fa-lg fa-github"></i></button>
 
   <button class="btn btn-success btn-block"
     ng-click="submitTest()"

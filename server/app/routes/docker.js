@@ -32,5 +32,14 @@ module.exports = {
         resolve(data);
       });
     });
+  },
+  delete: function(dockerId, cb) {
+    return new Promise(function(resolve, reject) {
+      options = setOptions('DELETE', '/build/' + dockerId);
+      request.delete(options, function(error) {
+        if (error) return reject(error);
+        resolve();
+      });
+    });
   }
 };
