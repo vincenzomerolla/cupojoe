@@ -13,10 +13,18 @@ module.exports = router;
 
 
 router.get('/', function(req, res, next) {
-  Result.find().exec().then(function(results) {
+  Result.find(req.body).exec().then(function(results) {
     res.json(results);
   }, function(err) {
     next(err);
+  });
+});
+
+router.put('/', function(req, res, next) {
+  Result.update(req.body.query, req.body.updates, {multi: true}, function(err, numAffected, raw) {
+    if (err) return next(err);
+    console.log(numAffected, 'results changed');
+    res.json(raw);
   });
 });
 
@@ -33,9 +41,6 @@ router.post('/', function(req, res, next) {
     next(err);
   });
 });
-
-
-
 
 
 router.use('/:id', function(req, res, next) {
