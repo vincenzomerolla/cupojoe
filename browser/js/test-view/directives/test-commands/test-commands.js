@@ -9,7 +9,7 @@ app.directive('testCommands', function(Test, ResultFactory, $alert) {
       $scope.shellIsFileChanged = false;
       $scope.testIsFileChanged = false;
 
-      $scope.testOptions = ['jasmine', 'mocha', 'testem'];
+      $scope.testOptions = ['jasmine', 'mocha'];
 
       $scope.$watch('test.shellCommands', function() {
         if (shellPageLoad) $scope.shellIsFileChanged = true;

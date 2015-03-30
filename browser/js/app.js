@@ -10,7 +10,8 @@ var app = angular.module('cupojoe', [
   'ui.ace',
   'ngTagsInput',
   'ui.select',
-  'cgBusy', 
+  'cgBusy',
+  'ui.bootstrap.progressbar',
   'ngSanitize',
   'ansiToHtml',
   'btford.markdown'

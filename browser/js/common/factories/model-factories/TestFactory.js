@@ -66,7 +66,7 @@ app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, ob
 
     groups.forEach(function(group) {
       group.members.forEach(function(username) {
-        var ind = objIndexOf(users, username, 'username')
+        var ind = objIndexOf(users, username, 'username');
         if (ind === -1) {
           var result = resultHash[username] ? resultHash[username] : {status: 'Not Started', score: 0};
           var _id = result.user ? result.user._id : null;

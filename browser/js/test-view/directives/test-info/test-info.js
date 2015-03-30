@@ -5,6 +5,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
     link: function($scope, elem, attr) {
       var pageLoad = false;
       $scope.isSubmitted = ($scope.result) ? $scope.result.status === 'Submitted' : true;
+      $scope.max = 1;
 
 
       $scope.$watch('test.deadline', function() {

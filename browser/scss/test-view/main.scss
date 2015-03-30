@@ -16,16 +16,16 @@ treecontrol > ul {
 }
 
 ansi {
-  box-shadow: 0px 0px 20px rgba(0,0,0,0.75);
+  // box-shadow: 0px 0px 20px rgba(0,0,0,0.75);
   font-family: "Menlo", "Monaco", "Consolas", "Courier New", monospace;
-  font-size:13px;
+  font-size:10px;
   width: 100%;
-  min-height: 150px;
+  min-height: 100px;
   background: #fdf6e3;
   opacity: 0.8;
   padding: 10px;
   line-height: 1.5em;
-  height: 300px;
+  height: 150px;
   overflow-y: scroll;
   color: $gray-dark;
   border-radius: 3px;
@@ -36,11 +36,15 @@ ansi {
 }
 
 .test-description {
-  padding-top: 50%;
-  padding-bottom: 50%;
+  padding-top: 22px;
 }
 
 
 .file-tree {
-  height: 600px;
+  height: 50vh;
+}
+
+.progressbar {
+  margin-top: 16px;
+  margin-bottom: 0;
 }
