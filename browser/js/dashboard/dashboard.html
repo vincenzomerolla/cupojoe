@@ -18,7 +18,7 @@
             <tr ng-repeat="test in myTests">
             <td>{{ test.name }}</td>
             <td ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">{{ test.status }}</td>
-            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
+            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td>
               <button class="btn btn-info btn-xs" ui-sref="testOverview({testId: test._id})">Overview</button>
               <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs">Edit</button>
@@ -36,14 +36,16 @@
             <th>Test Name</th>
             <th>Status</th>
             <th>Deadline</th>
-            <th>Results</th>
+            <th>Last Submission</th>
+            <th>Result</th>
             <th></th>
           </tr>
           <tr ng-repeat="test in possibleTests">
             <td>{{ test.name }}</td>
-            <td ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue'}">{{ test.status }}</td>
-            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' hmma" }}</td>
-            <td>????</td>
+            <td ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue', 'text-danger': test.status === 'Outdated'}">{{ test.status }}</td>
+            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td>??????</td>
+            <td>{{ test.score * 100 | number: 0 }} %</td>
             <td>
               <button class="btn btn-xs"
                 ng-class="{'btn-primary': test.status !=='Submitted', 'btn-info': test.status ==='Submitted'}"
@@ -52,6 +54,26 @@
                 <span ng-hide="test.status !=='Submitted'">Review Test</span>
               </button>
             </td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          All Test Results
+        </div>
+        <table class="table table-hover">
+          <tr>
+            <th>Test Name</th>
+            <th>Status</th>
+            <th>Last Submission</th>
+            <th>Result</th>
+          </tr>
+          <tr ng-repeat="result in results">
+            <td>{{ result.testName }}</td>
+            <td ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue', 'text-danger': result.status === 'Outdated'}">{{ result.status }}</td>
+            <td>Blahhh</td>
+            <td>{{ result.score * 100 | number: 0 }} %</td>
           </tr>
         </table>
       </div>
