@@ -44,6 +44,7 @@ router.route('/:id')
   })
 
   .put(function(req, res, next) {
+    console.log(req.data, req.body)
     for (var key in req.body) {
       req.data[key] = req.body[key];
     }

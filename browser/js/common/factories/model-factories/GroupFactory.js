@@ -18,7 +18,7 @@ app.factory('GroupFactory', function(Group, Session, User) {
     group.members = group.members.map(function(member) {
       return member.text;
     });
-    return Group.update({id: group._id}, {members: group.members}).$promise;
+    return Group.update({id: group._id}, { name: group.name, members: group.members}).$promise;
   };
 
   factory.deleteGroup = function(groupId) {
