@@ -6,7 +6,7 @@
   </tr>
   <tr ng-repeat="group in groups" ng-init="editFlag = {flag: true}">
     <td ng-show="editFlag.flag">{{ group.name }}</td>
-    <td ng-show="editFlag.flag">{{ group.members | groupDisplay }}</td>
+    <td ng-show="editFlag.flag">{{ group.members | groupDisplay: 'text' }}</td>
 
     <td ng-hide="editFlag.flag">
       <div class="form-group">

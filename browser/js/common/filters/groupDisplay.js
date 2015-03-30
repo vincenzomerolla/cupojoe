@@ -1,7 +1,7 @@
 app.filter('groupDisplay', function() {
-  return function(arr) {
+  return function(arr, key) {
     return arr.map(function(member) {
-      return member.text;
+      return member[key];
     }).join(', ');
   };
 });

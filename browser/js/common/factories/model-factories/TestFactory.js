@@ -57,11 +57,13 @@ app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, ob
 
     groups.forEach(function(group) {
       group.members.forEach(function(username) {
-        if (objIndexOf(users, username, 'username') === -1) {
+        var ind = objIndexOf(users, username, 'username')
+        if (ind === -1) {
           var result = resultHash[username] ? resultHash[username] : {status: 'Not Started', score: 0};
           var _id = result.user ? result.user._id : null;
-          users.push({username: username, result: result, _id: _id});
-        }
+          var groups = [{name: group.name, _id: group._id}];
+          users.push({username: username, result: result, _id: _id, groups: groups});
+        } else users[ind].groups.push({name: group.name, _id: group._id});
       });
     });
 
