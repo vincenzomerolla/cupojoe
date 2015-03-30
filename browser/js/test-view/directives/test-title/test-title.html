@@ -1,18 +1,18 @@
-<div class="col-xs-10">
+<div class="col-xs-11">
   <h2 class="test-title">
     {{ test.name }} 
     <br>
     <small ng-hide="isEdit">{{ user.username }}</small>
   </h2>
 </div>
-<div class="col-xs-2 text-left">
-  <a class="fa fa-2x fa-info-circle test-description" href="" title="{{test.name}} Description" data-animation="am-fade-and-slide-top" data-template="js/test-view/directives/test-description/test-description-modal.html" bs-modal></a>
+<div class="col-xs-1 text-left">
+  <a class="fa fa-2x fa-info-circle test-description pull-right" href="" title="{{test.name}} Description" data-animation="am-fade-and-slide-top" data-template="js/test-view/directives/test-description/test-description-modal.html" bs-modal></a>
 </div>
 
 <div class="clearfix"></div>
 
 <form ng-show="isEdit">
-  <div class="form-group">
+  <div class="form-group padding-left">
     <group-button user="user"></group-button>
     <tags-input
       on-tag-added="saveGroups(test.groups)"

@@ -1,15 +1,15 @@
 <div class="col-xs-9">
   <div form class="form-horizontal">
     <div class="form-group no-margin-bottom">
-      <div class="col-xs-4 control-label">
+      <div class="col-xs-3 control-label">
         Test Status:
       </div>
-      <div class="col-xs-8 fake-form"
+      <div class="col-xs-9 fake-form"
         ng-show="isEdit"
         ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">
        {{ test.status }} 
       </div>
-      <div class="col-xs-8 fake-form"
+      <div class="col-xs-9 fake-form"
         ng-hide="isEdit"
         ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue'}">
        {{ result.status }} 
@@ -17,11 +17,11 @@
     </div>
   </div>
   <form name="datePickerForm" class="form-horizontal" role="form">
-    <div class="form-group" ng-class="{'has-error': datePickerForm.$invalid}">
-      <label class="control-label col-xs-4">
+    <div class="form-group no-margin-bottom" ng-class="{'has-error': datePickerForm.$invalid}">
+      <label class="control-label col-xs-3">
         <i class="fa fa-calendar"></i> Test Deadline:
       </label>
-      <div class='col-xs-4'>
+      <div class='col-xs-5'>
           <input type="text"
             class="form-control"
             ng-model="test.deadline"
@@ -38,6 +38,16 @@
             name="deadlineTime"
             ng-disabled="!isEdit"
             bs-timepicker>
+      </div>
+    </div>
+  </form>
+  <form class="form-horizontal" ng-hide="isEdit">
+    <div class="form-group">
+      <div class="col-xs-3 control-label">
+        Test Score:
+      </div>
+      <div class="col-xs-9">
+        <progressbar max="max" value="result.score" class="progressbar">{{Math.floor(result.score * 100)}}%</progressbar>
       </div>
     </div>
   </form>

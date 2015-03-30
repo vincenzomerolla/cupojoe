@@ -1,43 +1,43 @@
 <div class="">
-  <div class="container-fluid" ng-show="isEdit">
-    <div class="row section">
-      <p class="small-margin-bottom">
-        <span ng-show="isPending">Provide commands here to set up the server image<br>
-        e.g. <code>npm install; bower install;</code></span>
-        <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Shell commands:</span>
-      </p>
-      <div ui-ace="{ showGutter: false }" ng-model="test.shellCommands" ng-readonly="!isPending"></div>
-    </div>
-    <div class="row section" ng-show="isPending">
-      <button class="btn btn-primary btn-sm"
-        ng-class="{disabled: !shellIsFileChanged}"
-        ng-click="saveShellCommandChanges(test.shellCommands)">Save Shell Command Changes
-      </button>
-    </div>
-    <div class="row section" ng-show="isEdit">
-      <select class="form-control small-font" ng-options="option for option in testOptions" ng-model="test.testType">
-        <option value="">
-          Choose Test Environment (default Mocha)
-        </option>
-      </select>
-    </div>
-    <div class="row section">
-      <p class="small-margin-bottom">
-        <span ng-show="isPending">Provide commands here for the server to run tests<br>
-        e.g. <code>npm test;</code></span>
-        <span ng-hide="isPending">Test commands:</span>
-      </p>
-      <div ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
-    </div>
-    <div class="row">
-      <button class="btn btn-primary btn-sm"
-        ng-class="{disabled: !testIsFileChanged}"
-        ng-click="saveTestCommandChanges(test.testCommands)">Save Test Command Changes
-      </button>
+  <div ng-show="isEdit">
+    <div class="well container-fluid">
+      <div class="section">
+        <p class="small-margin-bottom">
+          <span ng-show="isPending">Provide commands here to set up the server image<br>
+          e.g. <code>npm install; bower install;</code></span>
+          <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Shell commands:</span>
+        </p>
+        <div ui-ace="{ showGutter: false }" ng-model="test.shellCommands" ng-readonly="!isPending"></div>
+      </div>
+      <div class="section" ng-show="isPending">
+        <button class="btn btn-primary btn-sm"
+          ng-class="{disabled: !shellIsFileChanged}"
+          ng-click="saveShellCommandChanges(test.shellCommands)">Save Shell Command Changes
+        </button>
+      </div>
+      <div class="section" ng-show="isEdit">
+        <button type="button" class="btn btn-default" ng-model="test.testType" data-html="1" bs-options="option as option for option in testOptions" bs-select placeholder="Choose Test Environment (default Mocha)">
+        </button>
+
+      </div>
+      <div class="section">
+        <p class="small-margin-bottom">
+          <span ng-show="isPending">Provide commands here for the server to run tests<br>
+          e.g. <code>npm test;</code></span>
+          <span ng-hide="isPending">Test commands:</span>
+        </p>
+        <div ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
+      </div>
+      <div>
+        <button class="btn btn-primary btn-sm"
+          ng-class="{disabled: !testIsFileChanged}"
+          ng-click="saveTestCommandChanges(test.testCommands)">Save Test Command Changes
+        </button>
+      </div>
     </div>
   </div>
 
-  <div ng-hide="isEdit">    
+  <div ng-hide="isEdit" class="section">
     <ansi text="result.output"></ansi>
   </div>
 </div>

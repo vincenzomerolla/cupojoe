@@ -1,36 +1,39 @@
 <div class="container">
   <div class="col-xs-12">
-    <form class="form-inline section">
-      <div class="form-group">
-        <label>Filter by Groups</label>
-        <select class="form-control small-font" ng-options="group._id as group.name for group in groups" ng-model="groupFilter" ng-change="refilterList(groupFilter)">
-          <option value="">
-            ---
-          </option>
-        </select>
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        Test Overview for '{{test.name}}'
       </div>
-    </form>
-    <table class="table table-hover">
-      <tr>
-        <th>Username</th>
-        <th>Groups</th>
-        <th>Test Status</th>
-        <th>Test Score</th>
-        <th></th>
-      </tr>
-      <tr ng-repeat="user in users">
-        <td>{{user.username}}</td>
-        <td>{{user.groups | groupDisplay: 'name'}}</td>
-        <td>{{user.result.status}}</td>
-        <td>{{user.result.score * 100 | number: 0}} %</td>
-        <td>
-          <button class="btn btn-info btn-xs"
-            ng-show="user.result.status === 'Submitted'"
-            ui-sref="resultView.fileView.take({testId: test._id, userId: user._id})">
-            Review Test
-          </button>
-        </td>
-      </tr>
-    </table>
+      <div class="panel-body">
+      <form class="form-inline">
+        <div class="form-group">
+          <label>Filter by Groups: </label>
+          <button type="button" class="btn btn-default" ng-model="groupFilter" data-html="1" bs-options="group._id as group.name for group in groups" ng-change="refilterList(groupFilter)" bs-select placeholder="Show All"></button>
+        </div>
+      </form>
+      </div>
+      <table class="table table-hover">
+        <tr>
+          <th>Username</th>
+          <th>Groups</th>
+          <th>Test Status</th>
+          <th>Test Score</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="user in users">
+          <td>{{user.username}}</td>
+          <td>{{user.groups | groupDisplay: 'name'}}</td>
+          <td ng-class="{'text-warning': user.result.status === 'Started', 'text-success': user.result.status === 'Submitted', 'text-info': user.result.status === 'Not Started', 'text-danger': user.result.status === 'Overdue', 'text-danger': user.result.status === 'Outdated'}">{{user.result.status}}</td>
+          <td>{{user.result.score * 100 | number: 0}} %</td>
+          <td>
+            <button class="btn btn-info btn-xs"
+              ng-show="user.result.status === 'Submitted'"
+              ui-sref="resultView.fileView.take({testId: test._id, userId: user._id})">
+              Review Test
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>
