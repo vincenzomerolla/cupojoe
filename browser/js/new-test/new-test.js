@@ -22,6 +22,7 @@ app.config(function ($stateProvider) {
 app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups, UserGroup, Test) {
   
   $scope.repos = repos;
+  $scope.user = user;
   //$scope.groups = groups;
 
 
