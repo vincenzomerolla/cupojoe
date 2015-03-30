@@ -10,3 +10,31 @@
   }
 }
 
+.full-backdrop {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.center-page {
+  img {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  color: black;
+  max-width: 20%;
+  max-height: 20%;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 4px;
+  text-align: center;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
