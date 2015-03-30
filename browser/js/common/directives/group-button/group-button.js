@@ -8,5 +8,5 @@ app.directive('groupButton', function(UserGroup) {
     link: function($scope, elem, attr) {
       $scope.groups = UserGroup.query({userId: $scope.user._id});
     }
-  }
+  };
 });

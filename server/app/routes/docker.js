@@ -36,7 +36,7 @@ module.exports = {
   delete: function(dockerId, cb) {
     return new Promise(function(resolve, reject) {
       options = setOptions('DELETE', '/build/' + dockerId);
-      request.delete(options, function(error) {
+      request(options, function(error) {
         if (error) return reject(error);
         resolve();
       });

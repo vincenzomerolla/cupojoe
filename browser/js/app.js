@@ -9,11 +9,19 @@ var app = angular.module('cupojoe', [
   'treeControl',
   'ui.ace',
   'ngTagsInput',
-  'ui.select', 
+  'ui.select',
+  'cgBusy', 
   'ngSanitize',
   'ansiToHtml',
   'btford.markdown'
 ]);
+
+app.controller('rootCtrl', function($scope, $q) {
+  $scope.load = {
+    promise: $q.when('hi'),
+    message: 'Loading...'
+  };
+});
 
 app.config(function ($urlRouterProvider, $locationProvider, $animateProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
