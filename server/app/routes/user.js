@@ -75,7 +75,6 @@ router.get('/:id/test', function(req, res, next) {
 });
 router.get('/:id/takenTests', function(req, res, next) {
   User.populate(req.data, 'takenTests').then(function(user) {
-    console.log(user.takenTests.length);
     res.json(user.takenTests);
   });
 });
