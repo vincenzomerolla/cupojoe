@@ -36,8 +36,20 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('OverviewCtrl', function($scope, $state, users, test, user) {
+app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups) {
   if (user._id !== test.owner) $state.go('home');
+
   $scope.users = users;
   $scope.test = test;
+  $scope.groups = groups;
+
+  $scope.refilterList = function(groupId) {
+    if (groupId) {
+      $scope.users = users.filter(function(user) {
+        return user.groups.some(function(group) {
+          return group._id === groupId
+        });
+      });
+    } else $scope.users = users;
+  };
 });
