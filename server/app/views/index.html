@@ -35,7 +35,7 @@
   <script src="/main.js"></script>
 </head>
 <body ng-app="cupojoe" ng-controller="rootCtrl">
-  <div cg-busy="{promise:load.promise, backdrop: true, message: load.message, delay: 250}"></div>
+  <div cg-busy="{promise:load.promise, backdrop: true, message: load.message, delay: 250, templateUrl: 'js/common/directives/load-template.html'}"></div>
   <navbar></navbar>
   <div ui-view></div>
 </body>
