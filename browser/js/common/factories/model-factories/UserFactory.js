@@ -15,6 +15,7 @@ app.factory('UserFactory', function(Populate, Result) {
         else return Result.save({
           status: 'Started',
           test: test._id,
+          testName: test.name,
           user: user._id,
           dockerId: test.dockerId,
           testCommands: test.testCommands,

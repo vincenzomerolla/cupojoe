@@ -31,10 +31,12 @@ app.config(function($stateProvider) {
 app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, objIndexOf) {
   $scope.myTests = myTests;
   $scope.possibleTests = possibleTests;
+  $scope.results = results;
 
   $scope.possibleTests.forEach(function(test) {
     var ind = objIndexOf(results, test._id, 'test');
     test.status = (ind === -1) ? 'Not Started' : results[ind].status;
+    test.score = (ind === -1) ? 0 : results[ind].score;
   });
 
   $scope.deleteTest = function(testId) {
@@ -49,9 +51,5 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
         type: 'danger'
       });
     });
-  };
-
-  $scope.testsss = function(testId) {
-    Test.get({id: testId});
   };
 });

@@ -32,7 +32,16 @@ app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, ob
   };
 
   factory.deleteTest = function(testId) {
-    return Test.delete({id: testId}).$promise.then(function() {
+    var prom = Test.get({id: testId}).$promise;
+    prom.then(function(test) {
+      test.results.forEach(function(resultId) {
+        Result.update({id: resultId},{status: 'Outdated'});
+      });
+    });
+
+    return prom.then(function() {
+      return Test.delete({id: testId}).$promise;
+    }).then(function() {
       var ind = Session.user.testIds.indexOf(testId);
       if (ind !== -1) {
         Session.user.testIds.slice(ind, 1);
@@ -69,16 +78,13 @@ app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, ob
   };
 
   factory.repullTest = function(test) {
-    test.results.forEach(function(resultId) {
-      Result.delete({id: resultId});
-    });
 
     return this.deleteTest(test._id).then(function() {
       delete test._id;
       delete test.__v;
       delete test.privateFiles;
       delete test.publicFiles;
-      delete test.results;
+      // delete test.results;
       delete test.updatedAt;
       test.status = 'Pending';
       test.groups = test.groups.map(function(group) {
