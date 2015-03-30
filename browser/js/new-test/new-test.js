@@ -37,7 +37,9 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
     testCopy.groups = testCopy.groups.map(function(group) {
       return group._id;
     });
-    testCopy.$save()
+    $scope.load.promise = testCopy.$save();
+    $scope.load.message = 'Test being populated...';
+    $scope.load.promise
       .then(function(newTest) {
         $state.go('testView.fileView.edit', {testId: newTest._id});
       });

@@ -24,7 +24,9 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
         if (!$scope.test.testType) updateParams.testType = 'mocha';
         else updateParams.testType = $scope.test.testType;
 
-        Test.update({id: testId}, updateParams).$promise.then(function(test) {
+        $scope.load.promise = Test.update({id: testId}, updateParams).$promise;
+        $scope.load.message = 'Test uploading to server...';
+        $scope.load.promise.then(function(test) {
           $scope.test = test;
           $alert({
             title: 'Test Status Changed',
@@ -65,7 +67,10 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
       };
 
       $scope.repullTest = function() {
-        TestFactory.repullTest($scope.test).then(function(test) {
+        $scope.load.promise = TestFactory.repullTest($scope.test);
+        $scope.load.message = 'Test being updated from Github...';
+
+        $scope.load.promise.then(function(test) {
           $state.go('testView.fileView.edit', {testId: test._id});
         });
       };
