@@ -4,9 +4,9 @@
       <p class="small-margin-bottom">
         <span ng-show="isPending">Provide commands here to set up the server image<br>
         e.g. <code>npm install; bower install;</code></span>
-        <span ng-hide="isPending">Shell commands:</span>
+        <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Shell commands:</span>
       </p>
-      <div ui-ace ng-model="test.shellCommands" ng-readonly="!isPending"></div>
+      <div ui-ace="{ showGutter: false }" ng-model="test.shellCommands" ng-readonly="!isPending"></div>
     </div>
     <div class="row section" ng-show="isPending">
       <button class="btn btn-primary btn-sm"
@@ -27,7 +27,7 @@
         e.g. <code>npm test;</code></span>
         <span ng-hide="isPending">Test commands:</span>
       </p>
-      <div ui-ace ng-model="test.testCommands"></div>
+      <div ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
     </div>
     <div class="row">
       <button class="btn btn-primary btn-sm"

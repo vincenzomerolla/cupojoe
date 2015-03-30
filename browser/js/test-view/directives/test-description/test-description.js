@@ -11,6 +11,8 @@ app.directive('testDescription', function(Test, $alert) {
         else pageLoad = true;
       });
 
+      $scope.tabs = { activeTab: 0 };
+
       $scope.saveInstructionChanges = function(instructions) {
         Test.update({id: $scope.test._id}, {instructions: instructions})
         .$promise.then(function() {

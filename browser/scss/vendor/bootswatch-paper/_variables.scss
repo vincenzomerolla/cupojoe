@@ -14,11 +14,11 @@ $gray:                   #666;
 $gray-light:             #bbb;
 $gray-lighter:           lighten($gray-base, 93.5%); // #eee
 
-$brand-primary:         #009acf;
-$brand-success:         #34a56a;
-$brand-info:            #3f51b5;
+$brand-primary:         #2196F3;
+$brand-success:         #4CAF50;
+$brand-info:            #9C27B0;
 $brand-warning:         #ff9800;
-$brand-danger:          #f70000;
+$brand-danger:          #e51c23;
 
 
 //== Scaffolding
@@ -26,9 +26,9 @@ $brand-danger:          #f70000;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #263238;
+$body-bg:               #fff;
 //** Global text color on `<body>`.
-$text-color:            #fff;
+$text-color:            $gray;
 
 //** Global textual link color.
 $link-color:            $brand-primary;
@@ -68,7 +68,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
 $headings-font-family:    inherit;
 $headings-font-weight:    400;
 $headings-line-height:    1.1;
-$headings-color:          #fff;
+$headings-color:          #444;
 
 
 //== Iconography
@@ -135,7 +135,7 @@ $table-bg-hover:                #f5f5f5;
 $table-bg-active:               $table-bg-hover;
 
 //** Border color for table and cell borders.
-$table-border-color:            #414141;
+$table-border-color:            #ddd;
 
 
 //== Buttons
@@ -227,7 +227,7 @@ $cursor-disabled:                not-allowed;
 //## Dropdown menu container and contents.
 
 //** Background for the dropdown menu.
-$dropdown-bg:                    lighten($body-bg, 10%);
+$dropdown-bg:                    #fff;
 //** Dropdown menu `border-color`.
 $dropdown-border:                rgba(0,0,0,.15);
 //** Dropdown menu `border-color` **for IE8**.
@@ -696,7 +696,7 @@ $list-group-link-heading-color: #333;
 //
 //##
 
-$panel-bg:                    lighten($body-bg, 10%);
+$panel-bg:                    #fff;
 $panel-body-padding:          15px;
 $panel-heading-padding:       10px 15px;
 $panel-footer-padding:        $panel-heading-padding;
@@ -754,7 +754,7 @@ $thumbnail-caption-padding:   9px;
 //
 //##
 
-$well-bg:                     $panel-bg;
+$well-bg:                     #f9f9f9;
 $well-border:                 transparent;
 
 

@@ -1,11 +1,12 @@
-<div class="container-fluid" ng-show="file">
-  <div class="row section">
-    <div ui-ace="aceOptions" ng-readonly="isReadOnly" ng-model="fileBody"></div>
-  </div>
-  <div class="row" ng-hide="isEdit">
-    <button class="btn btn-primary btn-sm"
-      ng-class="{disabled: !isFileChanged}"
-      ng-click="saveFileChanges(fileBody)">Save File Changes
-    </button>
-  </div>
+<div class="container-fluid editor-container" ng-show="file">
+
+  <button class="btn btn-primary btn-sm btn-circle top-right"
+    ng-class="{disabled: !isFileChanged}"
+    ng-hide="isEdit"
+    ng-click="saveFileChanges(fileBody)"><i class="fa fa-lg fa-save"></i>
+  </button>
+
+  
+  <div class="file-editor" ui-ace="aceOptions" ng-readonly="isReadOnly" ng-model="fileBody"></div>
+  
 </div>
