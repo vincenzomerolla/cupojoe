@@ -1,15 +1,16 @@
 <div class="">
-  <div ng-show="isEdit">
-    <form name="descriptionForm">
-      <div class="form-group">
-        <p class="small-font"><i>Test description supports Markdown.</i></p>
+  <div ng-show="isEdit">  
+    <div class="small-margin-bottom" bs-active-pane="tabs.activeTab" nav-class="nav-tabs nav-justified" bs-tabs>
+      <div data-title="Markdown" bs-pane>
         <textarea name="description"
-          class="form-control small-font"     
+          class="form-control"  
+          rows="7"   
           ng-model="test.instructions">
         </textarea>
-        <div btf-markdown="test.instructions"></div>
       </div>
-    </form>
+      <div data-title="Preview" bs-pane><div btf-markdown="test.instructions"></div></div>
+    </div>
+
     <button class="btn btn-primary btn-sm pull-right"
       ng-class="{disabled: !descIsFileChanged}"
       ng-click="saveInstructionChanges(test.instructions)">Save Description Changes

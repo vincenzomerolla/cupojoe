@@ -29,7 +29,7 @@ app.config(function ($urlRouterProvider, $locationProvider, $animateProvider) {
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
     $urlRouterProvider.otherwise('/');
 
-    $animateProvider.classNameFilter(/^btn$/);
+    $animateProvider.classNameFilter(/^((?!(btn)).)*$/);
 });
 
 // This app.run is for controlling access to specific states.
