@@ -1,3 +1,6 @@
-@import "bootswatch-paper";
-@import "angular-tree-control/tree-control.scss";
-@import "angular-tree-control/tree-control-attribute.scss";
+@import "bootswatch-paper/variables";
+@import "../../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+@import "bootswatch-paper/bootswatch";
+
+@import "angular-tree-control/tree-control";
+@import "angular-tree-control/tree-control-attribute";
