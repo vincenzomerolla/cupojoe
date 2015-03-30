@@ -44,7 +44,7 @@
             <td>{{ test.name }}</td>
             <td ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue', 'text-danger': test.status === 'Outdated'}">{{ test.status }}</td>
             <td>{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-            <td>??????</td>
+            <td>{{ test.submittedAt |  date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td>{{ test.score * 100 | number: 0 }} %</td>
             <td>
               <button class="btn btn-xs"
@@ -72,7 +72,7 @@
           <tr ng-repeat="result in results">
             <td>{{ result.testName }}</td>
             <td ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue', 'text-danger': result.status === 'Outdated'}">{{ result.status }}</td>
-            <td>Blahhh</td>
+            <td>{{ result.submittedAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td>{{ result.score * 100 | number: 0 }} %</td>
           </tr>
         </table>

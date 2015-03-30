@@ -46,7 +46,7 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
   }
 
   function loadGroups(q) {
-    return $q.when(groups);
+    return UserGroup.query({userId: user._id}).$promise;
   }
 
   

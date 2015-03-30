@@ -13,7 +13,8 @@ var schema = new Schema({
   testType: {type: String, enum: ['jasmine', 'mocha', 'testem']},
   status: { type: String, enum: ['Started', 'Submitted', 'Overdue', 'Outdated'] },
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
-  user: { type: Schema.Types.ObjectId, ref: 'User' }  
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  submittedAt: { type: Date, default: Date.now } 
 });
 
 schema.statics.populateUser = function(results) {
