@@ -10,19 +10,20 @@
 </div>
 
 <div class="clearfix"></div>
-
-<form ng-show="isEdit">
-  <div class="form-group padding-left">
-    <group-button user="user"></group-button>
-    <tags-input
-      on-tag-added="saveGroups(test.groups)"
-      on-tag-removed="saveGroups(test.groups)"
-      ng-model="test.groups"
-      display-property="name"
-      replace-spaces-with-dashes="false"
-      placeholder="Add group access"
-      add-from-autocomplate-only="true">
-      <auto-complete source="loadGroups($query)"></auto-complete>
-    </tags-input>
-  </div>
-</form>
+<div class="col-xs-12">
+  <form ng-show="isEdit">
+    <div class="form-group">
+      <group-button user="user"></group-button>
+      <tags-input
+        on-tag-added="saveGroups(test.groups)"
+        on-tag-removed="saveGroups(test.groups)"
+        ng-model="test.groups"
+        display-property="name"
+        replace-spaces-with-dashes="false"
+        placeholder="Add group access"
+        add-from-autocomplate-only="true">
+        <auto-complete source="loadGroups($query)"></auto-complete>
+      </tags-input>
+    </div>
+  </form>
+</div>
