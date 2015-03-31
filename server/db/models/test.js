@@ -25,6 +25,11 @@ var schema = new Schema({
   updatedAt: {type: Date, default: Date.now}
 });
 
+schema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
+});
+
 var splitRepoURL = function(repo) {
   return repo.split('/');
 };

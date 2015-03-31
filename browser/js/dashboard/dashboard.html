@@ -8,21 +8,23 @@
         <div class="panel-body">
           <button class="btn btn-success" ui-sref="newTest">Make New Test</button>
         </div>
-        <table class="table table-hover">
+        <table class="table table-hover table-responsive">
           <tr>
             <th>Test Name</th>
             <th>Status</th>
             <th>Deadline</th>
+            <th>Last Update</th>
             <th></th>
           </tr>
             <tr ng-repeat="test in myTests">
-            <td>{{ test.name }}</td>
-            <td ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">{{ test.status }}</td>
-            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-            <td>
-              <button class="btn btn-info btn-xs" ui-sref="testOverview({testId: test._id})">Overview</button>
-              <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs">Edit</button>
-              <button class="btn btn-danger btn-xs" ng-click="deleteTest(test._id)">Delete</button>
+            <td class="table-width-200">{{ test.name }}</td>
+            <td class="table-width-100" ng-class="{'text-success': test.status === 'Available', 'text-info': test.status === 'Pending', 'text-danger': test.status === 'Closed'}">{{ test.status }}</td>
+            <td class="table-width-200">{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td >{{ test.updatedAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td class="table-width-200">
+              <button class="btn btn-info btn-xs pull-right" ui-sref="testOverview({testId: test._id})">Overview</button>
+              <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs pull-right small-margin-sides">Edit</button>
+              <button class="btn btn-danger btn-xs pull-right" ng-click="deleteTest(test._id)">Delete</button>
             </td>
           </tr>
         </table>
@@ -41,13 +43,13 @@
             <th></th>
           </tr>
           <tr ng-repeat="test in possibleTests">
-            <td>{{ test.name }}</td>
-            <td ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue', 'text-danger': test.status === 'Outdated'}">{{ test.status }}</td>
-            <td>{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
-            <td>{{ test.submittedAt |  date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td class="table-width-200">{{ test.name }}</td>
+            <td class="table-width-100" ng-class="{'text-warning': test.status === 'Started', 'text-success': test.status === 'Submitted', 'text-info': test.status === 'Not Started', 'text-danger': test.status === 'Overdue', 'text-danger': test.status === 'Outdated'}">{{ test.status }}</td>
+            <td class="table-width-200">{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td class="table-width-200">{{ test.submittedAt |  date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td>{{ test.score * 100 | number: 0 }} %</td>
-            <td>
-              <button class="btn btn-xs"
+            <td class="table-width-100">
+              <button class="btn btn-xs pull-right"
                 ng-class="{'btn-primary': test.status !=='Submitted', 'btn-info': test.status ==='Submitted'}"
                 ui-sref="testView.fileView.take({testId: test._id})">
                 <span ng-show="test.status !=='Submitted'">Take Test</span>
@@ -70,9 +72,9 @@
             <th>Result</th>
           </tr>
           <tr ng-repeat="result in results">
-            <td>{{ result.testName }}</td>
-            <td ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue', 'text-danger': result.status === 'Outdated'}">{{ result.status }}</td>
-            <td>{{ result.submittedAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
+            <td class="table-width-200">{{ result.testName }}</td>
+            <td class="table-width-300" ng-class="{'text-warning': result.status === 'Started', 'text-success': result.status === 'Submitted', 'text-info': result.status === 'Not Started', 'text-danger': result.status === 'Overdue', 'text-danger': result.status === 'Outdated'}">{{ result.status }}</td>
+            <td class="table-width-200">{{ result.submittedAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td>{{ result.score * 100 | number: 0 }} %</td>
           </tr>
         </table>
