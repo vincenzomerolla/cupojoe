@@ -22,9 +22,9 @@
             <td class="table-width-200">{{ test.deadline | date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td >{{ test.updatedAt | date:"MM/dd/yyyy 'at' h:mma" }}</td>
             <td class="table-width-200">
-              <button class="btn btn-info btn-xs pull-right" ui-sref="testOverview({testId: test._id})">Overview</button>
-              <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs pull-right small-margin-sides">Edit</button>
               <button class="btn btn-danger btn-xs pull-right" ng-click="deleteTest(test._id)">Delete</button>
+              <button ui-sref="testView.fileView.edit({testId: test._id})" class="btn btn-warning btn-xs pull-right small-margin-sides">Edit</button>
+              <button class="btn btn-info btn-xs pull-right" ui-sref="testOverview({testId: test._id})" ng-show="test.status!=='Pending'">Overview</button>
             </td>
           </tr>
         </table>
