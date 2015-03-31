@@ -1,5 +1,8 @@
 <div class="container">
   <div class="col-xs-12">
+    <div class="section">
+      <button class="btn btn-default" ui-sref="dashboard">Go Back</button>
+    </div>
     <div class="panel panel-primary">
       <div class="panel-heading">
         Test Overview for '{{test.name}}'
@@ -30,6 +33,11 @@
               ng-show="user.result.status === 'Submitted'"
               ui-sref="resultView.fileView.take({testId: test._id, userId: user._id})">
               Review Test
+            </button>
+            <button class="btn btn-warning btn-xs"
+              ng-show="user.result.status === 'Submitted'"
+              ng-click="rollBack(user, user.result._id)">
+              Roll back
             </button>
           </td>
         </tr>

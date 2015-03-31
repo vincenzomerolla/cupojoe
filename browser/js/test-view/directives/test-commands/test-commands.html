@@ -24,7 +24,7 @@
         <p class="small-margin-bottom">
           <span ng-show="isPending">Provide commands here for the server to run tests<br>
           e.g. <code>npm test;</code></span>
-          <span ng-hide="isPending">Test commands:</span>
+          <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Test commands:</span>
         </p>
         <div ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
       </div>

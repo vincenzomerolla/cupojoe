@@ -44,7 +44,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
         });
         $scope.result.output = 'Test starting';
         Result.run({id: $scope.result._id}).$promise.then(function(result) {
-          $scope.result.output = result.output;
+          $scope.result = result;
           $alert({
             title: 'Test ouput returned from server, score is ' + Math.round(result.score * 100) + '%',
             type: 'info'
@@ -59,6 +59,7 @@ app.directive('testInfo', function(Test, $alert, TestFactory, $state, Result, Re
         });
         $scope.result.output = 'Test starting';
         ResultFactory.submitTest($scope.result._id).then(function(result) {
+          $scope.result = result;
           $alert({
             title: 'Test successfully submitted!',
             type: 'success'

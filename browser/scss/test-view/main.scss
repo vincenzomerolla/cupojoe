@@ -41,7 +41,7 @@ ansi {
 
 
 .file-tree {
-  height: 50vh;
+  height: calc(50vh + 36px);
 }
 
 .progressbar {

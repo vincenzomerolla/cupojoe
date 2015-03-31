@@ -37,7 +37,12 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
     var ind = objIndexOf(results, test._id, 'test');
     test.status = (ind === -1) ? 'Not Started' : results[ind].status;
     test.score = (ind === -1) ? 0 : results[ind].score;
-    test.submittedAt = (ind === -1) ? 'Not Submitted Yet' : results[ind].submittedAt;
+    test.submittedAt = (ind !== -1 && results[ind].submittedAt)
+      ? results[ind].submittedAt : 'Not Submitted Yet';
+  });
+
+  $scope.results.forEach(function(result) {
+    if (!result.submittedAt) result.submittedAt = 'Not Submitted';
   });
 
   $scope.deleteTest = function(testId) {

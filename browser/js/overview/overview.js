@@ -36,7 +36,7 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups) {
+app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups, Result, $alert) {
   if (user._id !== test.owner) $state.go('home');
 
   $scope.users = users;
@@ -51,5 +51,16 @@ app.controller('OverviewCtrl', function($scope, $state, users, test, user, group
         });
       });
     } else $scope.users = users;
+  };
+
+  $scope.rollBack = function(user, resultId) {
+    Result.update({id: resultId}, {status: 'Started'}).$promise
+    .then(function(result) {
+      user.result = result;
+      $alert({
+        title: 'Test rolled back',
+        type: 'info'
+      });
+    });
   };
 });
