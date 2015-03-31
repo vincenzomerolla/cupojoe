@@ -5,10 +5,10 @@
     <th>Edit</th>
   </tr>
   <tr ng-repeat="group in groups" ng-init="editFlag = {flag: true}">
-    <td ng-show="editFlag.flag">{{ group.name }}</td>
+    <td class="table-width-200" ng-show="editFlag.flag">{{ group.name }}</td>
     <td ng-show="editFlag.flag">{{ group.members | groupDisplay: 'text' }}</td>
 
-    <td ng-hide="editFlag.flag">
+    <td class="table-width-200" ng-hide="editFlag.flag">
       <div class="form-group">
         <input type="text"
           class="form-control input-sm"
@@ -31,7 +31,7 @@
       </div>
     </td>
 
-    <td>
+    <td class="table-width-200">
       <button ng-if="editFlag.flag" class="btn btn-warning btn-sm" ng-click="toggleEditGroup(editFlag)">Edit</button>
       <button ng-if="!editFlag.flag" class="btn btn-primary btn-sm" ng-click="saveGroup(group, editFlag)">Save Changes</button>
       <button class="btn btn-danger btn-sm" ng-click="deleteGroup(group._id)">Delete</button>

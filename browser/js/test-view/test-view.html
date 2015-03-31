@@ -1,14 +1,14 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-6">
+    <div class="col-md-6 col-xs-12">
       <test-title></test-title>
     </div>
-    <div class="col-xs-6">
+    <div class="col-md-6 col-xs-12">
       <test-info></test-info>
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-3">
+    <div class="col-md-3 col-sm-4 col-xs-12">
       <div class="well file-tree">
         <p ng-show="isEdit && isPending">
           Check files that are read-only on the test below.
@@ -17,7 +17,7 @@
           <button class="btn btn-primary btn-sm"
             ng-click="saveReadOnlyChanges()"
             ng-class="{disabled: !readOnlyChange}">
-            Save Read-Only State Changes
+            Save State Changes
           </button>
         </div>
         <treecontrol class="tree-classic"
@@ -31,14 +31,15 @@
         </treecontrol>
       </div>
     </div>
-    <div ng-class="{'col-xs-6': isEdit, 'col-xs-9': !isEdit}">
+    <div class="col-xs-12 col-sm-8"
+      ng-class="{'col-md-6': isEdit, 'col-md-9': !isEdit}">
       <div class="row">
         <div class="">
           <ui-view></ui-view>
         </div>
       </div>
     </div>
-    <div ng-class="{'col-xs-3': isEdit, 'col-xs-9 col-xs-offset-3': !isEdit}">
+    <div class="col-xs-12" ng-class="{'col-md-3': isEdit, 'col-md-9 col-md-offset-3': !isEdit}">
       <test-commands></test-commands>
     </div>
   </div>

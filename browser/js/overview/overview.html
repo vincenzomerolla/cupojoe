@@ -24,11 +24,11 @@
           <th></th>
         </tr>
         <tr ng-repeat="user in users">
-          <td>{{user.username}}</td>
-          <td>{{user.groups | groupDisplay: 'name'}}</td>
-          <td ng-class="{'text-warning': user.result.status === 'Started', 'text-success': user.result.status === 'Submitted', 'text-info': user.result.status === 'Not Started', 'text-danger': user.result.status === 'Overdue', 'text-danger': user.result.status === 'Outdated'}">{{user.result.status}}</td>
-          <td>{{user.result.score * 100 | number: 0}} %</td>
-          <td>
+          <td class="table-width-200">{{user.username}}</td>
+          <td class="table-width-200">{{user.groups | groupDisplay: 'name'}}</td>
+          <td class="table-width-200" ng-class="{'text-warning': user.result.status === 'Started', 'text-success': user.result.status === 'Submitted', 'text-info': user.result.status === 'Not Started', 'text-danger': user.result.status === 'Overdue', 'text-danger': user.result.status === 'Outdated'}">{{user.result.status}}</td>
+          <td class="table-width-100">{{user.result.score * 100 | number: 0}} %</td>
+          <td class="table-width-200">
             <button class="btn btn-info btn-xs"
               ng-show="user.result.status === 'Submitted'"
               ui-sref="resultView.fileView.take({testId: test._id, userId: user._id})">
