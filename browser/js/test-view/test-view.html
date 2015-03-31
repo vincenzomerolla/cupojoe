@@ -1,10 +1,19 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6 col-xs-12">
-      <test-title></test-title>
-    </div>
-    <div class="col-md-6 col-xs-12">
-      <test-info></test-info>
+    <div class="container-fluid">
+      <div class="well">
+        <div class="row">
+          <div class="row">
+          <div class="col-md-6 col-xs-12">
+            <test-title></test-title>
+          </div>
+          <div class="col-md-6 col-xs-12">
+            <test-info></test-info>
+          </div>
+          <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div class="row">
@@ -33,10 +42,8 @@
     </div>
     <div class="col-xs-12 col-sm-8"
       ng-class="{'col-md-6': isEdit, 'col-md-9': !isEdit}">
-      <div class="row">
-        <div class="">
-          <ui-view></ui-view>
-        </div>
+      <div class="well">
+        <ui-view></ui-view>
       </div>
     </div>
     <div class="col-xs-12" ng-class="{'col-md-3': isEdit, 'col-md-9 col-md-offset-3': !isEdit}">
