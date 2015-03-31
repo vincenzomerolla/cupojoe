@@ -16,6 +16,7 @@ app.config(function ($alertProvider, $datepickerProvider, $timepickerProvider, u
     duration: 2
   });
 
+
   uiSelectConfig.theme = 'bootstrap';
   uiSelectConfig.resetSearchInput = true;
 

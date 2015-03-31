@@ -1,12 +1,27 @@
 .btn-circle {
+  padding: 0;
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  &.btn-circle-sm {
+    height: 40px;
+    width: 40px;
+  }
 }
+
 
 .btn.top-right {
   position: absolute;
   top: 20px;
   right: 20px;
+  z-index: 999;
+}
+
+
+
+.btn.panel-corner {
+  position: absolute;
+  top: 29px;
+  right: 34px;
   z-index: 999;
 }

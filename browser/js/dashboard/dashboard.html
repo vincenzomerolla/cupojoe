@@ -1,13 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <div class="panel panel-primary">
-        <div class="panel-heading">
+        <p class="panel-title panel-heading">
           Created Tests
-        </div>
-        <div class="panel-body">
-          <button class="btn btn-success" ui-sref="newTest">Make New Test</button>
-        </div>
+        </p>
+      <div class="panel panel-default">
+          <button class="btn btn-success btn-circle btn-circle-sm panel-corner"
+            ui-sref="newTest"
+            data-title="Create New Test"
+            placement="left"
+            bs-tooltip>
+            <i class="fa fa-plus fa-lg"></i></button>
         <table class="table table-hover table-responsive">
           <tr>
             <th>Test Name</th>
@@ -29,10 +32,10 @@
           </tr>
         </table>
       </div>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          Available Tests
-        </div>
+      <p class="panel-title panel-heading">
+        Available Tests
+      </p>
+      <div class="panel panel-default">
         <table class="table table-hover">
           <tr>
             <th>Test Name</th>
@@ -60,10 +63,10 @@
         </table>
       </div>
 
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          All Test Results
-        </div>
+      <p class="panel-title panel-heading">
+        All Test Results
+      </p>
+      <div class="panel panel-default">
         <table class="table table-hover">
           <tr>
             <th>Test Name</th>

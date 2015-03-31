@@ -1,4 +1,4 @@
-<div class="container-fluid editor-container" ng-show="file">
+<div class="editor-container" ng-show="file">
 
   <button class="btn btn-primary btn-sm btn-circle top-right"
     ng-class="{disabled: !isFileChanged}"
@@ -6,7 +6,8 @@
     ng-click="saveFileChanges(fileBody)"><i class="fa fa-lg fa-save"></i>
   </button>
 
-  <p>{{ file.name }}</p>
+  <p class="text-primary">
+    {{ file.name | uppercase }}
+  </p>  
   <div class="file-editor" ui-ace="aceOptions" ng-readonly="isReadOnly" ng-model="fileBody"></div>
-  
 </div>
