@@ -14,7 +14,8 @@ var app = angular.module('cupojoe', [
   'ui.bootstrap.progressbar',
   'ngSanitize',
   'ansiToHtml',
-  'btford.markdown'
+  'btford.markdown',
+  'btford.socket-io'
 ]);
 
 app.controller('rootCtrl', function($scope, $q) {
