@@ -56,18 +56,24 @@
   <button class="btn btn-success btn-block"
     ng-click="changeTestStatus(test._id, 'Available')"
     ng-show="test.status !== 'Available' && isEdit">Publish Test</button>
-  <button class="btn btn-danger btn-block"
-    ng-click="repullTest()"
-    ng-show="test.status !== 'Pending' && isEdit">
-    Pull from <i class="fa fa-lg fa-github"></i></button>
+
+  <a class="btn btn-danger btn-block"
+    title="Are you sure you want to update the test?"
+    data-animation="am-fade-and-slide-top"
+    data-template="js/test-view/directives/test-info/pull-modal.html"
+    ng-show="test.status !== 'Pending' && isEdit"
+    bs-modal>
+    Pull from <i class="fa fa-lg fa-github"></i></a>
 
   <button class="btn btn-success btn-block"
     ng-click="submitTest()"
     ng-class="{disabled: isSubmitted}"
     ng-hide="isEdit">Submit Test</button>
+
   <button class="btn btn-info btn-block"
     ng-class="{disabled: isSubmitted}"
     ng-click="runTest()"
     ng-hide="isEdit">Run Test</button>
+
   <button class="btn btn-default btn-block" ui-sref="dashboard">Dashboard</button>
 </div>
