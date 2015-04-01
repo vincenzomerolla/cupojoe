@@ -1,12 +1,28 @@
 <section id="about">
     <div class="container">
-      <h1>Made with <i class="fa fa-heart"></i> at Fullstack Academy</h1>
+      <h1 class="text-center main-header">Made with <i class="fa fa-heart text-primary"></i> at Fullstack Academy</h1>
 
-      <div class="row">
-        <div class="col-sm-6" ng-repeat="person in people track by $index">
-          <img ng-src="{{person.image}}" alt="" class="img-responsive img-circle">
-          <a ng-href="{{person.github.url}}" class=""><i class="fa fa-github"></i> {{person.github.username}}</a>
+      
+      <div class="col-sm-6 text-center" ng-repeat="person in people track by $index">
+        <img ng-src="{{person.image}}" alt="" class="front-img img-circle">
+        <div>
+          <h4>{{person.fullName}}</h4>
+          <h5>
+            <a ng-href="{{person.github.url}}" class=""><i class="fa fa-github"></i> </a>
+            <a ng-href="{{person.linkedin.url}}" class=""><i class="fa fa-linkedin"></i> </a>
+          </h5>
         </div>
       </div>
+      
+      <div class="clearfix"></div>
+      <div class="padding-md">
+        <h3>Why cupojoe?</h3>       
+        <p>
+          We made this application after seeing how much a hassle it was for instructors at Fullstack Academy of Code to run assessments for each cohort. The process involved cloning their Github repository and running the tests on our local computers. We decided we could do better and run the tests written by the instructors remotely.
+        </p>
+      </div>
+
+
+    
     </div>
 </section>

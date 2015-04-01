@@ -19,7 +19,10 @@ app.controller('AboutController', function ($scope) {
         image: 'images/colin.png',
         github: {
           username: 'covlllp',
-          url: '//github.com/covlllp'
+          url: '//github.com/covlllp',
+        },
+        linkedin: {
+          url: '//linkedin.com/in/colinvanlang'
         }
 
 
@@ -31,7 +34,9 @@ app.controller('AboutController', function ($scope) {
         github: {
           username: 'vincenzomerolla',
           url: '//github.com/vincenzomerolla'
-
+        },
+        linkedin: {
+          url: '//linkedin.com/in/vincenzomerolla'
         }
         
       }

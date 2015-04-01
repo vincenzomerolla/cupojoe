@@ -41,7 +41,7 @@ var getScore = function(output, testType) {
     fail = captureScore(/\[31m\s+(\d+)\s+failing/, output, 1) * 1;
   } else if (testType === 'jasmine') {
     var str;
-    if (output.match(/Test failed/)) {
+    if (output.match(/Failures/)) {
       str = captureScore(/Started[\s\S]*Failures/, output, 0);
     } else str = captureScore(/Started[\s\S]*Finished/, output, 0);
     pass = getStrTimes(str, '[32m.');
