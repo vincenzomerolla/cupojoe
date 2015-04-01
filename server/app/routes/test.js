@@ -77,11 +77,10 @@ router.route('/:id')
       if (data.status === 'Available') {
         docker.build(data, function(error, response, body) {
           if (error) return next(error);
-
           // should send back dockerId as string in body
           data.dockerId = body;
           data.save(function(err, savedData) {
-            if (err) next(err);
+            if (err) return next(err);
             res.json(data);
           });
         });
@@ -93,7 +92,7 @@ router.route('/:id')
 
   .delete(function(req, res, next) {
     Test.findByIdAndRemove(req.data._id).exec()
-    .then(function() {
+    .then(function(test) {
       if (req.data.dockerId) return docker.delete(req.data.dockerId);
     }).then(function() {
       res.status(200).end();

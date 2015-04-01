@@ -28,10 +28,18 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, objIndexOf) {
+app.controller('DashboardCtrl', function($scope, $state, Test, myTests, possibleTests, TestFactory, $alert, UserTest, user, results, objIndexOf, Socket) {
   $scope.myTests = myTests;
   $scope.possibleTests = possibleTests;
   $scope.results = results;
+
+  function reloadState(data) {
+    $state.reload();
+  } 
+
+  // Socket.on('test:published', reloadState);
+  // Socket.on('test:deleted', reloadState);
+  // Socket.on('test:updated', reloadState);
 
   $scope.possibleTests.forEach(function(test) {
     var ind = objIndexOf(results, test._id, 'test');
@@ -52,6 +60,7 @@ app.controller('DashboardCtrl', function($scope, Test, myTests, possibleTests, T
 
       var posTestInd = objIndexOf($scope.possibleTests, testId, '_id');
       if (posTestInd !== -1) $scope.possibleTests.splice(posTestInd, 1);
+   
       $alert({
         title: 'Test deleted',
         type: 'danger'

@@ -36,12 +36,20 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups, Result, $alert) {
+
+app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups, Result, Socket, $alert) {
   if (user._id !== test.owner) $state.go('home');
 
   $scope.users = users;
   $scope.test = test;
   $scope.groups = groups;
+
+  function reloadState(data) {
+    console.log(data)
+    if (data._id === test._id) $state.reload();
+  } 
+  //Socket.on('test:updated', reloadState);
+
 
   $scope.refilterList = function(groupId) {
     if (groupId) {

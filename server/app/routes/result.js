@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Result = mongoose.model('Result');
 var User = mongoose.model('User');
 var Test = mongoose.model('Test');
-
+var io = require('../../io');
 var docker = require('./docker.js');
 
 module.exports = router;
@@ -35,7 +35,7 @@ router.post('/', function(req, res, next) {
     return User.findByIdAndUpdate(r.user, {$push: {takenTests: r._id}}).exec();
   }).then(function() {
     return Test.findByIdAndUpdate(r.test, {$push: {results: r._id}}).exec();
-  }).then(function() {
+  }).then(function(data) {
     res.json(r);
   }, function(err) {
     next(err);
