@@ -36,7 +36,8 @@ app.config(function($stateProvider) {
   });
 });
 
-app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups, Socket) {
+
+app.controller('OverviewCtrl', function($scope, $state, users, test, user, groups, Result, Socket, $alert) {
   if (user._id !== test.owner) $state.go('home');
 
   $scope.users = users;
@@ -47,7 +48,7 @@ app.controller('OverviewCtrl', function($scope, $state, users, test, user, group
     console.log(data)
     if (data._id === test._id) $state.reload();
   } 
-  Socket.on('test:updated', reloadState);
+  //Socket.on('test:updated', reloadState);
 
 
   $scope.refilterList = function(groupId) {
@@ -58,5 +59,16 @@ app.controller('OverviewCtrl', function($scope, $state, users, test, user, group
         });
       });
     } else $scope.users = users;
+  };
+
+  $scope.rollBack = function(user, resultId) {
+    Result.update({id: resultId}, {status: 'Started'}).$promise
+    .then(function(result) {
+      user.result = result;
+      $alert({
+        title: 'Test rolled back',
+        type: 'info'
+      });
+    });
   };
 });

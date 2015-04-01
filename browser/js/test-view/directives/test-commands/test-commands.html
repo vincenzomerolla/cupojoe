@@ -7,7 +7,7 @@
           e.g. <code>npm install; bower install;</code></span>
           <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Shell commands:</span>
         </p>
-        <div ui-ace="{ showGutter: false }" ng-model="test.shellCommands" ng-readonly="!isPending"></div>
+        <div class="min-border" ui-ace="{ showGutter: false }" ng-model="test.shellCommands" ng-readonly="!isPending"></div>
       </div>
       <div class="section" ng-show="isPending">
         <button class="btn btn-primary btn-sm"
@@ -16,7 +16,7 @@
         </button>
       </div>
       <div class="section" ng-show="isEdit">
-        <button type="button" class="btn btn-default" ng-model="test.testType" data-html="1" bs-options="option as option for option in testOptions" bs-select placeholder="Choose Test Environment (default Mocha)">
+        <button type="button" class="btn btn-default" ng-model="test.testType" data-html="1" bs-options="option as option for option in testOptions" bs-select placeholder="Choose Test Env (default Mocha)">
         </button>
 
       </div>
@@ -24,9 +24,9 @@
         <p class="small-margin-bottom">
           <span ng-show="isPending">Provide commands here for the server to run tests<br>
           e.g. <code>npm test;</code></span>
-          <span ng-hide="isPending">Test commands:</span>
+          <span ng-hide="isPending"><i class="fa fa-lg fa-terminal"></i> Test commands:</span>
         </p>
-        <div ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
+        <div class="min-border" ui-ace="{ showGutter: false }" ng-model="test.testCommands"></div>
       </div>
       <div>
         <button class="btn btn-primary btn-sm"

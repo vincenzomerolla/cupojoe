@@ -14,7 +14,7 @@ var schema = new Schema({
   status: { type: String, enum: ['Started', 'Submitted', 'Overdue', 'Outdated'] },
   test: { type: Schema.Types.ObjectId, ref: 'Test' },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
-  submittedAt: { type: Date, default: Date.now } 
+  submittedAt: { type: Date } 
 });
 
 schema.statics.populateUser = function(results) {
@@ -52,6 +52,7 @@ var getScore = function(output, testType) {
 
 schema.pre('save', function(next) {
   if (!this.output) return next();
+  if (this.status === 'Submitted') this.submittedAt = Date.now();
   this.score = getScore(this.output, this.testType);
   next();
 });

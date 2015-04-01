@@ -42,7 +42,7 @@ app.factory('TestFactory', function(FileFactory, Test, Result, User, Session, So
     return prom.then(function() {
       return Test.delete({id: testId}).$promise;
     }).then(function() {
-      Socket.emit('test:deleted');
+      //Socket.emit('test:deleted');
       var ind = Session.user.testIds.indexOf(testId);
       if (ind !== -1) {
         Session.user.testIds.slice(ind, 1);

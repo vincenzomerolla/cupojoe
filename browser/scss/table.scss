@@ -1,0 +1,8 @@
+$widths: 10;
+$px: 1px;
+
+@for $i from 1 through $widths {
+  .table-width-#{$i * 100} {
+    width: #{$i * 100}px;
+  }
+}
