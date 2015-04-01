@@ -1,0 +1,22 @@
+<div class="modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" ng-show="title">
+        <button type="button" class="close" aria-label="Close" ng-click="$hide()"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" ng-bind="title"></h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          All current tests will have to be redone.
+        </p>
+        <button class="btn btn-danger"
+          ng-click="repullTest()">
+          Yes, I do things on purpose</button>
+        <button class="btn btn-default"
+          ng-click="$hide()">
+          No, where am I?
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
