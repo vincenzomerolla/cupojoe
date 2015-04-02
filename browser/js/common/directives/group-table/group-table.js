@@ -6,6 +6,8 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
       groups: '='
     },
     link: function($scope, elem, attr) {
+      var numChanges = 0;
+      var data;
       $scope.showAddButton = true;
 
       var updateGroups = function() {
@@ -26,7 +28,10 @@ app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, 
       };
 
       $scope.getGithubMembers = function(searchStr) {
-        var data = GithubFactory.getUsers(searchStr);
+        numChanges++;
+        if (!numChanges % 3) {
+          data = GithubFactory.getUsers(searchStr);
+        }
         return data;
       };
 
