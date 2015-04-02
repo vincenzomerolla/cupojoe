@@ -1,8 +1,8 @@
 <table class="table table-hover">
   <tr>
-    <th>Group Name</th>
+    <th class="table-width-200">Group Name</th>
     <th>Group Members</th>
-    <th>Edit</th>
+    <th class="table-width-200">Edit</th>
   </tr>
   <tr ng-repeat="group in groups" ng-init="editFlag = {flag: true}">
     <td class="table-width-200" ng-show="editFlag.flag">{{ group.name }}</td>

@@ -13,11 +13,11 @@
             <i class="fa fa-plus fa-lg"></i></button>
         <table class="table table-hover table-responsive">
           <tr>
-            <th>Test Name</th>
-            <th>Status</th>
-            <th>Deadline</th>
+            <th class="table-width-200">Test Name</th>
+            <th class="table-width-100">Status</th>
+            <th class="table-width-200">Deadline</th>
             <th>Last Update</th>
-            <th></th>
+            <th class="table-width-200"></th>
           </tr>
             <tr ng-repeat="test in myTests">
             <td class="table-width-200">{{ test.name }}</td>
@@ -38,12 +38,12 @@
       <div class="panel panel-default">
         <table class="table table-hover">
           <tr>
-            <th>Test Name</th>
-            <th>Status</th>
-            <th>Deadline</th>
-            <th>Last Submission</th>
+            <th class="table-width-200">Test Name</th>
+            <th class="table-width-100">Status</th>
+            <th class="table-width-200">Deadline</th>
+            <th class="table-width-200">Last Submission</th>
             <th>Result</th>
-            <th></th>
+            <th class="table-width-100"></th>
           </tr>
           <tr ng-repeat="test in possibleTests">
             <td class="table-width-200">{{ test.name }}</td>
@@ -69,9 +69,9 @@
       <div class="panel panel-default">
         <table class="table table-hover">
           <tr>
-            <th>Test Name</th>
-            <th>Status</th>
-            <th>Last Submission</th>
+            <th class="table-width-200">Test Name</th>
+            <th class="table-width-300">Status</th>
+            <th class="table-width-200">Last Submission</th>
             <th>Result</th>
           </tr>
           <tr ng-repeat="result in results">
