@@ -9,7 +9,7 @@ We made this application after seeing how much a hassle it was for instructors a
 - [Examples](#examples)
 - [Usage](#usage)
 - [Installation](#installation)
-- [Roadmap](#roadmap)
+- [Known Bugs](#Known Bugs)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -23,10 +23,6 @@ There is no current demo *yet*.
 ![Sphynx Example](http://cloud.oddur.i/oZlkH/Screen%20Recording%202015-02-13%20at%2006.09%20AM.gif)
 _Above: An example of the working app_
 
-
-```html
-<p>This is some sample output</p>
-```
 
 ## Usage
 
@@ -62,16 +58,11 @@ _Above: An example of the working app_
 
 __Note:__ If you encounter errors in the installation process for npm, it is recommended that you try running the install command with `sudo`
 
-### Roadmap
-
-#### Features
-
-- New bug tacking system
-- Upgrade to Angular 2.0
-
-#### Known bugs
+## Known bugs
 
 - Sockets haven't been set up yet.
+- Group edit forms in a modal incorrectly line up.
+- Output occasionally will show Docker errors.
 - Jasmine tests sometimes have trouble dealing with "" quotes vs. '' quotes.
 
 ## Contributors

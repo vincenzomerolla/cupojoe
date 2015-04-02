@@ -7,7 +7,9 @@
           <i class="fa fa-coffee fa-stack-1x"></i>
         </span>
         <h2>Testing students in a fullstack environment</h2>  
-        <h4><a class="" href="//github.com/vincenzomerolla/cupojoe"><i class="fa fa-github"></i> View the source</a></h4>
+        <h4 class="section"><a class="" href="//github.com/vincenzomerolla/cupojoe"><i class="fa fa-github"></i> View the source</a></h4>
+        <button ng-hide="isLoggedIn" class="btn btn-home btn-lg" ng-click="login()">Login with <i class="fa fa-lg fa-github"></i></button>
+        <button ng-show="isLoggedIn" class="btn btn-home btn-lg" ui-sref="dashboard">Go to Dashboard</button>
       </div>
 
       <div class="scroll-more centered-axis-x">

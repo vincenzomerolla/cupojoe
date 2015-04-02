@@ -25,3 +25,7 @@
   right: 34px;
   z-index: 999;
 }
+
+.btn-home {
+  @include button-variant($brand-primary, #fff, #fff);
+}

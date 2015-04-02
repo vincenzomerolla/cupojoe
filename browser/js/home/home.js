@@ -3,11 +3,33 @@ app.config(function ($stateProvider) {
     $stateProvider.state('home', {
         url: '/',
         templateUrl: 'js/home/home.html',
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          user: function(AuthService) {
+            return AuthService.getLoggedInUser();
+          }
+        }
     });
 });
 
-app.controller('HomeCtrl', function($scope, $state) {
+app.controller('HomeCtrl', function($scope, user, $window, AUTH_EVENTS) {
+  $scope.isLoggedIn = !!user;
+
+  var setLogin = function(bool) {
+    $scope.isLoggedIn = bool;    
+  };
+
+  $scope.$on(AUTH_EVENTS.loginSuccess, function() {
+    setLogin(true);
+  });
+  $scope.$on(AUTH_EVENTS.logoutSuccess, function() {
+    setLogin(false);
+  });
+
+  $scope.login = function() {
+    $window.location.href = '/auth/github';
+  };
+
   $scope.github = {
     img: 'images/Octocat/Octocat.png',
     title: 'Github Integration',
