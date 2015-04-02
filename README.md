@@ -19,9 +19,8 @@ We made this application after seeing how much a hassle it was for instructors a
 There is no current demo *yet*.
 
 ### Screenshot
-
-![Sphynx Example](http://cloud.oddur.i/oZlkH/Screen%20Recording%202015-02-13%20at%2006.09%20AM.gif)
-_Above: An example of the working app_
+![Landing Page](https://flic.kr/p/rCS3G7)
+_Above: Landing Page_
 
 
 ## Usage
@@ -58,7 +57,7 @@ _Above: An example of the working app_
 
 __Note:__ If you encounter errors in the installation process for npm, it is recommended that you try running the install command with `sudo`
 
-## Known bugs
+## Known Bugs
 
 - Sockets haven't been set up yet.
 - Group edit forms in a modal incorrectly line up.
