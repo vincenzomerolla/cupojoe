@@ -5,7 +5,7 @@
   <div class="col-sm-8 well">
     <fieldset>
       <legend>Create a new test</legend>
-      <form name="newTestForm" class="form-horizontal" ng-submit="newTestForm.$valid && saveTest()" novalidate>
+      <form name="newTestForm" class="form-horizontal" novalidate>
         <div class="form-group">
           <label for="testName" class="col-sm-3 control-label">Name</label>
           <div class="col-sm-9">
@@ -59,7 +59,7 @@
         
         <div class="form-group">
           <div class="col-sm-offset-3 col-sm-9">
-            <button class="btn btn-success" ng-click="newTestForm.$valid && saveTest()">Save</button>
+            <button type="button" class="btn btn-success" ng-click="newTestForm.$valid && saveTest()">Save</button>
           </div>
         </div>
       </form>

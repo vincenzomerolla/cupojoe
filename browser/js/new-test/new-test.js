@@ -27,7 +27,7 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
 
 
   var test;
-  test = $scope.test = new Test();
+  test = $scope.test = {};
   test.owner = user._id;
   test.status = 'Pending';
 
@@ -37,12 +37,11 @@ app.controller('NewTestCtrl', function ($scope, $q, $state, user, repos, groups,
     testCopy.groups = testCopy.groups.map(function(group) {
       return group._id;
     });
-    $scope.load.promise = testCopy.$save();
+    $scope.load.promise = Test.save(testCopy).$promise;
     $scope.load.message = 'Test being populated...';
-    $scope.load.promise
-      .then(function(newTest) {
-        $state.go('testView.fileView.edit', {testId: newTest._id});
-      });
+    $scope.load.promise.then(function(newTest) {
+      $state.go('testView.fileView.edit', {testId: newTest._id});
+    });
   }
 
   function loadGroups(q) {

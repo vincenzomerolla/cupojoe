@@ -8,11 +8,11 @@ treecontrol > ul {
 }
 
 .isReadOnly {
-  color: red;
+  // color: red;
 }
 
 .isNotReadOnly {
-  color: blue;
+  color: $brand-primary;
 }
 
 ansi {
