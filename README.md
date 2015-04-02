@@ -9,7 +9,7 @@ We made this application after seeing how much a hassle it was for instructors a
 - [Examples](#examples)
 - [Usage](#usage)
 - [Installation](#installation)
-- [Known Bugs](#Known Bugs)
+- [Known Bugs](#Known_Bugs)
 - [Contributors](#contributors)
 - [License](#license)
 
