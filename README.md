@@ -19,7 +19,7 @@ We made this application after seeing how much a hassle it was for instructors a
 There is no current demo *yet*.
 
 ### Screenshot
-![Landing Page](https://flic.kr/p/rCS3G7)
+![Landing Page](https://farm8.staticflickr.com/7641/16826077710_e6ea21a0cd_o.png)
 _Above: Landing Page_
 
 
