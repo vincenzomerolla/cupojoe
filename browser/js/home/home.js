@@ -15,7 +15,7 @@ app.controller('HomeCtrl', function($scope, $state) {
   };
 
   $scope.docker = {
-    img: 'images/Docker/large_v-trans.png',
+    img: 'images/Docker/docker.png',
     title: 'Docker Images',
     body: 'Docker images help us run your test quickly and safely, so you don\'t have to worry about pesky security flaws.'
   };
