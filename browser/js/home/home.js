@@ -21,7 +21,7 @@ app.controller('HomeCtrl', function($scope, $state) {
   };
 
   $scope.main = {
-    img: 'images/computer/desktop.png',
+    img: 'images/computer/computer.png',
     title: 'TDD All Day',
     body: 'Write assessments that depend on Mocha or Jasmine tests so that your students learn how Test Driven Development works. Tests run right in the browser, so they can take your tests anytime, anywhere.'
   }

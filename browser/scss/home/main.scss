@@ -1,9 +1,11 @@
 .bs-header {
-  margin-top: -50px;
-  padding-top: 150px;
-  padding-bottom: 125px;
-  background-color: #2196F3;
+  margin-top: -85px;
+  // padding-top: 150px;
+  // padding-bottom: 125px;
+  position:relative;
+  background-color: $brand-primary;
   color: white;
+  height: 100vh;
 
   h1 {
     margin: 0;
@@ -13,6 +15,40 @@
     font-size: 27px;
     color: white;
   }
+  
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      color: darken(#fff, 10%);
+      text-decoration: none;
+    }
+
+    &:focus {
+      @include tab-focus;
+    }
+  }
+
+
+  .scroll-more {
+    bottom: 10px
+  }
+}
+
+
+.centered-axis-xy {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.centered-axis-x {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .front-img {

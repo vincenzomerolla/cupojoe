@@ -1,3 +1,6 @@
+$sizes: (sm: 15px, md: 30px, lg: 60px);
+
+
 .no-margin-bottom {
   margin-bottom: 0;
 }
@@ -22,8 +25,11 @@
   margin: 0 8px 0;
 }
 
-.padding-md {
-  padding-top: 30px;
-  padding-bottom: 30px;
 
+
+@each $size, $pxValue in $sizes {
+  .padding-#{$size} {
+    padding: $pxValue;
+    //padding-bottom: $pxValue;
+  }
 }
