@@ -4,12 +4,14 @@
 
 We made this application after seeing how much a hassle it was for instructors at Fullstack Academy of Code to run assessments for each cohort. The process involved cloning their Github repository and running the tests on our local computers. We decided we could do better and run the tests written by the instructors remotely.
 
+You can find the Github page for the docker server at https://github.com/vincenzomerolla/cupojoe-docker.
+
 ## Table of Contents
 
 - [Examples](#examples)
 - [Usage](#usage)
 - [Installation](#installation)
-- [Known Bugs](#Known_Bugs)
+- [Known Bugs](#Known-Bugs)
 - [Contributors](#contributors)
 - [License](#license)
 
@@ -21,6 +23,12 @@ There is no current demo *yet*.
 ### Screenshot
 ![Landing Page](https://farm8.staticflickr.com/7641/16826077710_e6ea21a0cd_o.png)
 _Above: Landing Page_
+
+![Dashboard Page](https://farm8.staticflickr.com/7654/16806259977_af27628903_o.png)
+_Above: Sample Dashboard View_
+
+![Test Page](https://farm9.staticflickr.com/8686/16987672386_d80a87f507_o.png)
+_Above: Sample Test View_
 
 
 ## Usage
