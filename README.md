@@ -8,12 +8,17 @@ You can find the Github page for the docker server at https://github.com/vincenz
 
 ## Table of Contents
 
+- [Summary](#summary)
 - [Examples](#examples)
 - [Usage](#usage)
 - [Installation](#installation)
-- [Known Bugs](#Known-Bugs)
+- [Known Bugs](#known-bugs)
 - [Contributors](#contributors)
 - [License](#license)
+
+## Summary
+
+We run all tests securely using Docker images. Whenever an instructor creates a test, we spawn a new Docker image off a remote base MEAN stack Docker repository and initially populate it with an associated Github repository. Afterwards, when users begin running their individual assessments, we build Docker containers off the base test image, run their unique files, then immediately destroy those containers. Lastly, once the test is completed, we delete the Docker image to free up space for future tests. This whole process allows us to emulate a full stack without running any potentially malicous code on our own server.
 
 ## Examples
 ### Demo
