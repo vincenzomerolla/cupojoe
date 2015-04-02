@@ -11,7 +11,7 @@ module.exports = function(github) {
     github.search.users({
       q: req.query.q
     }, function (err, response) {
-      if (err) next(err);
+      if (err) return next(err);
       res.json(response);
     });
   });
