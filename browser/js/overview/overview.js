@@ -43,6 +43,9 @@ app.controller('OverviewCtrl', function($scope, $state, users, test, user, group
   $scope.users = users;
   $scope.test = test;
   $scope.groups = groups;
+  $scope.groups.unshift({
+    name: 'Show All'
+  });
 
   function reloadState(data) {
     console.log(data)
