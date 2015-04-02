@@ -13,7 +13,7 @@ module.exports = router;
 
 
 router.get('/', function(req, res, next) {
-  Result.find(req.body).exec().then(function(results) {
+  Result.find().exec().then(function(results) {
     res.json(results);
   }, function(err) {
     next(err);

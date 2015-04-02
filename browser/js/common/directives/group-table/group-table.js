@@ -1,4 +1,4 @@
-app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, GroupFactory, objIndexOf, $timeout) {
+app.directive('groupTable', function(GithubFactory, Session, $alert, UserGroup, GroupFactory, objIndexOf) {
   return {
     restrict: 'E',
     templateUrl: 'js/common/directives/group-table/group-table.html',
