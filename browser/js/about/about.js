@@ -16,7 +16,7 @@ app.controller('AboutController', function ($scope) {
     $scope.people = [
       {
         fullName: 'Colin VanLang',
-        image: 'images/colin.png',
+        image: 'images/covlllp.jpg',
         github: {
           username: 'covlllp',
           url: '//github.com/covlllp',
