@@ -29,6 +29,9 @@
             Save State Changes
           </button>
         </div>
+        <p ng-hide="isEdit"><strong class="text-primary">Blue</strong> indicates editable files<br>
+        <strong>Black</strong> indicates read-only files</p>
+        <hr ng-hide="isEdit">
         <treecontrol class="tree-classic"
           tree-model="treedata"
           options="opts"
